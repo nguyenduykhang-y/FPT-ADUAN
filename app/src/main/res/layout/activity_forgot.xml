@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    tools:context=".Activity.LoginActivity"
+    android:gravity="center"
+    android:layout_marginTop="200dp"
+    android:orientation="vertical">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Forgot Password"
+    android:textStyle="bold"
+    android:layout_marginLeft="10dp"
+    android:textSize="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/liner2"
+        android:layout_width="275dp"
+        android:layout_height="51dp"
+
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+       >
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+
+            android:layout_gravity="center_vertical"/>
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textColor="@color/white"
+            android:background="#0000"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/liner4"
+        android:layout_width="275dp"
+        android:layout_height="51dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/liner2">
+        <Button
+            android:id="@+id/btnForgot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Send"
+
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wait 60, the system will send you an email"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="15dp"/>
+
+
+</LinearLayout>
