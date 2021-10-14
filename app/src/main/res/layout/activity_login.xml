@@ -36,6 +36,17 @@
             android:paddingLeft="15dp"
             android:text="test@gmail.com"
 />
+        <EditText
+            android:id="@+id/edtEM"
+            android:layout_width="302dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="140dp"
+
+            android:ems="10"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:text="test@gmail.com"
+            />
 
         <EditText
             android:id="@+id/editTextPassword"
