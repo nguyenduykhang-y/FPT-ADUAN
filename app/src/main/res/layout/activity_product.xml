@@ -4,10 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="720px"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        >
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_images"
+            android:layout_width="match_parent"
+            android:layout_height="500px"/>
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/circle_indicatior"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            app:ci_drawable="@drawable/bg_indicaitor" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="800px"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,6 +69,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="700px"
         android:padding="10dp"
 
         android:orientation="horizontal">
