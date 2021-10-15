@@ -74,28 +74,7 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navi);
 
-        bottomNavigationView.setSelectedItemId(R.id.home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
-                    case R.id.home:
-                        return true;
-                    case R.id.user:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.noti:
-                        startActivity(new Intent(getApplicationContext(), ThontinActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         listViewProducts = (ListView) findViewById(R.id.listViewProducts);
@@ -135,7 +114,28 @@ public class ProductActivity extends AppCompatActivity {
 
             }
         });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navi);
 
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.home:
+                        return true;
+                    case R.id.user:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.noti:
+                        startActivity(new Intent(getApplicationContext(), ThontinActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
