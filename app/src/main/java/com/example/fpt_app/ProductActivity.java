@@ -3,6 +3,7 @@ package com.example.fpt_app;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +18,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 
+import com.example.fpt_app.Adapter.PhotoViewPager;
 import com.example.fpt_app.Adapter.ProductAdapter;
+import com.example.fpt_app.Adapter.Silder;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.Response2PikModel;
@@ -31,11 +35,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.relex.circleindicator.CircleIndicator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductActivity extends AppCompatActivity {
+
+    private ViewPager mViewPager;
+    private CircleIndicator mCircleIndicator;
+    private List<Silder> mSilders;
 
     private ListView listViewProducts;
     private ImageView imageView2Pik;
@@ -49,6 +58,17 @@ public class ProductActivity extends AppCompatActivity {
 
     private AccessTokenManager tokenManager;
     private SearchView searchView;
+    private Handler mhHandler = new Handler();
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mViewPager.getCurrentItem() == mSilders.size() - 1){
+                mViewPager.setCurrentItem(0);
+            }else {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +103,38 @@ public class ProductActivity extends AppCompatActivity {
         buttonchat =  findViewById(R.id.buttonChat);
         imageView2Pik= (ImageView) findViewById(R.id.thongtin);
         searchView = findViewById(R.id.searchview);
+
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         listViewProducts.setAdapter(arrayAdapter);
         setTitle("Home");
+
+        mViewPager = findViewById(R.id.view_images);
+        mCircleIndicator  = findViewById(R.id.circle_indicatior);
+        mSilders = getListPhoto();
+
+        PhotoViewPager adapter = new PhotoViewPager(mSilders);
+        mViewPager.setAdapter(adapter);
+        mCircleIndicator.setViewPager(mViewPager);
+
+        mhHandler.postDelayed(mRunnable, 2100);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mhHandler.removeCallbacks(mRunnable);
+                mhHandler.postDelayed(mRunnable, 2100);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
@@ -150,7 +199,24 @@ public class ProductActivity extends AppCompatActivity {
         });
 
     }
-private void XacNhanXoa(Product p ){
+
+    private List<Silder> getListPhoto() {
+        List<Silder> list = new ArrayList<>();
+        list.add(new Silder(R.drawable.backgourd));
+        list.add(new Silder(R.drawable.backgroud1));
+        list.add(new Silder(R.drawable.backgourd2));
+        return list;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mhHandler.removeCallbacks(mRunnable);
+    }
+
+
+
+    private void XacNhanXoa(Product p ){
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
     alertDialog.setTitle("Notification");
     alertDialog.setMessage("Do you want to delete this product?");
@@ -183,6 +249,7 @@ private void XacNhanXoa(Product p ){
         Log.e("onResume: ", "onResume>>>>");
         IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service.productGetAll().enqueue(getAllCB);
+        mhHandler.postDelayed(mRunnable, 2500);
     }
 
     Callback<ResponseModel> deleteCB = new Callback<ResponseModel>() {
