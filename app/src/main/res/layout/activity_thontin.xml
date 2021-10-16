@@ -5,15 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="?attr/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <Button
         android:id="@+id/btnlogout"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:layout_below="@+id/mode"
         android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textColor="?attr/text_color"
+        android:text="Trong hướng dẫn này, tôi giải thích cách bạn có thể triển khai chủ đề tối hoặc chế độ tối trong ứng dụng Android của mình. Vì vậy, bạn có thể chuyển đổi giữa chế độ tối và chế độ sáng trong ứng dụng Android của mình,
+
+   Chủ đề tối đang trở nên phổ biến từng ngày và có nhiều cách tiếp cận để triển khai chủ đề tối trong Android, trong video chúng tôi sẽ hướng dẫn cách tiếp cận dễ dàng và hiệu quả nhất có thể dễ dàng tạo chế độ ban đêm và ngày cho ứng dụng của bạn."/>
+
+
+    <Switch
+        android:id="@+id/mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv"
+        android:layout_alignParentRight="true"
+        android:text="Chuyển" />
+    </RelativeLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navi"
         android:layout_width="match_parent"
