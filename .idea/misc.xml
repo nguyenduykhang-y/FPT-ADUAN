@@ -7,9 +7,12 @@
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.19282051282051282" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.19282051282051282" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/drawable/selector.xml" value="0.19583333333333333" />
-        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_forgot.xml" value="0.1" />
+        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_cart.xml" value="0.12228260869565218" />
+        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_darkmode.xml" value="0.1" />
+        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_forgot.xml" value="0.14666666666666667" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_notificaiton.xml" value="0.12228260869565218" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_notification.xml" value="0.15670289855072464" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_person.xml" value="0.12771739130434784" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/layout/activity_product.xml" value="0.12" />
