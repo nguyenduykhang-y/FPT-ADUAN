@@ -34,14 +34,27 @@ public class ThontinActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_thontin);
         btnout = findViewById(R.id.btnlogout);
         aSwitch = findViewById(R.id.mode);
         textView = findViewById(R.id.tv);
-        setTitle("Info");
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
         AccessToken token = tokenManager.getToken();
+
+        if (token.getAccess_token()!=null){
+            startActivity(new Intent(getBaseContext(), ProductActivity.class));
+            finish();
+        }
+        btnout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tokenManager.deleteToken();
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                Toast.makeText(ThontinActivity.this, "Logout Suscess", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navi);
 
         bottomNavigationView.setSelectedItemId(R.id.user);
@@ -67,24 +80,9 @@ public class ThontinActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.user:
-
                         return true;
                 }
                 return false;
-            }
-        });
-
-        if (token.getAccess_token()!=null){
-            startActivity(new Intent(getBaseContext(), ProductActivity.class));
-            finish();
-        }
-        btnout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tokenManager.deleteToken();
-                startActivity(new Intent(getBaseContext(), LoginActivity.class));
-                Toast.makeText(ThontinActivity.this, "Logout Suscess", Toast.LENGTH_SHORT).show();
-                finish();
             }
         });
 

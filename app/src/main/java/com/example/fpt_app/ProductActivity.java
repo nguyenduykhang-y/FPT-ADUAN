@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -53,12 +54,13 @@ public class ProductActivity extends AppCompatActivity {
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
     private ArrayAdapter<String> arrayAdapter;
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
 
     private AccessTokenManager tokenManager;
     private SearchView searchView;
     private Handler mhHandler = new Handler();
+    TextView textView;
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
@@ -82,6 +84,9 @@ public class ProductActivity extends AppCompatActivity {
         buttonchat =  findViewById(R.id.buttonChat);
         imageView2Pik= (ImageView) findViewById(R.id.thongtin);
         searchView = findViewById(R.id.searchview);
+        textView = findViewById(R.id.marquee);
+
+        textView.setSelected(true);
 
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         listViewProducts.setAdapter(arrayAdapter);
@@ -122,13 +127,22 @@ public class ProductActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId())
                 {
-                    case R.id.home:
-                        return true;
-                    case R.id.user:
+                    case R.id.shop:
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
+                    case R.id.cart:
+                        startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.home:
+
+                        return true;
                     case R.id.noti:
+                        startActivity(new Intent(getApplicationContext(), NotificaitonActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.user:
                         startActivity(new Intent(getApplicationContext(), ThontinActivity.class));
                         overridePendingTransition(0, 0);
                         return true;

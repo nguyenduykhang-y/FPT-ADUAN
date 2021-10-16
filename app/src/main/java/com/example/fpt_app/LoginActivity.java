@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String BASE_URL = "http://10.0.2.2:8081/";
+    private String BASE_URL = "http://10.0.3.2:8081/";
     private AccessTokenManager tokenManager;
 
     @Override

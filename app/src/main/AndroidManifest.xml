@@ -18,16 +18,20 @@
             android:exported="false" />
         <activity
             android:name=".CartActivity"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false" />
 
-        <activity android:name=".ThontinActivity" />
+        <activity android:name=".ThontinActivity"
+            android:exported="false"/>
+
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FogotActivity" />
-        <activity android:name=".ProductFormActivity" /> <!-- <activity android:name=".MainActivity" /> -->
-        <activity android:name=".ProductActivity" />
+<!--        <activity android:name=".MainActivity"/>-->
+        <activity android:name=".ProductFormActivity" />
+        <activity android:name=".ProductActivity"
+            android:exported="false"/>
         <activity android:name=".SocketActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
