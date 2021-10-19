@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Do An Tot Nghiep/test/FPT-ADUAN/app/src/main/res/layout/activity_cart.xml" value="0.19882246376811594" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/drawable/bg_indicaitor.xml" value="0.19583333333333333" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.19282051282051282" />
         <entry key="..\:/cacMon/FPT-Laptop/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.19282051282051282" />
@@ -28,7 +29,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
