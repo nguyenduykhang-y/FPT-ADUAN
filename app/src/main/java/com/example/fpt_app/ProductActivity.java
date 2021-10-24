@@ -19,9 +19,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -46,16 +43,34 @@ import retrofit2.Response;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewProducts;
-    private Button buttonAddNew, btnxoa, buttonchat, btnChuyen;
+    private ViewPager mViewPager;
+    private CircleIndicator mCircleIndicator;
+    private List<Silder> mSilders;
+
+    private ListView listViewProducts;
+    private ImageView imageView2Pik;
+    private Button buttonAddNew, btnxoa, buttonchat;
+
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
     private ArrayAdapter<String> arrayAdapter;
     private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
+
     private AccessTokenManager tokenManager;
-
-
+    private SearchView searchView;
+    private Handler mhHandler = new Handler();
+    TextView textView;
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mViewPager.getCurrentItem() == mSilders.size() - 1){
+                mViewPager.setCurrentItem(0);
+            }else {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,21 +79,77 @@ public class ProductActivity extends AppCompatActivity {
 
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
-        recyclerViewProducts = findViewById(R.id.listViewProducts);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-        recyclerViewProducts.setLayoutManager(gridLayoutManager);
-
-        ProductAdapter productAdapter = new ProductAdapter(arrayAdapter);
-        recyclerViewProducts.setAdapter(productAdapter);
+        listViewProducts = (ListView) findViewById(R.id.listViewProducts);
         buttonAddNew = findViewById(R.id.buttonAddNew);
         buttonchat =  findViewById(R.id.buttonChat);
+        imageView2Pik= (ImageView) findViewById(R.id.thongtin);
+        searchView = findViewById(R.id.searchview);
+        textView = findViewById(R.id.marquee);
 
-        btnChuyen =  findViewById(R.id.btnChuyen);
+        textView.setSelected(true);
 
-
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        listViewProducts.setAdapter(arrayAdapter);
         setTitle("Home");
 
+        mViewPager = findViewById(R.id.view_images);
+        mCircleIndicator  = findViewById(R.id.circle_indicatior);
+        mSilders = getListPhoto();
 
+        PhotoViewPager adapter = new PhotoViewPager(mSilders);
+        mViewPager.setAdapter(adapter);
+        mCircleIndicator.setViewPager(mViewPager);
+
+        mhHandler.postDelayed(mRunnable, 2100);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mhHandler.removeCallbacks(mRunnable);
+                mhHandler.postDelayed(mRunnable, 2100);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navi);
+
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.shop:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.cart:
+                        startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.home:
+
+                        return true;
+                    case R.id.noti:
+                        startActivity(new Intent(getApplicationContext(), NotificaitonActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.user:
+                        startActivity(new Intent(getApplicationContext(), ThontinActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
@@ -96,50 +167,68 @@ public class ProductActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), SocketActivity.class));
             }
         });
-//        listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Product p = (Product) adapterView.getItemAtPosition(i);
-//                Intent intent = new Intent(getBaseContext(), ProductFormActivity.class);
-//                intent.putExtra("id", p.getId());
-//                startActivity(intent);
-//            }
-//        });
-//
-//        listViewProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Product p = (Product) adapterView.getItemAtPosition(i);
-//
-//                XacNhanXoa(p);
-//
-//           return true;
-//            }
-//        });
+        listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Product p = (Product) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getBaseContext(), ProductFormActivity.class);
+                intent.putExtra("id", p.getId());
+                startActivity(intent);
+            }
+        });
 
-        btnChuyen.setOnClickListener(new View.OnClickListener() {
+        listViewProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Product p = (Product) adapterView.getItemAtPosition(i);
+
+                XacNhanXoa(p);
+
+           return true;
+            }
+        });
+
+        imageView2Pik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProductActivity.this, ListSPActivity.class);
+                Intent i = new Intent(ProductActivity.this, ThontinActivity.class);
                 startActivity(i);
 
 
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                ProductActivity.this.arrayAdapter.getFilter().filter(query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ProductActivity.this.arrayAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
     }
 
-
-    private void showToast(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    private List<Silder> getListPhoto() {
+        List<Silder> list = new ArrayList<>();
+        list.add(new Silder(R.drawable.backgourd));
+        list.add(new Silder(R.drawable.backgroud1));
+        list.add(new Silder(R.drawable.backgourd2));
+        return list;
     }
+
     @Override
     protected void onPause() {
         super.onPause();
-
+        mhHandler.removeCallbacks(mRunnable);
     }
+
+
 
     private void XacNhanXoa(Product p ){
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
@@ -174,7 +263,7 @@ public class ProductActivity extends AppCompatActivity {
         Log.e("onResume: ", "onResume>>>>");
         IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service.productGetAll().enqueue(getAllCB);
-
+        mhHandler.postDelayed(mRunnable, 2500);
     }
 
     Callback<ResponseModel> deleteCB = new Callback<ResponseModel>() {
@@ -223,11 +312,11 @@ public class ProductActivity extends AppCompatActivity {
                 if (data.size() == 0){
                     data = response.body();
                     adapter = new ProductAdapter(data, getBaseContext());
-                    recyclerViewProducts.setAdapter(adapter);
+                    listViewProducts.setAdapter(adapter);
                 } else {
                     data.clear();
                     data.addAll(response.body());
-                    recyclerViewProducts.setAdapter(adapter);
+                    listViewProducts.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
             } else {

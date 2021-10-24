@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".DetailsActivity">
+<<<<<<< HEAD
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="90dp"
@@ -96,4 +97,17 @@
             android:id="@+id/addtoGio"/>
     </LinearLayout>
 
+=======
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/tvTesst"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/tvGia"/>
+>>>>>>> 9b3a8e1 (update)
 </LinearLayout>
