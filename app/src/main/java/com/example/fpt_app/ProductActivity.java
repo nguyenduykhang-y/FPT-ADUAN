@@ -48,8 +48,8 @@ public class ProductActivity extends AppCompatActivity {
     private List<Silder> mSilders;
 
     private ListView listViewProducts;
-    private ImageView imageView2Pik;
-    private Button buttonAddNew, btnxoa, buttonchat;
+
+    private Button buttonAddNew, btnxoa, buttonchat, btnChuyen;
 
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
@@ -82,8 +82,8 @@ public class ProductActivity extends AppCompatActivity {
         listViewProducts = (ListView) findViewById(R.id.listViewProducts);
         buttonAddNew = findViewById(R.id.buttonAddNew);
         buttonchat =  findViewById(R.id.buttonChat);
-        imageView2Pik= (ImageView) findViewById(R.id.thongtin);
-        searchView = findViewById(R.id.searchview);
+
+        btnChuyen =  findViewById(R.id.btnChuyen);
         textView = findViewById(R.id.marquee);
 
         textView.setSelected(true);
@@ -188,29 +188,17 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
-        imageView2Pik.setOnClickListener(new View.OnClickListener() {
+        btnChuyen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProductActivity.this, ThontinActivity.class);
+                Intent i = new Intent(ProductActivity.this, ListSPActivity.class);
                 startActivity(i);
 
 
             }
         });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                ProductActivity.this.arrayAdapter.getFilter().filter(query);
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                ProductActivity.this.arrayAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
 
     }
 
