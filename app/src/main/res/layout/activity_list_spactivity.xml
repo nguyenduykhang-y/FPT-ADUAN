@@ -6,105 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ListSPActivity">
+    
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="@color/homeapp">
-        <LinearLayout
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/botron_button">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Khu vực"
-                android:fontFamily="@font/tahoma"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="270dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal"
-            android:background="@drawable/botron_button">>
-            <SearchView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Tìm....."
-                android:fontFamily="@font/tahoma"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"/>
-
-        </LinearLayout>
-    </LinearLayout>
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnAsus"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btnAsus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textColor="@color/homeapp"
-                android:backgroundTint="@color/Xam"
-                android:text="ASUS"/>
-            <Button
-                android:id="@+id/btnHP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/homeapp"
-                android:backgroundTint="@color/Xam"
-                android:layout_marginLeft="10dp"
-                android:layout_margin="5dp"
-                android:text="HP"/>
-            <Button
-                android:id="@+id/btnGM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/homeapp"
-                android:backgroundTint="@color/Xam"
-                android:layout_marginLeft="10dp"
-                android:layout_margin="5dp"
-                android:text="Lenovo"/>
-            <Button
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/homeapp"
-                android:backgroundTint="@color/Xam"
-                android:layout_marginLeft="10dp"
-                android:layout_margin="5dp"
-                android:text="Metu"/>
-            <Button
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/homeapp"
-                android:backgroundTint="@color/Xam"
-                android:layout_marginLeft="10dp"
-                android:layout_margin="5dp"
-                android:text="HI"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+            android:layout_weight="1"
+            android:text="ASUS"/>
+        <Button
+            android:id="@+id/btnHP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="HP"/>
+        <Button
+            android:id="@+id/btnGM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="Gaming"/>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

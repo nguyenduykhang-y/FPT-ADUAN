@@ -16,10 +16,10 @@
         <activity
             android:name=".DetailsActivity"
             android:exported="false" />
-        <activity
-            android:name=".ListSPActivity"
-            android:exported="false" />
-        <activity android:name=".NotificaitonActivity"></activity>
+         <activity
+         android:name=".ListSPActivity"
+         android:exported="false" />
+
         <activity
             android:name=".CartActivity"
             android:exported="false" />
@@ -27,28 +27,20 @@
             android:name=".ThontinActivity"
             android:exported="false" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".FogotActivity" />
-         <activity android:name=".welcome_screen">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
+        <activity android:name=".FogotActivity" /> <!-- <activity android:name=".MainActivity"/> -->
         <activity android:name=".ProductFormActivity" />
         <activity
             android:name=".ProductActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity android:name=".SocketActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
