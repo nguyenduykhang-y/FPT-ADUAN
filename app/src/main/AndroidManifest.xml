@@ -19,7 +19,7 @@
          <activity
          android:name=".ListSPActivity"
          android:exported="false" />
-
+        <activity android:name=".NotificaitonActivity"></activity>
         <activity
             android:name=".CartActivity"
             android:exported="false" />
