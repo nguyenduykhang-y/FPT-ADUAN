@@ -43,6 +43,12 @@
 
         </LinearLayout>
     </LinearLayout>
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,31 +56,55 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/btnAsus"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:textColor="@color/homeapp"
             android:backgroundTint="@color/Xam"
             android:text="ASUS"/>
         <Button
             android:id="@+id/btnHP"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/homeapp"
             android:backgroundTint="@color/Xam"
             android:layout_marginLeft="10dp"
+            android:layout_margin="5dp"
             android:text="HP"/>
         <Button
             android:id="@+id/btnGM"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/homeapp"
             android:backgroundTint="@color/Xam"
             android:layout_marginLeft="10dp"
-            android:text="Gaming"/>
+            android:layout_margin="5dp"
+            android:text="Lenovo"/>
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/homeapp"
+            android:backgroundTint="@color/Xam"
+            android:layout_marginLeft="10dp"
+            android:layout_margin="5dp"
+            android:text="Metu"/>
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/homeapp"
+            android:backgroundTint="@color/Xam"
+            android:layout_marginLeft="10dp"
+            android:layout_margin="5dp"
+            android:text="HI"/>
     </LinearLayout>
+    </HorizontalScrollView>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
