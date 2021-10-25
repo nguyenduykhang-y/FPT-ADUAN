@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,47 +9,83 @@
     android:background="?attr/background_color"
     >
 
-    <Button
-        android:id="@+id/btnlogout"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mode"
-        android:layout_gravity="center"
-        android:text="Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mode"
-        tools:layout_editor_absoluteY="238dp" />
 
-    <TextView
-        android:id="@+id/tv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Trong hướng dẫn này, tôi giải thích cách bạn có thể triển khai chủ đề tối hoặc chế độ tối trong ứng dụng Android của mình. Vì vậy, bạn có thể chuyển đổi giữa chế độ tối và chế độ sáng trong ứng dụng Android của mình,
-
-   Chủ đề tối đang trở nên phổ biến từng ngày và có nhiều cách tiếp cận để triển khai chủ đề tối trong Android, trong video chúng tôi sẽ hướng dẫn cách tiếp cận dễ dàng và hiệu quả nhất có thể dễ dàng tạo chế độ ban đêm và ngày cho ứng dụng của bạn."
-        android:textColor="?attr/text_color"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="49dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:textSize="24dp"
+            android:text="Thêm sản phẩm vào shop"
+            android:textColor="#FF6600" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:text="Thông tin tài khoản"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:text="Thay đổi địa chỉ"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:text="Thông tin shop"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:text="Sản phẩm yêu thích"/>
 
     <Switch
         android:id="@+id/mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="76dp"
-        android:text="Chuyển"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv" />
-
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:text="Chuyển" />
+    <Button
+        android:id="@+id/btnlogout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/Xam"
+        android:textColor="#FF0000"
+        android:text="Logout" />
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/Xam"
+        android:layout_alignParentBottom="true"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        app:menu="@menu/menu_nav" />
+</RelativeLayout>
+</LinearLayout>
