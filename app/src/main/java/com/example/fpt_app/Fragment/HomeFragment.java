@@ -1,5 +1,6 @@
 package com.example.fpt_app.Fragment;
 
+<<<<<<< HEAD
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -9,10 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+=======
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+>>>>>>> dcf8fd7 (add shop)
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+<<<<<<< HEAD
 import com.example.fpt_app.Adapter.ListAdapter;
 import com.example.fpt_app.Adapter.PhotoViewPager;
 import com.example.fpt_app.Adapter.Silder;
@@ -143,5 +151,24 @@ public class HomeFragment extends Fragment {
         list.add(new Silder(R.drawable.backgroud1));
         list.add(new Silder(R.drawable.backgourd2));
         return list;
+=======
+import com.example.fpt_app.R;
+
+
+public class HomeFragment extends Fragment {
+
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.fragment_home, container, false);
+
+>>>>>>> dcf8fd7 (add shop)
     }
 }
