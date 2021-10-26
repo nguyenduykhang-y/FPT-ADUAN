@@ -37,7 +37,7 @@ public class ThontinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_thontin);
         btnout = findViewById(R.id.btnlogout);
         aSwitch = findViewById(R.id.mode);
-        textView = findViewById(R.id.tv);
+//        textView = findViewById(R.id.tv);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
         AccessToken token = tokenManager.getToken();
 
