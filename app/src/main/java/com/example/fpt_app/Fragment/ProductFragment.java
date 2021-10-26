@@ -3,12 +3,16 @@ package com.example.fpt_app.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+<<<<<<< HEAD
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+=======
+>>>>>>> 8a58581 (xửa thành fragment)
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.Button;
 
 import com.example.fpt_app.Adapter.ListAdapter;
@@ -24,6 +28,14 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
     private RecyclerView mRecyclerView;
     private GridLayoutManager gridLayoutManager;
     private Button btnA, btnB, btnC;
+=======
+
+import com.example.fpt_app.R;
+
+
+public class ProductFragment extends Fragment {
+
+>>>>>>> 8a58581 (xửa thành fragment)
 
     public ProductFragment() {
         // Required empty public constructor
@@ -32,6 +44,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
 
 
     @Override
+<<<<<<< HEAD
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.fragment_product, container, false);
 
@@ -99,5 +112,11 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
             return;
         }
         gridLayoutManager.scrollToPositionWithOffset(i, 0);
+=======
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_product, container, false);
+>>>>>>> 8a58581 (xửa thành fragment)
     }
 }
