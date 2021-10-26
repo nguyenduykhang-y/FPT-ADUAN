@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String BASE_URL = "http://10.0.3.2:8081/";
+    private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
 
     @Override
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         Button buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
-        TextView fogot = (TextView) findViewById(R.id.fogot);
+//        TextView fogot = (TextView) findViewById(R.id.fogot);
         TextView dk = (TextView) findViewById(R.id.dangky);
         setTitle("Login");
         dk.setOnClickListener(new View.OnClickListener() {
@@ -52,12 +52,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        fogot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), FogotActivity.class));
-            }
-        });
+//        fogot.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getBaseContext(), FogotActivity.class));
+//            }
+//        });
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
