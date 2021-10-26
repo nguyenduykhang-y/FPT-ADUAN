@@ -109,7 +109,7 @@
             android:id="@+id/marquee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello chao mừng đến với thế giớ laptop || Hello chao mừng đến với thế giớ laptop"
+            android:text="Hello chao mừng đến với thế giớ laptop || Hello chao mừng đến với thế giớ laptop|| Hello chao mừng đến với thế giớ laptop"
             android:textSize="20dp"
             android:textStyle="bold"
             android:fontFamily="@font/tahoma"
@@ -145,16 +145,16 @@
 
     </LinearLayout>
     </LinearLayout>
-   <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Xam"
-        android:layout_gravity="bottom|end"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+<!--   <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_navi"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/Xam"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        app:itemIconTint="@drawable/selector"-->
+<!--        app:itemTextColor="@drawable/selector"-->
+<!--        app:menu="@menu/menu_nav"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"/>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
