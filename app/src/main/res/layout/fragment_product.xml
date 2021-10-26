@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context=".Fragment.ProductFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="800px"
+        android:layout_height="720px"
         android:padding="10dp"
         android:orientation="vertical"
         >
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_images"
             android:layout_width="match_parent"
-            android:layout_height="600px"/>
+            android:layout_height="500px"/>
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/circle_indicatior"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             app:ci_drawable="@drawable/bg_indicaitor"
+
             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="300dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/marquee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello chao mừng đến với thế giớ laptop || Hello chao mừng đến với thế giớ laptop|| Hello chao mừng đến với thế giớ laptop"
-            android:textSize="15dp"
+            android:text="Hello chao mừng đến với thế giớ laptop || Hello chao mừng đến với thế giớ laptop"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:fontFamily="@font/tahoma"
-            android:padding="10dp"
+            android:padding="20dp"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Rcv_ListViewProducts"
+        <ListView
+            android:id="@+id/listViewProducts"
             android:layout_width="match_parent"
             android:padding="10dp"
-            tools:listitem="@layout/item_list"
-            android:layout_height="wrap_content"/>
+            android:layout_height="400dp"
+            />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
