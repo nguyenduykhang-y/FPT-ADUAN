@@ -44,14 +44,14 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         setTitle("Register an account");
 
-        back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ds = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(ds);
-            }
-        });
+//        back = findViewById(R.id.back);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent ds = new Intent(RegisterActivity.this, LoginActivity.class);
+//                startActivity(ds);
+//            }
+//        });
 
 
         IRetrofitService service = new RetrofitBuilder()
