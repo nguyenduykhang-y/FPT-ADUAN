@@ -1,56 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.ProductFragment">
+    android:orientation="vertical"
+    tools:context=".ListSPActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="720px"
-        android:padding="10dp"
-        android:orientation="vertical"
-        >
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_images"
-            android:layout_width="match_parent"
-            android:layout_height="500px"/>
 
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/circle_indicatior"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            app:ci_drawable="@drawable/bg_indicaitor"
 
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/marquee"
+        android:fillViewport="true">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello chao mừng đến với thế giớ laptop || Hello chao mừng đến với thế giớ laptop"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/tahoma"
-            android:padding="20dp"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"/>
-        <ListView
-            android:id="@+id/listViewProducts"
-            android:layout_width="match_parent"
             android:padding="10dp"
-            android:layout_height="400dp"
-            />
-    </LinearLayout>
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnAsus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textColor="@color/homeapp"
+                android:backgroundTint="@color/Xam"
+                android:text="ASUS"/>
+            <Button
+                android:id="@+id/btnHP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/homeapp"
+                android:backgroundTint="@color/Xam"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="5dp"
+                android:text="HP"/>
+            <Button
+                android:id="@+id/btnGM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/homeapp"
+                android:backgroundTint="@color/Xam"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="5dp"
+                android:text="Lenovo"/>
+            <Button
 
-</RelativeLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/homeapp"
+                android:backgroundTint="@color/Xam"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="5dp"
+                android:text="Metu"/>
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/homeapp"
+                android:backgroundTint="@color/Xam"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="5dp"
+                android:text="HI"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/rcv_list"/>
+</LinearLayout>
