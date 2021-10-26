@@ -23,6 +23,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
 
     private List<ListSP> mListSPS;
     private Context mContext;
+    private RecyclerView mRecyclerView;
 
     public ListAdapter( Context context, List<ListSP> mListSPS) {
         this.mListSPS = mListSPS;
