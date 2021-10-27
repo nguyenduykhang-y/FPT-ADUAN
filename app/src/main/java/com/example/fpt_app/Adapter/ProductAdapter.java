@@ -1,13 +1,18 @@
 package com.example.fpt_app.Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fpt_app.Models.Product;
@@ -15,7 +20,7 @@ import com.example.fpt_app.R;
 
 import java.util.List;
 
-public class ProductAdapter extends BaseAdapter {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> data;
     private Context context;
@@ -25,56 +30,47 @@ public class ProductAdapter extends BaseAdapter {
         this.context = context;
     }
 
+    public ProductAdapter(ArrayAdapter<String> arrayAdapter) {
+    }
+
+
+    @NonNull
     @Override
-    public int getCount() {
-        return data.size();
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_product_item, parent, false);
+
+        return new ProductViewHolder(v);
     }
 
     @Override
-    public Object getItem(int i) {
-        return data.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int _i, View _view, ViewGroup _viewGroup) {
-        View view = _view;
-        if (view == null){
-            view = View.inflate(_viewGroup.getContext(), R.layout.layout_product_item, null);
-            TextView textViewName = (TextView) view.findViewById(R.id.textViewProductName);
-            TextView textViewPrice = (TextView) view.findViewById(R.id.textViewProductPrice);
-
-            ImageView imageView = (ImageView) view.findViewById(R.id.imageViewProduct);
-            ViewHolder holder = new ViewHolder(textViewName, textViewPrice, imageView);
-            view.setTag(holder);
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Product product = data.get(position);
+        if (product == null){
+            return;
         }
-        ViewHolder holder = (ViewHolder) view.getTag();
-        Product p = (Product) getItem(_i);
-        holder.name.setText(p.getName());
-        holder.price.setText(String.valueOf(p.getPrice()));
-        Glide.with(context).load(p.getImage_url())
-                .into(holder.imageView);
-        //animation
-//        Animation animation = AnimationUtils.loadAnimation(context, R.anim.scale);
-//        view.setAnimation(animation);
-
-
-        return view;
+        Glide.with(context).load(product.getImage_url())
+                .into(holder.image_url);
+        holder.name.setText(product.getName());
+        holder.price.setText(String.valueOf(product.getPrice()));
     }
 
-    private static class ViewHolder{
-        final TextView name, price;
-        final ImageView imageView;
+    @Override
+    public int getItemCount() {
+        if (data != null){
+            return data.size();
+        }
+        return 0;
+    }
 
-        public ViewHolder(TextView name, TextView price, ImageView imageView) {
-            this.name = name;
-            this.price = price;
-            this.imageView = imageView;
 
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
+        private TextView  name, price;
+        private ImageView image_url;
+        public ProductViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.textViewProductName);
+            price = itemView.findViewById(R.id.textViewProductPrice);
+            image_url = itemView.findViewById(R.id.imageViewProduct);
         }
     }
 }

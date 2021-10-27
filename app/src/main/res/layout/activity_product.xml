@@ -48,51 +48,9 @@
 
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="720px"
-        android:padding="10dp"
-        android:layout_marginTop="60dp"
-        android:orientation="vertical"
-        >
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_images"
-            android:layout_width="match_parent"
-            android:layout_height="500px"/>
-
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/circle_indicatior"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            app:ci_drawable="@drawable/bg_indicaitor" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
 
-        <ListView
-            android:id="@+id/listViewProducts"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="match_parent"
-            />
-        <TextView
-            android:id="@+id/marquee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello chao mừng đến với thế giớ laptop || Hello chao mừng đến với thế giớ laptop|| Hello chao mừng đến với thế giớ laptop"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/tahoma"
-            android:padding="20dp"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"/>
-    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -126,17 +84,13 @@
             android:text="ListSP" />
 
     </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listViewProducts"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="match_parent"
+            />
+
     </LinearLayout>
-<!--   <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/bottom_navi"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/Xam"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        app:itemIconTint="@drawable/selector"-->
-<!--        app:itemTextColor="@drawable/selector"-->
-<!--        app:menu="@menu/menu_nav"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"/>-->
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
