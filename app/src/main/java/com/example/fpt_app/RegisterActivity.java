@@ -23,11 +23,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText edtEmail, edtPassword, edtConfirmPassword;
+    private EditText fullname,edtEmail, edtPassword, edtConfirmPassword;
     private Button btnRegister;
     int position;
     String email;
-    private String BASE_URL = "http://10.0.2.2:8081/";
+    private String BASE_URL = "http://10.0.3.2:8081/";
     private AccessTokenManager tokenManager;
     ImageView back;
 
@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
-
+        fullname = findViewById(R.id.fullname);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
@@ -61,11 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String full_name = fullname.getText().toString();
                 String newEmail = edtEmail.getText().toString();
                 String newPassword = edtPassword.getText().toString();
                 String confirmNewPassword = edtConfirmPassword.getText().toString();
 
-                service.dangky(new User(newEmail, newPassword, confirmNewPassword)).enqueue(registerCB);
+                service.dangky(new User(full_name, newEmail, newPassword, confirmNewPassword)).enqueue(registerCB);
 
 
             }
