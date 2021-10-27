@@ -28,7 +28,7 @@
             android:exported="false" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FogotActivity" />
-         <activity android:name=".MainActivity">
+         <activity android:name=".LoginActivity">
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
 
@@ -38,10 +38,10 @@
         <activity android:name=".ProductFormActivity" />
         <activity
             android:name=".ProductActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity android:name=".SocketActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="true">
 
         </activity>
