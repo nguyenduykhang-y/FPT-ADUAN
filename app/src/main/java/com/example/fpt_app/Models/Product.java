@@ -1,6 +1,8 @@
 package com.example.fpt_app.Models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private Integer id;
     private String name;
     private Double price;

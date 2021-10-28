@@ -20,7 +20,7 @@ public class DetailsActivity extends AppCompatActivity {
         if (bundle == null ){
             return;
         }
-        ListSP listSP = (ListSP) bundle.get("ọject");
+        ListSP listSP = (ListSP) bundle.get("chitiet");
         ImageView img = findViewById(R.id.imgdetail);
         TextView tv = findViewById(R.id.tvTesst);
         Button btn = findViewById(R.id.mua);

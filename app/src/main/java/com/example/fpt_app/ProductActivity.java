@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -45,22 +46,15 @@ import retrofit2.Response;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
-    private CircleIndicator mCircleIndicator;
-    private List<Silder> mSilders;
-
     private RecyclerView recyclerViewProducts;
-
     private Button buttonAddNew, btnxoa, buttonchat, btnChuyen;
-
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
     private ArrayAdapter<String> arrayAdapter;
     private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
-
     private AccessTokenManager tokenManager;
-    private SearchView searchView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,13 +132,14 @@ public class ProductActivity extends AppCompatActivity {
     }
 
 
+    private void showToast(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected void onPause() {
         super.onPause();
 
     }
-
-
 
     private void XacNhanXoa(Product p ){
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
