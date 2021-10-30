@@ -28,9 +28,7 @@
             android:exported="false" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FogotActivity" />
-         <activity android:name=".MainActivity">
 
-         </activity>
         <activity android:name=".ProductFormActivity" />
         <activity
             android:name=".ProductActivity"
@@ -44,6 +42,9 @@
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 
