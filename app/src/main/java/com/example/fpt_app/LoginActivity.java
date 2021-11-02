@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String BASE_URL = "http://10.0.3.2:8081/";
+    private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
 
     @Override
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 AccessToken token = response.body();
                 tokenManager.saveToken(token);
                 if (token.getIs_auth()){
-                    startActivity(new Intent(getBaseContext(), ProductActivity.class));
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
                     Toast.makeText(LoginActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
                     finish();
                 }
