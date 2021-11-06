@@ -9,21 +9,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fpt_app.Adapter.ListAdapter;
 import com.example.fpt_app.Adapter.PhotoViewPager;
+import com.example.fpt_app.Adapter.ProductAdapter;
 import com.example.fpt_app.Adapter.Silder;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.ListSP;
+import com.example.fpt_app.Models.Product;
+import com.example.fpt_app.Models.Shop;
+import com.example.fpt_app.MyRetrofit.IRetrofitService;
+import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 import com.example.fpt_app.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -33,10 +42,15 @@ public class HomeFragment extends Fragment {
     private ViewPager mViewPager;
     private CircleIndicator mCircleIndicator;
     private List<Silder> mSilders;
-    List<ListSP> mlisSP;
+
+    private List<Product>  data = new ArrayList<>();
+    ProductAdapter productAdapter;
+    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_2PIK_URL = "https://2.pik.vn/";
+
     private GridLayoutManager gridLayoutManager;
     RecyclerView mRecyclerView;
-
+    private AccessTokenManager tokenManager;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -70,11 +84,8 @@ public class HomeFragment extends Fragment {
         gridLayoutManager = new GridLayoutManager(getContext(), 2 );
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
-        //set adapterSP
-        ListAdapter adapter1 = new ListAdapter(getContext(),getlist());
-        mRecyclerView.setAdapter(adapter1);
 
-//        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
+        tokenManager = AccessTokenManager.getInstance(getActivity().getSharedPreferences("prefs", MODE_PRIVATE));
 
         //Banner list
         mhHandler.postDelayed(mRunnable, 2100);
@@ -96,45 +107,40 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        IRetrofitService service = new RetrofitBuilder()
+                .createService(IRetrofitService.class, BASE_URL);
+        service.productGetAll().enqueue(getAllCB);
+
 
 
         return view;
+
     }
-    //getListSP
-    private List<ListSP> getlist() {
-        List<ListSP> list = new ArrayList<>();
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
+    //callback product
+    Callback<List<Product>> getAllCB = new Callback<List<Product>>() {
+        @Override
+        public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            if (response.isSuccessful()){
+                if (data.size() == 0){
+                    data = response.body();
+                    productAdapter = new ProductAdapter(data, getContext());
+                    mRecyclerView.setAdapter(productAdapter);
+                } else {
+                    data.clear();
+                    data.addAll(response.body());
+                    mRecyclerView.setAdapter(productAdapter);
+                    productAdapter.notifyDataSetChanged();
+                }
+            } else {
+                Log.e(">>>>>getAllCB onResponse", response.message());
+            }
+        }
 
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-
-        return list;
-    }
-
+        @Override
+        public void onFailure(Call<List<Product>> call, Throwable t) {
+            Log.e(">>>>>getAllCB onFailure", t.getMessage());
+        }
+    };
 
     //list image banner
     private List<Silder> getListPhoto() {

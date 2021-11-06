@@ -7,6 +7,7 @@ import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ProductCategory;
 import com.example.fpt_app.Models.Response2PikModel;
 import com.example.fpt_app.Models.ResponseModel;
+import com.example.fpt_app.Models.Shop;
 import com.example.fpt_app.Models.User;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public interface IRetrofitService {
     @POST("views/user_login.php")
     Call<AccessToken> login(@Body Person person);
 
+    @POST("views/store_get_all.php")
+    Call<List<Shop>> getAllShop();
 
     @POST("views/user_forgot_password.php")
     Call<AccessToken> chandpassword(@Body Person person);
