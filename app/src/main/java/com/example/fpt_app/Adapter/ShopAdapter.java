@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fpt_app.DetailsActivity;
 import com.example.fpt_app.Models.ListSP;
 import com.example.fpt_app.Models.Shop;
@@ -23,12 +25,15 @@ import java.util.List;
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
 
     private List<Shop> mShop;
-    private Context mContext;
+    private Context context;
     private RecyclerView mRecyclerView;
 
     public ShopAdapter(Context context, List<Shop> mShop) {
         this.mShop = mShop;
-        this.mContext = context;
+        this.context = context;
+    }
+
+    public ShopAdapter(ArrayAdapter<String> arrayAdapter) {
     }
 
     @NonNull
@@ -45,8 +50,9 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         if (shop == null){
             return;
         }
-        holder.img.setImageResource(shop.getStoreImage());
-        holder.tvName.setText(shop.getStoteName());
+        Glide.with(context).load(shop.getStoreImage())
+                .into(holder.storeImg);
+        holder.tvName.setText(shop.getStoreName());
         holder.tvAddress.setText(shop.getStoreAddress());
 //
 //        holder.mCardView.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +81,13 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     }
 
     public class ShopViewHolder extends RecyclerView.ViewHolder{
-        private ImageView img;
+        private ImageView storeImg;
         private TextView tvName, tvAddress;
         private CardView mCardView;
 
         public ShopViewHolder(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.img_shop);
+            storeImg = itemView.findViewById(R.id.img_shop);
             tvName = itemView.findViewById(R.id.storeName);
             tvAddress = itemView.findViewById(R.id.storeAddress);
             mCardView = itemView.findViewById(R.id.layout_item);

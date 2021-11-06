@@ -6,17 +6,29 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.fpt_app.Adapter.ListAdapter;
+import com.example.fpt_app.Adapter.ProductAdapter;
+import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.ListSP;
+import com.example.fpt_app.Models.Product;
+import com.example.fpt_app.MyRetrofit.IRetrofitService;
+import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 import com.example.fpt_app.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class ProductFragment extends Fragment implements View.OnClickListener{
@@ -25,6 +37,11 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
     private GridLayoutManager gridLayoutManager;
     private Button btnA, btnB, btnC;
 
+    private List<Product>  data = new ArrayList<>();
+    ProductAdapter productAdapter;
+    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_2PIK_URL = "https://2.pik.vn/";
+    private AccessTokenManager tokenManager;
     public ProductFragment() {
         // Required empty public constructor
     }
@@ -44,44 +61,39 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
         gridLayoutManager = new GridLayoutManager(getContext(), 2 );
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
-        ListAdapter adapter = new ListAdapter(getContext(),getlist());
-        mRecyclerView.setAdapter(adapter);
+        tokenManager = AccessTokenManager.getInstance(getActivity().getSharedPreferences("prefs", MODE_PRIVATE));
+
+        IRetrofitService service = new RetrofitBuilder()
+                .createService(IRetrofitService.class, BASE_URL);
+        service.productGetAll().enqueue(getAllCB);
+
         return view;
     }
-    private List<ListSP> getlist() {
-        List<ListSP> list = new ArrayList<>();
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
-        list.add(new ListSP(R.drawable.laptop, "Asus Zenbook Q407IQ Ryzen 5 4500U/ RAM 8GB/ SSD 256GB/ MX350/ 14 INCH FHD (Brand...","17,490,000đ", ListSP.TYPE_HP));
+        //call product
+    Callback<List<Product>> getAllCB = new Callback<List<Product>>() {
+        @Override
+        public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            if (response.isSuccessful()){
+                if (data.size() == 0){
+                    data = response.body();
+                    productAdapter = new ProductAdapter(data, getContext());
+                    mRecyclerView.setAdapter(productAdapter);
+                } else {
+                    data.clear();
+                    data.addAll(response.body());
+                    mRecyclerView.setAdapter(productAdapter);
+                    productAdapter.notifyDataSetChanged();
+                }
+            } else {
+                Log.e(">>>>>getAllCB onResponse", response.message());
+            }
+        }
 
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-        list.add(new ListSP(R.drawable.gamning, "Razer Blade 15 (2018) Core i7 8750H / RAM 16GB / SSD 512GB / GTX 1070 / 144Hz (No.2827)",
-                "31.499.000 đ", ListSP.TYPE_GM));
-
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-        list.add(new ListSP(R.drawable.laptopas, "Laptop HP 240 G8 i5 1135G7/8GB/512GB/14.0HD/Win 10",
-                "31.499.000 đ", ListSP.TYPE_ASUS));
-
-        return list;
-    }
-
+        @Override
+        public void onFailure(Call<List<Product>> call, Throwable t) {
+            Log.e(">>>>>getAllCB onFailure", t.getMessage());
+        }
+    };
     @Override
     public void onClick(View v) {
         switch (v.getId()){
