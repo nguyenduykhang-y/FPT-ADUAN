@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -56,7 +57,7 @@ public class ProductFormActivity extends AppCompatActivity {
     private ImageView imageViewProduct;
     private Button buttonCancel, buttonSave;
 
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
 
     private List<ProductCategory> data;
@@ -299,9 +300,11 @@ public class ProductFormActivity extends AppCompatActivity {
         editTextProductPrice = (EditText) findViewById(R.id.editTextProductPrice);
         editTextProductQuantity = (EditText) findViewById(R.id.editTextProductQuantity);
         spinnerCategories = (Spinner) findViewById(R.id.spinnerCategories);
-        textViewTakePhoto = (TextView) findViewById(R.id.textViewTakePhoto);
+        textViewTakePhoto = (TextView) findViewById(R.id.TakePhoto);
         imageViewProduct = (ImageView) findViewById(R.id.imageViewProduct);
         buttonCancel = (Button) findViewById(R.id.buttonCancel);
         buttonSave = (Button) findViewById(R.id.buttonSave);
     }
+
+
 }

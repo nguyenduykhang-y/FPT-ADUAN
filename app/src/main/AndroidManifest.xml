@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,11 +29,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FogotActivity" />
          <activity android:name=".MainActivity">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
 
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
          </activity>
         <activity android:name=".ProductFormActivity" />
         <activity
@@ -43,7 +39,11 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,14 +45,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private RecyclerView recyclerViewProducts;
-    private Button buttonAddNew, btnxoa, buttonchat, btnChuyen;
+    private Button buttonAddNew, buttonchat, btnChuyen;
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
+    private SearchView searchView;
     private ArrayAdapter<String> arrayAdapter;
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
 
@@ -60,8 +62,6 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-
-
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         recyclerViewProducts = findViewById(R.id.listViewProducts);
@@ -72,11 +72,9 @@ public class ProductActivity extends AppCompatActivity {
         recyclerViewProducts.setAdapter(productAdapter);
         buttonAddNew = findViewById(R.id.buttonAddNew);
         buttonchat =  findViewById(R.id.buttonChat);
-
+        searchView = findViewById(R.id.search);
         btnChuyen =  findViewById(R.id.btnChuyen);
-
-
-        setTitle("Home");
+        initListener();
 
 
         IRetrofitService service = new RetrofitBuilder()
@@ -130,7 +128,19 @@ public class ProductActivity extends AppCompatActivity {
 
 
     }
+    private void initListener(){
+        searchView.setOnQueryTextListener(this);
+    }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        adapter.filter(newText);
+        return false;
+    }
 
     private void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -240,4 +250,5 @@ public class ProductActivity extends AppCompatActivity {
             Log.e(">>>>>getAllCB onFailure", t.getMessage());
         }
     };
+
 }
