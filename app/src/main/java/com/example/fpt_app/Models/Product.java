@@ -69,4 +69,5 @@ public class Product implements Serializable {
     public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
+
 }

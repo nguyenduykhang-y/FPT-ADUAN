@@ -2,6 +2,7 @@ package com.example.fpt_app.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,16 +20,20 @@ import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.ProductFormActivity;
 import com.example.fpt_app.R;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> data;
     private Context context;
-
+    private List<Product> origiaItems;
     public ProductAdapter(List<Product> data, Context context) {
         this.data = data;
         this.context = context;
+        this.origiaItems = new ArrayList<>();
+        origiaItems.addAll(data);
     }
 
     public ProductAdapter(ArrayAdapter<String> arrayAdapter) {
@@ -79,7 +84,31 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
         return 0;
     }
+    public void filter(String strSearch){
+        if (strSearch.length() == 0){
+            data.clear();
+            data.addAll(origiaItems);
+        }
+        else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                data.clear();
+                List<Product> collect = origiaItems.stream()
+                        .filter(i -> i.getName().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
 
+                data.addAll(collect);
+            }
+            else {
+                data.clear();
+                for (Product i : origiaItems) {
+                    if (i.getName().toLowerCase().contains(strSearch)) {
+                        data.add(i);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         private TextView  name, price;
@@ -93,4 +122,5 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             cardView = itemView.findViewById(R.id.layout_item);
         }
     }
+
 }
