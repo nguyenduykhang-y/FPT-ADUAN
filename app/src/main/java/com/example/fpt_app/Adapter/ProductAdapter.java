@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fpt_app.DetailsActivity;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.ProductFormActivity;
 import com.example.fpt_app.R;
@@ -36,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         origiaItems.addAll(data);
     }
 
-    public ProductAdapter(ArrayAdapter<String> arrayAdapter) {
+    public ProductAdapter(Context arrayAdapter) {
     }
 
 
@@ -58,24 +59,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .into(holder.image_url);
         holder.name.setText(product.getName());
         holder.price.setText(String.valueOf(product.getPrice()));
-
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent in = new Intent(context, ProductFormActivity.class);
+                Intent in = new Intent(context, DetailsActivity.class);
+                in.putExtra("imgesview",product.getImage_url());
+                in.putExtra("name", product.getName());
+                in.putExtra("price", String.valueOf(product.getPrice()));
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(in);
             }
         });
     }
 
-    private void onClickGoToCTSP(Product p) {
-        Intent i = new Intent(context, ProductFormActivity.class);
-        Bundle b = new Bundle();
-        b.putSerializable("chitiet", p);
-        i.putExtras(b);
-        context.startActivity(i);
-    }
+
 
     @Override
     public int getItemCount() {
