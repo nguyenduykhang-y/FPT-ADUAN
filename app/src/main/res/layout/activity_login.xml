@@ -30,7 +30,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginTop="22dp"
             android:ems="10"
-            android:text="test@gmail.com"
+            android:text="d@gmail.com"
             android:hint="Username"
             android:layout_below="@+id/DN"
             android:inputType="textPersonName"

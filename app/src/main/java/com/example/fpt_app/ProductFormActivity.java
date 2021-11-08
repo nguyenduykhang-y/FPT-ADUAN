@@ -128,7 +128,7 @@ public class ProductFormActivity extends AppCompatActivity {
             }
         });
     }
-
+//ảnh
     private ActivityResultLauncher<Intent> mIntentActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -175,6 +175,8 @@ public class ProductFormActivity extends AppCompatActivity {
             requestPermissions(permisson, MY_REQUEST_CODE);
         }
     }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -193,7 +195,7 @@ public class ProductFormActivity extends AppCompatActivity {
         // with the returned requestCode
         mIntentActivityResultLauncher.launch(Intent.createChooser(i, "Select Picture"));
     }
-    //ảnh..///
+    //ảnh..///>>>>/
     Callback<Product> getByIdCB = new Callback<Product>() {
         @Override
         public void onResponse(Call<Product> call, Response<Product> response) {

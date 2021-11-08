@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +27,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.example.fpt_app.Adapter.EreaAdapter;
 import com.example.fpt_app.Adapter.PhotoViewPager;
 import com.example.fpt_app.Adapter.ProductAdapter;
 import com.example.fpt_app.Adapter.Silder;
 import com.example.fpt_app.Models.AccessTokenManager;
+import com.example.fpt_app.Models.Erea;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.Response2PikModel;
 import com.example.fpt_app.Models.ResponseModel;
@@ -52,6 +55,8 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
     private List<Product>  data = new ArrayList<>();
     private ProductAdapter adapter;
     private SearchView searchView;
+    private EreaAdapter ereaAdapter;
+    private Spinner spinner;
     private ArrayAdapter<String> arrayAdapter;
     private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
@@ -65,15 +70,19 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         recyclerViewProducts = findViewById(R.id.listViewProducts);
+        //2 cột
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerViewProducts.setLayoutManager(gridLayoutManager);
 
-        ProductAdapter productAdapter = new ProductAdapter(arrayAdapter);
+        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext());
         recyclerViewProducts.setAdapter(productAdapter);
+
+
         buttonAddNew = findViewById(R.id.buttonAddNew);
         buttonchat =  findViewById(R.id.buttonChat);
         searchView = findViewById(R.id.search);
         btnChuyen =  findViewById(R.id.btnChuyen);
+        spinner = findViewById(R.id.spinner_erea);
         initListener();
 
 
@@ -81,6 +90,21 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.productGetAll().enqueue(getAllCB);
+
+        ereaAdapter = new EreaAdapter(this, R.layout.item_selected, getListErea());
+        spinner.setAdapter(ereaAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                Toast.makeText(ProductActivity.this,ereaAdapter.getItem(i).getName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         buttonAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +118,8 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
                 startActivity(new Intent(getBaseContext(), SocketActivity.class));
             }
         });
+
+
 //        listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -128,6 +154,24 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
 
 
     }
+
+
+
+    private List<Erea> getListErea() {
+        List<Erea> list = new ArrayList<>();
+        list.add(new Erea("Tp.Hồ Chí Minh"));
+        list.add(new Erea("Quận 1"));
+        list.add(new Erea("Quận 2"));
+        list.add(new Erea("Quận 3"));
+        list.add(new Erea("Quận 4"));
+        list.add(new Erea("Quận 5"));
+        list.add(new Erea("Quận 6"));
+        list.add(new Erea("Quận 7"));
+
+        return list;
+
+    }
+
     private void initListener(){
         searchView.setOnQueryTextListener(this);
     }
