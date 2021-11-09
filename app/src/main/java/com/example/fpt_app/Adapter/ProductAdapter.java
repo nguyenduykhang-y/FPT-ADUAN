@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,18 +58,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Glide.with(context).load(product.getImage_url())
                 .into(holder.image_url);
         holder.name.setText(product.getName());
-        holder.price.setText(String.valueOf(product.getPrice())+"VNĐ");
+        holder.price.setText(String.valueOf(product.getPrice()));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent in = new Intent(context, DetailsActivity.class);
-                in.putExtra("id", product.getId());
+                in.putExtra("id",String.valueOf(product.getId()));
                 in.putExtra("imgesview",product.getImage_url());
                 in.putExtra("name", product.getName());
-                in.putExtra("quantily", String.valueOf(product.getQuantity()));
-                in.putExtra("category_id",  String.valueOf(product.getCategory_id()));
+                in.putExtra("quantity",String.valueOf(product.getQuantity()));
+                in.putExtra("category_id",String.valueOf(product.getCategory_id()));
                 in.putExtra("price", String.valueOf(product.getPrice()));
-
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(in);
             }

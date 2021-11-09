@@ -6,7 +6,7 @@ public class Cart implements Serializable {
     private Integer id;
     private Integer idProduct;
     private String name;
-    private double price;
+    private Double price;
     private Integer quantity;
     private String image_url;
     private Integer category_id;
@@ -14,7 +14,7 @@ public class Cart implements Serializable {
     public Cart() {
     }
 
-    public Cart(Integer id, Integer idProduct, String name, double price, Integer quantity, String image_url, Integer category_id) {
+    public Cart(Integer id, Integer idProduct, String name, Double price, Integer quantity, String image_url, Integer category_id) {
         this.id = id;
         this.idProduct = idProduct;
         this.name = name;
@@ -52,7 +52,7 @@ public class Cart implements Serializable {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -79,4 +79,6 @@ public class Cart implements Serializable {
     public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
+
+
 }
