@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fpt_app.Fragment.ProductFragment;
 import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Person;
@@ -24,7 +25,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String BASE_URL = "http://10.0.3.2:8081/";
+    private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
 
     @Override
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
         AccessToken token = tokenManager.getToken();
         if (token.getAccess_token()!=null){
-            startActivity(new Intent(getBaseContext(), ProductActivity.class));
+            startActivity(new Intent(getBaseContext(), MainActivity.class));
             finish();
         }
         EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 AccessToken token = response.body();
                 tokenManager.saveToken(token);
                 if (token.getIs_auth()){
-                    startActivity(new Intent(getBaseContext(), ProductActivity.class));
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
                     Toast.makeText(LoginActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
                     finish();
                 }

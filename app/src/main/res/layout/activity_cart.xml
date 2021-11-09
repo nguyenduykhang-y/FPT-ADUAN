@@ -8,11 +8,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lvCart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="670dp"
+        tools:listitem="@layout/item_cart"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/lvCart"
         android:layout_alignParentBottom="true">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -21,7 +23,7 @@
             android:orientation="vertical"
             android:gravity="center">
             <TextView
-                android:id="@+id/button1"
+                android:id="@+id/TongTien"
                 android:layout_width="wrap_content"
                 android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
@@ -30,7 +32,7 @@
 
                 android:text="Tổng Cộng:" />
             <TextView
-                android:id="@+id/button3"
+                android:id="@+id/TvGiaTien"
                 android:layout_width="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingBottom="10dp"
@@ -40,11 +42,12 @@
                 android:text="15.000.000Đ" />
         </LinearLayout>
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button1"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/homeapp"
+
             android:text="Thanh Toán" />
 
     </LinearLayout>
