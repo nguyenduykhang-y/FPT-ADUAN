@@ -64,8 +64,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             public void onClick(View v) {
 
                 Intent in = new Intent(context, DetailsActivity.class);
+                in.putExtra("id",String.valueOf(product.getId()));
                 in.putExtra("imgesview",product.getImage_url());
                 in.putExtra("name", product.getName());
+                in.putExtra("quantity",String.valueOf(product.getQuantity()));
+                in.putExtra("category_id",String.valueOf(product.getCategory_id()));
                 in.putExtra("price", String.valueOf(product.getPrice()));
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(in);

@@ -61,6 +61,7 @@ public class ShopFragment extends Fragment {
 
 
         mRecyclerView= view.findViewById(R.id.Rcv_ListViewProducts);
+
         gridLayoutManager = new GridLayoutManager(getContext(), 2 );
         mRecyclerView.setLayoutManager(gridLayoutManager);
 

@@ -11,6 +11,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fpt_app.Adapter.ViewPagerAdapter;
@@ -25,13 +27,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
         BottomNavigationView bt_nv;
         ViewPager viewPager;
+        ImageView iconGH;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewPager = findViewById(R.id.ViewPager);
         bt_nv = findViewById(R.id.bottom_nv);
-
+        iconGH = findViewById(R.id.iconGH);
         setUpViewPager();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.homeapp));
 
@@ -82,7 +85,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+            // intent gio hang activity
+        iconGH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,CartActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
     public void setUpViewPager(){
