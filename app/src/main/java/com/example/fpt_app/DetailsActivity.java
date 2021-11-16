@@ -27,8 +27,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tv, tvGia;
     private Button btn;
     private Integer product_id = -1;
-  private TextView tv, tvGia,tvCategory_id,tvQuantity;
-    private Button btn,btnADDGH;
+    private TextView tvCategory_id,tvQuantity;
+    private Button btnADDGH;
 
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
