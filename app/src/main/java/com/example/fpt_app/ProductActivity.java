@@ -120,7 +120,7 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
         });
 
 
-//        listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        recyclerViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Product p = (Product) adapterView.getItemAtPosition(i);
@@ -130,7 +130,7 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
 //            }
 //        });
 //
-//        listViewProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//        recyclerViewProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            @Override
 //            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Product p = (Product) adapterView.getItemAtPosition(i);
@@ -220,7 +220,7 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
 
     alertDialog.show();
 
-}
+    }
 
     @Override
     protected void onResume() {

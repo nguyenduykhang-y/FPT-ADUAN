@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    app:cardCornerRadius="6dp"
+    android:layout_marginBottom="10dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imgTB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icons8_mail_30px_1"
+        android:layout_marginLeft="15dp"/>
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_toRightOf="@+id/imgTB"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20dp"
+        android:text="ádahgdhsadgashdsahdsahd"
+        android:textColor="@color/homeapp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tahoma"/>
+    <TextView
+        android:id="@+id/txtND"
+        android:layout_below="@+id/txtTitle"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/imgTB"
+        android:textSize="15dp"
+        android:text="ádahgdhsadgashdsahdsahd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tahoma"/>
+</RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

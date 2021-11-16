@@ -1,14 +1,18 @@
 package com.example.fpt_app.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -16,10 +20,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import com.example.fpt_app.CartActivity;
 import com.example.fpt_app.Models.Cart;
 
+import com.example.fpt_app.Models.Product;
+import com.example.fpt_app.MyRetrofit.IRetrofitService;
+import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
+import com.example.fpt_app.ProductActivity;
 import com.example.fpt_app.R;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
@@ -27,6 +38,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private List<Cart> data;
     private Context context;
     private RecyclerView mRecyclerView;
+    ArrayList<Double> listong = new ArrayList<>();
+    private static int count = 0;
+    private int pr;
 
     public CartAdapter(Context context, List<Cart> data) {
         this.data = data;
@@ -44,32 +58,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartViewHolder(v);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         final Cart cart = data.get(position);
         if (cart == null){
             return;
         }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
         Glide.with(context).load(cart.getImage_url())
                 .into(holder.proImg);
         holder.tvName.setText(cart.getName());
-        holder.tvPrice.setText(String.valueOf(cart.getPrice())+"VNĐ");
-//
-//        holder.mCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onListGoOn(shop);
-//            }
-//        });
+        holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
+
+
+
+
     }
 
-//    private void onListGoOn(Shop shop) {
-//        Intent i = new Intent(mContext, DetailsActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("ọject",shop);
-//        i.putExtras(bundle);
-//        mContext.startActivity(i);
-//    }
+    public  void tong(){
+
+    }
 
     @Override
     public int getItemCount() {
@@ -90,7 +99,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             proImg = itemView.findViewById(R.id.imgCart);
             tvName = itemView.findViewById(R.id.tvNameCart);
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
-            mCardView = itemView.findViewById(R.id.layout_item);
+            mCardView = itemView.findViewById(R.id.cart_item);
         }
     }
+
 }

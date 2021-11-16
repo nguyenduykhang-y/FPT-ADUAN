@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private Integer id;
     private String name;
-    private Double price;
+    private Integer price;
     private Integer quantity;
     private String image_url;
     private Integer category_id;
@@ -13,7 +13,7 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Integer id, String name, Double price, Integer quantity, String image_url, Integer category_id) {
+    public Product(Integer id, String name, Integer price, Integer quantity, String image_url, Integer category_id) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -38,11 +38,11 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
