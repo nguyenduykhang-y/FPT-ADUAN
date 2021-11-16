@@ -23,8 +23,13 @@ import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
     private ImageView img;
-    private TextView tv, tvGia,tvCategory_id,tvQuantity;
+
+    private TextView tv, tvGia;
+    private Button btn;
+    private Integer product_id = -1;
+  private TextView tv, tvGia,tvCategory_id,tvQuantity;
     private Button btn,btnADDGH;
+
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
