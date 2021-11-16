@@ -8,13 +8,15 @@
     android:layout_marginTop="200dp"
     android:orientation="vertical">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Forgot Password"
-    android:textStyle="bold"
-    android:layout_marginLeft="10dp"
-    android:textSize="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textColor="#233178"
+
+        android:textSize="20dp"/>
 
     <LinearLayout
         android:id="@+id/liner2"
@@ -24,20 +26,15 @@
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-       >
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+        >
 
-            android:layout_gravity="center_vertical"/>
         <EditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:textColor="@color/white"
-            android:background="#0000"
+
+
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
@@ -55,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Send"
-
+            android:backgroundTint="@color/homeapp"
             android:textStyle="bold"
             android:textSize="18dp"/>
     </LinearLayout>

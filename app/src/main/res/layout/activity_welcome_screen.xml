@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".welcome_screen">
+    tools:context=".welcome_screen"
+    android:background="#F6DBA6">
     <ImageView
         android:id="@+id/imga"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
-        android:src="@drawable/welcome"/>
+        android:background="#F6DBA6"
+        android:src="@drawable/logoooo_n"/>
 </LinearLayout>

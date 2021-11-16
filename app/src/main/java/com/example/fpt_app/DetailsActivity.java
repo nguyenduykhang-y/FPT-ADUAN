@@ -17,7 +17,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tv, tvGia;
     private Button btn;
     private Integer product_id = -1;
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
