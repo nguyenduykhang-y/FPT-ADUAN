@@ -1,8 +1,10 @@
 package com.example.fpt_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,8 @@ import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
+import java.text.DecimalFormat;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
-    private String image_url = null;
+    private String img_url= null;
     private Integer category_id = 0;
     private Integer cart_id = -1;
     private Integer idProduct =0 ;
@@ -46,10 +50,13 @@ public class DetailsActivity extends AppCompatActivity {
         tvQuantity= findViewById(R.id.tvQuantity);
         btnADDGH= findViewById(R.id.addtoGio);
 
+
         //get từ adapter qua
-        img.setImageResource(getIntent().getIntExtra("imgesview",0));
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+        img_url = getIntent().getStringExtra("imgesview");
+        Glide.with(getBaseContext()).load(img_url).into(img);
         tv.setText(getIntent().getStringExtra("name"));
-        tvGia.setText(getIntent().getStringExtra("price"));
+        tvGia.setText(decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price")))+" VNĐ");
         tvCategory_id.setText(getIntent().getStringExtra("category_id"));
         tvQuantity.setText(getIntent().getStringExtra("quantity"));
         idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
@@ -58,17 +65,19 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Cart cart = new Cart();
-                cart.setImage_url(image_url);
+                cart.setImage_url(img_url);
                 cart.setIdProduct(idProduct);
                 cart.setName(tv.getText().toString());
-                cart.setPrice(Double.parseDouble(tvGia.getText().toString()));
+                cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
                 cart.setCategory_id(Integer.parseInt(tvCategory_id.getText().toString()));
                 cart.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
 
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.CartInsert(cart).enqueue(insert_cart);
+
             }
         });
+
     }
     Callback<ResponseModel> insert_cart = new Callback<ResponseModel>() {
         @Override

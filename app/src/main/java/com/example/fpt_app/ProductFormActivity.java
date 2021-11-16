@@ -57,7 +57,7 @@ public class ProductFormActivity extends AppCompatActivity {
     private ImageView imageViewProduct;
     private Button buttonCancel, buttonSave;
 
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
 
     private List<ProductCategory> data;
@@ -116,7 +116,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 // validation
                 p.setImage_url(image_url);
                 p.setName(editTextProductName.getText().toString());
-                p.setPrice(Double.parseDouble(editTextProductPrice.getText().toString()));
+                p.setPrice(Integer.parseInt(editTextProductPrice.getText().toString()));
                 p.setQuantity(Integer.parseInt(editTextProductQuantity.getText().toString()));
                 p.setId(product_id);
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
@@ -274,7 +274,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 spinnerCategories.setSelection(category_id);
                 if (product_id != -1){
                     IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                    service.productGetById(new Product(product_id, null, 0.0, 0, null, null))
+                    service.productGetById(new Product(product_id, null, 0, 0, null, null))
                             .enqueue(getByIdCB);
                 }
             } else {

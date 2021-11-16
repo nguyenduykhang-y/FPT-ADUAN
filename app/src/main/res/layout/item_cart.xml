@@ -2,50 +2,62 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cart_item"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:cardCornerRadius="6dp"
+    android:padding="10dp"
+    android:layout_marginBottom="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/icons8_delete_trash_24px_1"
+            />
+        <ImageView
             android:id="@+id/imgCart"
-            android:layout_width="150dp"
-            android:layout_height="150dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"/>
 
         <TextView
             android:id="@+id/tvNameCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgCart"
-            android:paddingLeft="20dp"
+          android:layout_toRightOf="@+id/imgCart"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
             android:text="Asus"
-            android:textSize="24dp" />
+            android:textSize="15dp" />
         <TextView
             android:id="@+id/tvPriceCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvNameCart"
-            android:layout_toRightOf="@id/imgCart"
-            android:paddingTop="20dp"
-            android:paddingLeft="20dp"
+            android:layout_marginTop="100dp"
+            android:layout_toLeftOf="@+id/des_lay"
+             android:paddingLeft="10dp"
             android:textColor="@color/homeapp"
             android:text="15.000.000Đ"
-            android:textSize="24dp"
+            android:textSize="15dp"
             />
         <LinearLayout
             android:layout_gravity="right"
             android:id="@+id/des_lay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPriceCart"
+            android:layout_below="@+id/tvNameCart"
             android:paddingTop="20dp"
             android:paddingRight="10dp"
             android:layout_alignParentEnd="true"
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:id="@+id/btnDecrease"
                 android:backgroundTint="@color/homeapp"
                 android:text="-" />
@@ -54,16 +66,16 @@
                 android:id="@+id/tvQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="01"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btnIncrease"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:backgroundTint="@color/homeapp"
                 android:text="+" />
 

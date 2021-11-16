@@ -15,6 +15,7 @@ import com.example.fpt_app.Fragment.ProductFragment;
 import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Person;
+import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
