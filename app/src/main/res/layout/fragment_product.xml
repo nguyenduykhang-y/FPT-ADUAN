@@ -80,10 +80,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/tahoma"
             android:textSize="18sp"
+            android:background="@drawable/shapebgsearch"
             android:iconifiedByDefault="false"
             android:queryHint="Tìm.."
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"/>
+            app:searchIcon="@drawable/icon"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@null"
+            />
 
 
     </LinearLayout>
