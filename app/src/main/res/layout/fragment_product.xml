@@ -71,7 +71,22 @@
                 android:text="HI"/>
         </LinearLayout>
     </HorizontalScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tahoma"
+            android:textSize="18sp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Tìm.."
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"/>
 
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

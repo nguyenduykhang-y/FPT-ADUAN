@@ -12,22 +12,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.fpt_app.Adapter.EreaAdapter;
 import com.example.fpt_app.Adapter.ViewPagerAdapter;
 import com.example.fpt_app.Fragment.HomeFragment;
 import com.example.fpt_app.Fragment.NotiFragment;
 import com.example.fpt_app.Fragment.ProductFragment;
 import com.example.fpt_app.Fragment.ShopFragment;
 import com.example.fpt_app.Fragment.UserFragment;
+import com.example.fpt_app.Models.Erea;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
         BottomNavigationView bt_nv;
         ViewPager viewPager;
         ImageView iconGH;
+    private EreaAdapter ereaAdapter;
+    private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.ViewPager);
         bt_nv = findViewById(R.id.bottom_nv);
         iconGH = findViewById(R.id.iconGH);
+        spinner = findViewById(R.id.spinner_erea);
         setUpViewPager();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.homeapp));
 
@@ -85,6 +95,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        ereaAdapter = new EreaAdapter(this, R.layout.item_selected, getListErea());
+        spinner.setAdapter(ereaAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                Toast.makeText(MainActivity.this,ereaAdapter.getItem(i).getName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
             // intent gio hang activity
         iconGH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,5 +153,19 @@ public class MainActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+    }
+    private List<Erea> getListErea() {
+        List<Erea> list = new ArrayList<>();
+        list.add(new Erea("Tp.Hồ Chí Minh"));
+        list.add(new Erea("Quận 1"));
+        list.add(new Erea("Quận 2"));
+        list.add(new Erea("Quận 3"));
+        list.add(new Erea("Quận 4"));
+        list.add(new Erea("Quận 5"));
+        list.add(new Erea("Quận 6"));
+        list.add(new Erea("Quận 7"));
+
+        return list;
+
     }
 }

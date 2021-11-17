@@ -34,41 +34,31 @@
              android:layout_marginTop="44dp"
              >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:text="Khu Vực: "
-                android:textSize="15dp"
-                android:fontFamily="@font/tahoma"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Tp. Hồ Chí Minh"
-                android:textSize="15dp"
-                android:fontFamily="@font/tahoma"
-                />
+               <Spinner
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:id="@+id/spinner_erea"/>
+
          </LinearLayout>
-         <RelativeLayout
-             android:layout_width="270dp"
-             android:layout_height="54dp"
-             android:background="@drawable/radius_custom"
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="50dp"
              android:layout_marginTop="44dp"
-             android:layout_marginStart="10dp">
-            <EditText
-                android:id="@+id/Search"
-                android:layout_width="255dp"
-                android:layout_height="54dp"
-                android:background="#FFFFFF"
-                android:padding="5dp"
-                android:layout_marginStart="5dp"
-                android:hint="Bạn cần tìm dì ?"
-                android:textSize="20dp"
-                android:fontFamily="@font/tahoma"/>
-         </RelativeLayout>
+             android:layout_marginLeft="10dp"
+             android:background="@drawable/botron_button">>
+            <SearchView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/tahoma"
+                android:textSize="18sp"
+                android:iconifiedByDefault="false"
+                android:queryHint="Tìm.."
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+
+
+         </LinearLayout>
 
       </LinearLayout>
 
