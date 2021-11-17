@@ -31,7 +31,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private List<Product> data;
     private Context context;
-
     private List<Product> origiaItems;
     public ProductAdapter(List<Product> data, Context context) {
         this.data = data;
@@ -84,7 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
 
-
+//search
     @Override
     public int getItemCount() {
         if (data != null){

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import com.example.fpt_app.Adapter.ListAdapter;
 import com.example.fpt_app.Adapter.ProductAdapter;
@@ -31,14 +32,14 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class ProductFragment extends Fragment implements View.OnClickListener{
+public class ProductFragment extends Fragment implements View.OnClickListener, SearchView.OnQueryTextListener{
 
     private RecyclerView mRecyclerView;
     private GridLayoutManager gridLayoutManager;
     private Button btnA, btnB, btnC;
-
+    public SearchView searchView;
     private List<Product>  data = new ArrayList<>();
-    ProductAdapter productAdapter;
+    private ProductAdapter productAdapter;
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
@@ -56,7 +57,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
         btnA = view.findViewById(R.id.btnAsus);
         btnB = view.findViewById(R.id.btnHP);
         btnC = view.findViewById(R.id.btnGM);
-
+        searchView = view.findViewById(R.id.search);
         mRecyclerView= view.findViewById(R.id.rcv_list);
         gridLayoutManager = new GridLayoutManager(getContext(), 2 );
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -66,10 +67,18 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
         service.productGetAll().enqueue(getAllCB);
-
+        btnA.setOnClickListener(this);
+        btnB.setOnClickListener(this);
+        btnC.setOnClickListener(this);
+        initListener();
         return view;
     }
-        //call product
+
+    private void initListener() {
+        searchView.setOnQueryTextListener(this);
+    }
+
+    //call product
     Callback<List<Product>> getAllCB = new Callback<List<Product>>() {
         @Override
         public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -100,9 +109,9 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
             case R.id.btnAsus:
                 scrollToItem(0);
             case R.id.btnHP:
-                scrollToItem( 5);
+                scrollToItem( 2);
             case R.id.btnGM:
-                scrollToItem(10);
+                scrollToItem(4);
         }
     }
 
@@ -111,5 +120,21 @@ public class ProductFragment extends Fragment implements View.OnClickListener{
             return;
         }
         gridLayoutManager.scrollToPositionWithOffset(i, 0);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        productAdapter.filter(newText);
+        return false;
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+
     }
 }

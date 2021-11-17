@@ -58,7 +58,7 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
     private EreaAdapter ereaAdapter;
     private Spinner spinner;
     private ArrayAdapter<String> arrayAdapter;
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
 
@@ -154,8 +154,6 @@ public class ProductActivity extends AppCompatActivity implements SearchView.OnQ
 
 
     }
-
-
 
     private List<Erea> getListErea() {
         List<Erea> list = new ArrayList<>();
