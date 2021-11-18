@@ -29,8 +29,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FogotActivity" />
          <activity android:name=".MainActivity">
-
          </activity>
+        <activity android:name=".ChiTietOfShopActivity"/>
         <activity android:name=".ProductFormActivity" />
         <activity
             android:name=".ProductActivity"

@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fpt_app.ChiTietOfShopActivity;
 import com.example.fpt_app.DetailsActivity;
 import com.example.fpt_app.Models.ListSP;
 import com.example.fpt_app.Models.Shop;
@@ -46,7 +47,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ShopViewHolder holder, int position) {
-        final Shop shop = mShop.get(position);
+        Shop shop = mShop.get(position);
         if (shop == null){
             return;
         }
@@ -54,22 +55,19 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
                 .into(holder.storeImg);
         holder.tvName.setText(shop.getStoreName());
         holder.tvAddress.setText(shop.getStoreAddress());
-//
-//        holder.mCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onListGoOn(shop);
-//            }
-//        });
-    }
 
-//    private void onListGoOn(Shop shop) {
-//        Intent i = new Intent(mContext, DetailsActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("ọject",shop);
-//        i.putExtras(bundle);
-//        mContext.startActivity(i);
-//    }
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(context, ChiTietOfShopActivity.class);
+                in.putExtra("imgShop",String.valueOf(shop.getStoreImage()));
+                in.putExtra("name", shop.getStoreName());
+                in.putExtra("address", shop.getStoreAddress());
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(in);
+            }
+        });
+    }
 
     @Override
     public int getItemCount() {
