@@ -35,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
     private Button btnADDGH;
 
 
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private String img_url= null;
     private Integer category_id = 0;

@@ -39,7 +39,7 @@ public class CartActivity extends AppCompatActivity {
     private List<Cart> data = new ArrayList<>();
     private TextView txtGiaTien;
     private CartAdapter adapter;
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
     @Override
