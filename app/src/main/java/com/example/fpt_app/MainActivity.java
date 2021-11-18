@@ -25,6 +25,7 @@ import com.example.fpt_app.Fragment.ProductFragment;
 import com.example.fpt_app.Fragment.ShopFragment;
 import com.example.fpt_app.Fragment.UserFragment;
 import com.example.fpt_app.Models.Erea;
+import com.example.fpt_app.Models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         bt_nv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment;
+
                 switch (item.getItemId()){
                     case R.id.home:
                         HomeFragment homeFragment = new HomeFragment();
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.noti:
                         NotiFragment notiFragment = new NotiFragment();
                         FragmentManager fragment4 = getSupportFragmentManager();
-                        fragment4.beginTransaction().add(R.id.ViewPager,notiFragment).commit();
+                                        fragment4.beginTransaction().add(R.id.ViewPager,notiFragment).commit();
                         Toast.makeText(MainActivity.this, "Ban chon menu noti", Toast.LENGTH_SHORT).show();
                         viewPager.setCurrentItem(3);
                         break;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         FragmentManager fragment5 = getSupportFragmentManager();
                         fragment5.beginTransaction().add(R.id.ViewPager,userFragment).commit();
                         Toast.makeText(MainActivity.this, "Ban chon menu user", Toast.LENGTH_SHORT).show();
-                        viewPager.setCurrentItem(3);
+                        viewPager.setCurrentItem(4);
                         break;
                 }
                 return true;

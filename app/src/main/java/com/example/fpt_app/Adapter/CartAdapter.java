@@ -24,6 +24,7 @@ import com.example.fpt_app.CartActivity;
 import com.example.fpt_app.Models.Cart;
 
 import com.example.fpt_app.Models.Product;
+import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 import com.example.fpt_app.ProductActivity;
@@ -33,18 +34,22 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>  {
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Cart> data;
     private Context context;
-    private RecyclerView mRecyclerView;
-    ArrayList<Double> listong = new ArrayList<>();
+//    private RecyclerView mRecyclerView;
     private static int count = 0;
     private int pr;
 
     public CartAdapter(Context context, List<Cart> data) {
         this.data = data;
         this.context = context;
+
     }
 
     public CartAdapter(ArrayAdapter<String> arrayAdapter) {
@@ -72,13 +77,34 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
 
 
+       holder.imgdelete.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
 
+
+
+               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+
+               service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+                   @Override
+                   public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+
+                   }
+
+                   @Override
+                   public void onFailure(Call<ResponseModel> call, Throwable t) {
+                       Log.d("fail",""+t.getMessage() );
+                   }
+               });
+               data.remove(position);
+               notifyItemRemoved(position);
+               notifyItemRangeChanged(position, data.size());
+               notifyDataSetChanged();
+           }
+       });
 
     }
 
-    public  void tong(){
-
-    }
 
     @Override
     public int getItemCount() {
@@ -89,8 +115,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return 0;
     }
 
+
+
     public class CartViewHolder extends RecyclerView.ViewHolder{
-        private ImageView proImg;
+        private ImageView proImg,imgdelete;
         private TextView tvName, tvPrice;
         private CardView mCardView;
 
@@ -100,6 +128,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvName = itemView.findViewById(R.id.tvNameCart);
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
+            imgdelete = itemView.findViewById(R.id.imgdelete);
         }
     }
 

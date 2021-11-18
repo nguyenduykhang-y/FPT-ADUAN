@@ -1,5 +1,6 @@
 package com.example.fpt_app.Fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ import com.example.fpt_app.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,9 +40,10 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
     private GridLayoutManager gridLayoutManager;
     private Button btnA, btnB, btnC;
     public SearchView searchView;
+
     private List<Product>  data = new ArrayList<>();
-    private ProductAdapter productAdapter;
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    public ProductAdapter productAdapter;
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
     public ProductFragment() {
@@ -129,7 +132,9 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        productAdapter.filter(newText);
+        List<Product> productList = this.filter(newText);
+        productAdapter = new ProductAdapter(productList, getContext());
+        mRecyclerView.setAdapter(productAdapter);
         return false;
     }
     @Override
@@ -137,4 +142,18 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
         super.onPause();
 
     }
+    public List<Product> filter(String strSearch){
+        List<Product> datafilter = data;
+        if (strSearch == null ||  strSearch.length() == 0){
+           return data;
+        }
+        else {
+                List<Product> collect = datafilter.stream()
+                        .filter(i -> i.getName().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+
+                return collect;
+        }
+    }
+
 }

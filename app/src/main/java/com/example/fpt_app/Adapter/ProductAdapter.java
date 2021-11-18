@@ -31,7 +31,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private List<Product> data;
     private Context context;
-    private List<Product> origiaItems;
+     public List<Product> origiaItems;
     public ProductAdapter(List<Product> data, Context context) {
         this.data = data;
         this.context = context;
@@ -90,31 +90,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
         return 0;
     }
-    public void filter(String strSearch){
-        if (strSearch.length() == 0){
-            data.clear();
-            data.addAll(origiaItems);
-        }
-        else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                data.clear();
-                List<Product> collect = origiaItems.stream()
-                        .filter(i -> i.getName().toLowerCase().contains(strSearch))
-                        .collect(Collectors.toList());
 
-                data.addAll(collect);
-            }
-            else {
-                data.clear();
-                for (Product i : origiaItems) {
-                    if (i.getName().toLowerCase().contains(strSearch)) {
-                        data.add(i);
-                    }
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         private TextView  name, price;

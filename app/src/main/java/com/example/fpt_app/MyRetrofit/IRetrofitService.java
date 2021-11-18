@@ -76,8 +76,10 @@ public interface IRetrofitService {
 
     @POST("views/product_delete.php")
     Call<ResponseModel> productDelete(@Body Product product);
+
     @POST("views/gh_delete.php")
     Call<ResponseModel> cart_delete(@Body Cart cart);
+
     @POST("views/get_all_TB.php")
     Call<List<TB>> TBgetALLL();
 
