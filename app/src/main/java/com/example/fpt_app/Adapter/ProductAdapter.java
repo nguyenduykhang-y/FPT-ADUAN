@@ -77,7 +77,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(in);
 
-
             }
         });
     }
