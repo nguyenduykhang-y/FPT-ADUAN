@@ -38,7 +38,7 @@ public class ChiTietOfShopActivity extends AppCompatActivity implements SearchVi
     private List<Product> data = new ArrayList<>();
     public ProductAdapter adapter;
     private SearchView searchView;
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private String img_url= null;
     private AccessTokenManager tokenManager;
@@ -117,7 +117,7 @@ public class ChiTietOfShopActivity extends AppCompatActivity implements SearchVi
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        adapter.filter(newText);
+//        adapter.filter(newText);
         return false;
     }
 }

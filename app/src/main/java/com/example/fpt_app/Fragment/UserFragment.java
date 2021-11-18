@@ -23,8 +23,8 @@ import com.example.fpt_app.R;
 import com.example.fpt_app.ThontinActivity;
 
 
-public class UserFragment extends Fragment implements  View.OnClickListener {
-    private String BASE_URL = "http://10.0.3.2:8081/";
+public class UserFragment extends Fragment  {
+    private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
@@ -44,7 +44,7 @@ public class UserFragment extends Fragment implements  View.OnClickListener {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
-        btnout = v.findViewById(R.id.btnlogout);
+//        btnout = v.findViewById(R.id.btnlogout);
 //        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 //        AccessToken token = tokenManager.getToken();
 //
@@ -52,15 +52,15 @@ public class UserFragment extends Fragment implements  View.OnClickListener {
 //            startActivity(new Intent(getActivity(), ProductActivity.class));
 //
 //        }
-        btnout.setOnClickListener(this);
+//        btnout.setOnClickListener(this);
         return  v;
     }
-
-    @Override
-    public void onClick(View v) {
-        tokenManager.deleteToken();
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        Toast.makeText(getActivity(), "Logout Suscess", Toast.LENGTH_SHORT).show();
-
-    }
+//
+//    @Override
+//    public void onClick(View v) {
+//        tokenManager.deleteToken();
+//        startActivity(new Intent(getActivity(), LoginActivity.class));
+//        Toast.makeText(getActivity(), "Logout Suscess", Toast.LENGTH_SHORT).show();
+//
+//    }
 }
