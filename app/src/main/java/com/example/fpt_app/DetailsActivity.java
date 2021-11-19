@@ -55,7 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
         tvCategory_id = findViewById(R.id.tvCategoryID);
         tvQuantity= findViewById(R.id.tvQuantity);
         btnADDGH= findViewById(R.id.addtoGio);
-        like= findViewById(R.id.btnLike);
+
 
         //get từ adapter qua
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
@@ -83,22 +83,19 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
-        like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Like cart = new Like();
-                cart.setImage_url(img_url);
-                cart.setIdProduct(idProduct);
-                cart.setName(tv.getText().toString());
-                cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
-                cart.setCategory_id(Integer.parseInt(tvCategory_id.getText().toString()));
-                cart.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
 
-                IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                service1.LikeInsert(cart).enqueue(insert_like);
 
-            }
-        });
+    }
+    public void onCustomToggleClick(View view) {
+        Like cart = new Like();
+        cart.setImage_url(img_url);
+        cart.setIdProduct(idProduct);
+        cart.setName(tv.getText().toString());
+        cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
+        cart.setCategory_id(Integer.parseInt(tvCategory_id.getText().toString()));
+        cart.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
+        IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+        service1.LikeInsert(cart).enqueue(insert_like);
 
     }
     Callback<ResponseModel> insert_cart = new Callback<ResponseModel>() {
@@ -128,7 +125,7 @@ public class DetailsActivity extends AppCompatActivity {
             if (response.isSuccessful()){
                 ResponseModel model = response.body();
                 if(model.getStatus()){
-                    Toast.makeText(DetailsActivity.this, "Đã thích sản phẩm", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Đã thích sản phẩm", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");

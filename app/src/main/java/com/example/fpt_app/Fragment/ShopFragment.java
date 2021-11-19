@@ -44,7 +44,7 @@ public class ShopFragment extends Fragment {
     private GridLayoutManager gridLayoutManager;
     private List<Shop>  data = new ArrayList<>();
     private ShopAdapter shopAdapter;
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private ArrayAdapter<String> arrayAdapter;
     private AccessTokenManager tokenManager;

@@ -54,12 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        fogot.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getBaseContext(), FogotActivity.class));
-//            }
-//        });
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
