@@ -7,9 +7,12 @@
         <entry key="..\:/Do An Tot Nghiep/test/FPT-ADUAN/app/src/main/res/layout/item_cart.xml" value="0.13272543059777103" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/drawable/icon.xml" value="0.19166666666666668" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/drawable/shapebgsearch.xml" value="0.19166666666666668" />
-        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_details.xml" value="0.15579710144927536" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_cart.xml" value="0.13722826086956522" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_details.xml" value="0.22" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_details_shop.xml" value="0.14673913043478262" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_forgot.xml" value="0.16394927536231885" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_form_dia_chi.xml" value="0.13722826086956522" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_hoa_don.xml" value="0.13722826086956522" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_login.xml" value="0.16394927536231885" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_main.xml" value="0.15579710144927536" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_notificaiton.xml" value="0.16394927536231885" />
@@ -17,11 +20,15 @@
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_product_form.xml" value="0.16394927536231885" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_register.xml" value="0.16394927536231885" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_socket.xml" value="0.16394927536231885" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_splike.xml" value="0.1322463768115942" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_thontin.xml" value="0.1" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/activity_welcome_screen.xml" value="0.16394927536231885" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/fragment_noti.xml" value="0.10144927536231885" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/fragment_product.xml" value="0.1598731884057971" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/fragment_shop.xml" value="0.1322463768115942" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/fragment_user.xml" value="0.1" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/item_cart.xml" value="0.13722826086956522" />
+        <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/item_like.xml" value="0.1322463768115942" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/item_list.xml" value="0.14673913043478262" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/item_shop.xml" value="0.14673913043478262" />
         <entry key="..\:/cacMon/FPT-ADUAN/app/src/main/res/layout/layout_msg_item.xml" value="0.14673913043478262" />

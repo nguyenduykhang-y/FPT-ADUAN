@@ -38,6 +38,7 @@
             android:textColor="@color/black"
             android:text="Thông tin shop"/>
         <TextView
+            android:id="@+id/SPlike"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"

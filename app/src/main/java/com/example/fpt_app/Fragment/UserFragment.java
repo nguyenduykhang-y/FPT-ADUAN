@@ -20,6 +20,8 @@ import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.ProductActivity;
 import com.example.fpt_app.R;
+import com.example.fpt_app.RegisterActivity;
+import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThontinActivity;
 
 
@@ -44,6 +46,14 @@ public class UserFragment extends Fragment  {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
+        textView = v.findViewById(R.id.SPlike);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), SPLikeActivity.class);
+                startActivity(i);
+            }
+        });
 //        btnout = v.findViewById(R.id.btnlogout);
 //        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 //        AccessToken token = tokenManager.getToken();
