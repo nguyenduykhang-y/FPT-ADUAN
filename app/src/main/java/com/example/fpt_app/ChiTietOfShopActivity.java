@@ -25,6 +25,7 @@ import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -117,7 +118,27 @@ public class ChiTietOfShopActivity extends AppCompatActivity implements SearchVi
 
     @Override
     public boolean onQueryTextChange(String newText) {
-//        adapter.filter(newText);
+        List<Product> productList = this.filter(newText);
+        adapter = new ProductAdapter(productList, getBaseContext());
+        recyclerViewProducts.setAdapter(adapter);
         return false;
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+    public List<Product> filter(String strSearch){
+        List<Product> datafilter = data;
+        if (strSearch == null ||  strSearch.length() == 0){
+            return data;
+        }
+        else {
+            List<Product> collect = datafilter.stream()
+                    .filter(i -> i.getName().toLowerCase().contains(strSearch))
+                    .collect(Collectors.toList());
+
+            return collect;
+        }
     }
 }

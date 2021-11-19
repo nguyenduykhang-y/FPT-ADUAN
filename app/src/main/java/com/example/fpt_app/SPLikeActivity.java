@@ -1,30 +1,23 @@
 package com.example.fpt_app;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fpt_app.Adapter.CartAdapter;
+import com.example.fpt_app.Adapter.LikeAdapter;
 import com.example.fpt_app.Adapter.ProductAdapter;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Cart;
+import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.Product;
-import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -34,18 +27,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CartActivity extends AppCompatActivity {
+public class SPLikeActivity extends AppCompatActivity {
+
     private RecyclerView mRecycle;
-    private List<Cart> data = new ArrayList<>();
+    private List<Like> data = new ArrayList<>();
     private TextView txtGiaTien;
-    private CartAdapter adapter;
+    private LikeAdapter adapter;
+    private ArrayAdapter<String> arrayAdapter;
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.activity_splike);
         //ánh xạ
         mRecycle = findViewById(R.id.lvCart);
         txtGiaTien = findViewById(R.id.TvGiaTien);
@@ -54,30 +49,28 @@ public class CartActivity extends AppCompatActivity {
 
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
-
-
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
-        service.CartGetALL().enqueue(getALLCart);
+        service.LikeGetALL().enqueue(getALLlike);
 
     }
-    Callback<List<Cart>> getALLCart = new Callback<List<Cart>>() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("onResume: ", "onResume>>>>");
+        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+        service.LikeGetALL().enqueue(getALLlike);
+
+    }
+    Callback<List<Like>> getALLlike = new Callback<List<Like>>() {
         @Override
-        public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
+        public void onResponse(Call<List<Like>> call, Response<List<Like>> response) {
             if (response.isSuccessful()){
                 if (data.size() == 0){
                     data = response.body();
-                    adapter = new CartAdapter(getBaseContext(), data);
-                    int sum = 0;
-                    List<Cart> carts= data;
-                    for (Cart c : carts){
-                        sum+= c.getPrice();
-                    }
-                    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-                    txtGiaTien.setText(decimalFormat.format(sum)+" VNĐ");
+                    adapter = new LikeAdapter(getBaseContext(), data);
                     mRecycle.setAdapter(adapter);
-
                 } else {
                     data.clear();
                     data.addAll(response.body());
@@ -85,16 +78,13 @@ public class CartActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 }
             } else {
-                Log.e(">>>>>getAllCart onResponse", response.message());
+                Log.e(">>>>>getAllCB onResponse", response.message());
             }
         }
 
         @Override
-        public void onFailure(Call<List<Cart>> call, Throwable t) {
-            Log.e(">>>>>getAllCart onFailure", t.getMessage());
+        public void onFailure(Call<List<Like>> call, Throwable t) {
+            Log.e(">>>>>getAllCB onFailure", t.getMessage());
         }
     };
-
-
-
 }

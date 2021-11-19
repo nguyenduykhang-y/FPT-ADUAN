@@ -3,6 +3,7 @@ package com.example.fpt_app.MyRetrofit;
 
 import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.Cart;
+import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.Person;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ProductCategory;
@@ -58,6 +59,9 @@ public interface IRetrofitService {
     @POST("views/get_all_gh.php")
     Call<List<Cart>> CartGetALL();
 
+    @POST("views/get_all_like.php")
+    Call<List<Like>> LikeGetALL();
+
     @Multipart
     @POST("/")
     Call<Response2PikModel> upload(@Part MultipartBody.Part image);
@@ -67,6 +71,9 @@ public interface IRetrofitService {
 
     @POST("views/product_insert.php")
     Call<ResponseModel> productInsert(@Body Product product);
+
+    @POST("views/like_insert.php")
+    Call<ResponseModel> LikeInsert(@Body Like like);
 
     @POST("views/gh_insert.php")
     Call<ResponseModel> CartInsert(@Body Cart cart);

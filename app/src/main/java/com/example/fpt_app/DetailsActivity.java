@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fpt_app.Models.Cart;
+import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.ListSP;
 import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
@@ -26,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
-    private ImageView img;
+    private ImageView img,like;
 
     private TextView tv, tvGia;
     private Button btn;
@@ -54,7 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
         tvCategory_id = findViewById(R.id.tvCategoryID);
         tvQuantity= findViewById(R.id.tvQuantity);
         btnADDGH= findViewById(R.id.addtoGio);
-
+        like= findViewById(R.id.btnLike);
 
         //get từ adapter qua
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
@@ -82,6 +83,22 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Like cart = new Like();
+                cart.setImage_url(img_url);
+                cart.setIdProduct(idProduct);
+                cart.setName(tv.getText().toString());
+                cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
+                cart.setCategory_id(Integer.parseInt(tvCategory_id.getText().toString()));
+                cart.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
+
+                IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                service1.LikeInsert(cart).enqueue(insert_like);
+
+            }
+        });
 
     }
     Callback<ResponseModel> insert_cart = new Callback<ResponseModel>() {
@@ -90,7 +107,28 @@ public class DetailsActivity extends AppCompatActivity {
             if (response.isSuccessful()){
                 ResponseModel model = response.body();
                 if(model.getStatus()){
-                    Toast.makeText(DetailsActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailsActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Log.e(">>>>>insertCB getStatus failed", "insert failed");
+                }
+            } else{
+                Log.e(">>>>>insertCB onResponse", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseModel> call, Throwable t) {
+            Log.e(">>>>>insertCB onFailure", t.getMessage());
+        }
+    };
+    Callback<ResponseModel> insert_like = new Callback<ResponseModel>() {
+        @Override
+        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+            if (response.isSuccessful()){
+                ResponseModel model = response.body();
+                if(model.getStatus()){
+                    Toast.makeText(DetailsActivity.this, "Đã thích sản phẩm", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");
