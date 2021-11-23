@@ -102,8 +102,8 @@
                     android:layout_height="50dp"
                     android:background="@drawable/edt"
                     android:ems="10"
-                    android:hint="Tên"
                     android:fontFamily="@font/tahoma"
+                    android:hint="Tên"
                     android:inputType="text"
                     android:padding="10dp" />
             </LinearLayout>
@@ -128,8 +128,8 @@
                     android:layout_height="50dp"
                     android:background="@drawable/edt"
                     android:ems="10"
-                    android:hint="Giá"
                     android:fontFamily="@font/tahoma"
+                    android:hint="Giá"
                     android:inputType="number"
                     android:padding="10dp" />
             </LinearLayout>
@@ -157,8 +157,7 @@
                     android:fontFamily="@font/tahoma"
                     android:hint="Product Quantity"
                     android:inputType="number"
-                    android:padding="10dp"
-                    />
+                    android:padding="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -174,27 +173,30 @@
                     android:text="Loại sản phẩm"
                     android:textColor="@color/homeapp"
                     android:textSize="12dp" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <Spinner
-        android:id="@+id/spinnerCategories"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="6"
-        android:layout_marginTop="4dp"
-        android:padding="10dp"
-        android:background="@drawable/edt"
-        android:paddingLeft="20dp" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_weight="1"
-        android:src="@drawable/icons8_down_button_24px_1"/>
-</LinearLayout>
 
-                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinnerCategories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/edt"
+                        android:padding="10dp"
+                        android:paddingLeft="20dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/icons8_down_button_24px_1" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
 
@@ -205,18 +207,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/buttonCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/tahoma"
-                android:textColor="@color/homeapp"
                 android:backgroundTint="@color/Xam"
-                android:text="Cancel" />
+                android:fontFamily="@font/tahoma"
+                android:text="Cancel"
+                android:textColor="@color/homeapp" />
 
             <Button
                 android:id="@+id/buttonSave"
@@ -224,8 +226,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/tahoma"
                 android:backgroundTint="@color/homeapp"
+                android:fontFamily="@font/tahoma"
                 android:text="ADD" />
         </LinearLayout>
     </LinearLayout>

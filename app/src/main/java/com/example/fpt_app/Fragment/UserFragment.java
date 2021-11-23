@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThontinActivity;
+import com.example.fpt_app.UserSettingActivity;
 
 
 public class UserFragment extends Fragment  {
@@ -30,7 +32,7 @@ public class UserFragment extends Fragment  {
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
-    private TextView textView;
+    private ImageView Setting;
 
 
     public UserFragment() {
@@ -46,11 +48,11 @@ public class UserFragment extends Fragment  {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
-        textView = v.findViewById(R.id.SPlike);
-        textView.setOnClickListener(new View.OnClickListener() {
+        Setting = v.findViewById(R.id.iconGH);
+        Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), SPLikeActivity.class);
+                Intent i = new Intent(getContext(), UserSettingActivity.class);
                 startActivity(i);
             }
         });

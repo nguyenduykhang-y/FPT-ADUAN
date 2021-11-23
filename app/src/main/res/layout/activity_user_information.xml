@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/btnBackSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp">
+        <ImageView
+            android:id="@+id/ivBackSetting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+
+            android:src="@drawable/ic_back"/>
+        <TextView
+            android:id="@+id/tvBackSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivBackSetting"
+            android:textSize="25dp"
+            android:layout_centerVertical="true"
+
+            android:textColor="@color/homeapp"
+            android:text="Thông tin tài khoản"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/AllName"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_below="@+id/btnBackSetting"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="70dp">
+    <TextView
+        android:id="@+id/Ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Tên"/>
+    <TextView
+        android:id="@+id/edtTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/Ten"
+        android:textSize="30dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:text="Nguyễn Văn A"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/AllPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AllName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+        <TextView
+            android:id="@+id/Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:text="Đổi mật khẩu"/>
+        <ImageView
+            android:id="@+id/ivToPassword"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:textSize="30dp"
+            android:rotationY="180"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_back"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/AllDateOfBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AllPassword"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+        <TextView
+            android:id="@+id/DateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:text="Ngày sinh"/>
+        <TextView
+            android:id="@+id/tvDateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="21/11/2001"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/AllGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AllDateOfBirth"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+        <TextView
+            android:id="@+id/Gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:text="Giới tính"/>
+        <TextView
+            android:id="@+id/tvGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="Nam"/>
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AllGender"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+        <TextView
+            android:id="@+id/Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:text="Email"/>
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="NgA@gmail.com"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

@@ -35,6 +35,8 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ChiTietOfShopActivity" />
         <activity android:name=".ProductFormActivity" />
+        <activity android:name=".UserSettingActivity"/>
+        <activity android:name=".UserInfomationActivity"/>
         <activity
             android:name=".ProductActivity"
             android:exported="false" />

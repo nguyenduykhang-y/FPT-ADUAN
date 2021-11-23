@@ -1,17 +1,49 @@
 package com.example.fpt_app.Models;
 
-public class User {
-    private String full_name, email, password, confirm_password;
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private String full_name, email, password, confirm_password, userImage;
+//    private Integer id, phone;
+
+
 
     public User() {
     }
 
     public User(String full_name, String email, String password, String confirm_password) {
+//        this.id = id;
         this.full_name = full_name;
         this.email = email;
         this.password = password;
         this.confirm_password = confirm_password;
+//        this.phone = phone;
     }
+
+//    public String getUserImage() {
+//        return userImage;
+//    }
+//
+//    public void setUserImage(String userImage) {
+//        this.userImage = userImage;
+//    }
+//
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
+//
+//    public Integer getPhone() {
+//        return phone;
+//    }
+//
+//    public void setPhone(Integer phone) {
+//        this.phone = phone;
+//    }
+
 
     public String getFull_name() {
         return full_name;
