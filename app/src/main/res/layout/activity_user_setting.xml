@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.UserFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/btnBackUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp">
+        <ImageView
+            android:id="@+id/ivBackSetting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+
+            android:src="@drawable/ic_back"/>
+        <TextView
+            android:id="@+id/tvBackUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivBackSetting"
+            android:textSize="25dp"
+            android:layout_centerVertical="true"
+
+            android:textColor="@color/homeapp"
+            android:text="Setting"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="70dp"
+        android:paddingLeft="10dp">
+        <TextView
+            android:id="@+id/tvUserInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="Thông tin tài khoản"
+            android:textSize="24dp"/>
+        <TextView
+            android:id="@+id/tvChangeAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="Thay đổi địa chỉ"
+            android:textSize="24dp"/>
+        <TextView
+            android:id="@+id/tvShopInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="Thông tin Shop"
+            android:textSize="24dp"/>
+        <TextView
+            android:id="@+id/tvFavProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="Sản phẩm yêu thích"
+            android:textSize="24dp"/>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/user_logout"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:elevation="10dp"
+                android:textColor="@color/homeapp"
+                android:backgroundTint="@color/Xam"/>
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String newPassword = edtPassword.getText().toString();
                 String confirmNewPassword = edtConfirmPassword.getText().toString();
 
+
                 service.dangky(new User(full_name, newEmail, newPassword, confirmNewPassword)).enqueue(registerCB);
 
 
