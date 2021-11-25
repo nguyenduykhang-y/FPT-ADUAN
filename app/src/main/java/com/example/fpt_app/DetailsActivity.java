@@ -126,7 +126,6 @@ public class DetailsActivity extends AppCompatActivity {
                 ResponseModel model = response.body();
                 if(model.getStatus()){
                     Toast.makeText(getApplicationContext(), "Đã thích sản phẩm", Toast.LENGTH_SHORT).show();
-                    finish();
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");
                 }
