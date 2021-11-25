@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,48 +69,41 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                 .into(holder.proImg);
         holder.tvName.setText(like.getName());
         holder.tvPrice.setText(decimalFormat.format(like.getPrice())+" VND");
-//        holder.mCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent in = new Intent(context, DetailsActivity.class);
-//                in.putExtra("id",String.valueOf(like.getId()));
-//                in.putExtra("imgesview",String.valueOf(like.getImage_url()));
-//                in.putExtra("name", like.getName());
-//                in.putExtra("quantity",String.valueOf(like.getQuantity()));
-//                in.putExtra("category_id",String.valueOf(like.getCategory_id()));
-//                in.putExtra("price", String.valueOf(like.getPrice()));
-//                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(in);
-//
-//            }
-//        });
+        holder.quantity.setText(String.valueOf("Số lượng: " + like.getQuantity()));
 
-//       holder.imgdelete.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//
-//
-//
-//               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-//
-//               service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
-//                   @Override
-//                   public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-//
-//                   }
-//
-//                   @Override
-//                   public void onFailure(Call<ResponseModel> call, Throwable t) {
-//                       Log.d("fail",""+t.getMessage() );
-//                   }
-//               });
-//               data.remove(position);
-//               notifyItemRemoved(position);
-//               notifyItemRangeChanged(position, data.size());
-//               notifyDataSetChanged();
-//           }
-//       });
+        holder.dele.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+
+               service.likeDelete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+                   @Override
+                   public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                       if (response.isSuccessful()){
+                           ResponseModel model = response.body();
+                           if(model.getStatus()){
+                               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                               service.LikeGetALL();
+                           } else {
+                               Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+                           }
+                       } else{
+                           Log.e(">>>>>deleteCB onResponse", response.message());
+                       }
+                   }
+
+                   @Override
+                   public void onFailure(Call<ResponseModel> call, Throwable t) {
+                       Log.d("fail",""+t.getMessage() );
+                   }
+               });
+               data.remove(position);
+               notifyItemRemoved(position);
+               notifyItemRangeChanged(position, data.size());
+               notifyDataSetChanged();
+           }
+       });
 
     }
 
@@ -126,9 +120,10 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
 
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
-        private ImageView proImg,imgdelete;
-        private TextView tvName, tvPrice;
+        private ImageView proImg;
+        private TextView tvName, tvPrice, quantity;
         private CardView mCardView;
+        private Button dele;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -136,7 +131,8 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
             tvName = itemView.findViewById(R.id.tvNameCart);
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
-            imgdelete = itemView.findViewById(R.id.imgdelete);
+            quantity = itemView.findViewById(R.id.tvQuantityCart);
+            dele = itemView.findViewById(R.id.imgdelete);
         }
     }
 

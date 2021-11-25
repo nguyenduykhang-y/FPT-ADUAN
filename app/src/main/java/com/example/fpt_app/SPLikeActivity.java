@@ -4,18 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fpt_app.Adapter.CartAdapter;
 import com.example.fpt_app.Adapter.LikeAdapter;
 import com.example.fpt_app.Adapter.ProductAdapter;
+import com.example.fpt_app.Fragment.UserFragment;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Cart;
 import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.Product;
+import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
@@ -28,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SPLikeActivity extends AppCompatActivity {
-
+    private ImageView ivBack;
     private RecyclerView mRecycle;
     private List<Like> data = new ArrayList<>();
     private TextView txtGiaTien;
@@ -44,6 +49,7 @@ public class SPLikeActivity extends AppCompatActivity {
         //ánh xạ
         mRecycle = findViewById(R.id.lvCart);
         txtGiaTien = findViewById(R.id.TvGiaTien);
+        ivBack = findViewById(R.id.ivBackSetting);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1);
         mRecycle.setLayoutManager(gridLayoutManager);
 
@@ -53,8 +59,18 @@ public class SPLikeActivity extends AppCompatActivity {
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.LikeGetALL().enqueue(getALLlike);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SPLikeActivity.this, UserFragment.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
+
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -87,4 +103,6 @@ public class SPLikeActivity extends AppCompatActivity {
             Log.e(">>>>>getAllCB onFailure", t.getMessage());
         }
     };
+
+
 }
