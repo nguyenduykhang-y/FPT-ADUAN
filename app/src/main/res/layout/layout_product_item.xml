@@ -21,11 +21,12 @@
             android:scaleType="centerCrop"/>
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="@string/app_name"
             android:padding="10dp"
             android:fontFamily="@font/tahoma"
             android:textSize="18sp"
+            android:textStyle="bold"
             android:id="@+id/textViewProductName"/>
         <TextView
             android:layout_width="match_parent"
