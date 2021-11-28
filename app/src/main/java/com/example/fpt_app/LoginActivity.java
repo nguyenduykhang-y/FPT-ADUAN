@@ -1,5 +1,6 @@
 package com.example.fpt_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,9 @@ import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
+import java.nio.charset.StandardCharsets;
+import java.text.BreakIterator;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +75,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
     Callback<AccessToken> loginCB = new Callback<AccessToken>() {
+
+
         @Override
         public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
             if (response.isSuccessful()){
                 AccessToken token = response.body();
                 tokenManager.saveToken(token);
+                Person p = new Person();
                 if (token.getIs_auth()){
-                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class).putExtra("data",p.getEmail()));
                     Toast.makeText(LoginActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
                     finish();
+
                 }
             } else {
                 Log.e(">>>>>", response.message());
