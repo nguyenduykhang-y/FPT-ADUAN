@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fpt_app.DetailsActivity;
+import com.example.fpt_app.DetailsLikeActivity;
 import com.example.fpt_app.Models.Cart;
 import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.ResponseModel;
@@ -33,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Like> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -71,6 +72,21 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
         holder.tvPrice.setText(decimalFormat.format(like.getPrice())+" VND");
         holder.quantity.setText(String.valueOf("Số lượng: " + like.getQuantity()));
 
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(context, DetailsLikeActivity.class);
+                in.putExtra("id",String.valueOf(like.getId()));
+                in.putExtra("imgesview",String.valueOf(like.getImage_url()));
+                in.putExtra("name", like.getName());
+                in.putExtra("quantity",String.valueOf(like.getQuantity()));
+                in.putExtra("category_id",String.valueOf(like.getCategory_id()));
+                in.putExtra("price", String.valueOf(like.getPrice()));
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(in);
+
+            }
+        });
         holder.dele.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

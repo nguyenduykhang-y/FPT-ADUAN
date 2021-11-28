@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fpt_app.Adapter.EreaAdapter;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bt_nv;
         ViewPager viewPager;
         ImageView iconGH;
+    private TextView v;
     private EreaAdapter ereaAdapter;
     private Spinner spinner;
     @Override
@@ -46,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
         bt_nv = findViewById(R.id.bottom_nv);
         iconGH = findViewById(R.id.iconGH);
         spinner = findViewById(R.id.spinner_erea);
+        v = findViewById(R.id.tvEmail);
+
+        Intent i = getIntent();
+        if (i.getExtras() != null){
+            String email = i.getStringExtra("data");
+            v.setText("Welll!!!!"  + email);
+        }
+
         setUpViewPager();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.homeapp));
 

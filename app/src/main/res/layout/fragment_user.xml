@@ -16,16 +16,16 @@
         android:paddingTop="20dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp">
+
         <ImageView
             android:id="@+id/iconGH"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_setting"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
             android:clickable="true"
-            />
+            android:src="@drawable/ic_setting" />
         <ImageView
             android:id="@+id/userImage"
             android:layout_width="60dp"
