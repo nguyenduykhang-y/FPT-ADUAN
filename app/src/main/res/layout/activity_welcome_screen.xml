@@ -5,11 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".welcome_screen"
+    android:orientation="vertical"
     android:background="#F6DBA6">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
     <ImageView
         android:id="@+id/imga"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F6DBA6"
         android:src="@drawable/logoooo_n"/>
+        <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-100dp"
+            android:id="@+id/loading"
+            app:trailingcircular_animDelay="200"
+            app:trailingcircular_animDuration="1200"
+            app:trailingcircular_bigCircleRadius="40dp"
+            app:trailingcircular_dotsColor="@color/loader_selected"
+            app:trailingcircular_dotsRadius="11dp"
+            app:trailingcircular_noOfTrailingDots="5" />
+    </LinearLayout>
 </LinearLayout>
