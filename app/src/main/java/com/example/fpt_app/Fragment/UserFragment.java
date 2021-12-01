@@ -47,8 +47,8 @@ public class UserFragment extends Fragment  {
     private Switch aSwitch;
 
     private ImageView Setting, UserInsert;
-=======
-    private ImageView Setting;
+
+
     private TextView tvName, tvEmail;
 
 
