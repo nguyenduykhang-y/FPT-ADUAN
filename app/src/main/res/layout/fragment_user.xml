@@ -45,15 +45,15 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/userInfo"
+            android:id="@+id/userEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:layout_toRightOf="@+id/userImage"
             android:layout_below="@+id/userName"
+            android:layout_toRightOf="@+id/userImage"
+            android:paddingLeft="10dp"
             android:text="Thông tin tài khoản"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="18dp" />
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/Num"
