@@ -40,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Cart> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -81,14 +81,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
-
-
                IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 
                service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
                    @Override
                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                       ResponseModel model = response.body();
+                       if(model.getStatus()){
+                           IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                           service.CartGetALL();
+
+                       } else {
+                           Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+                       }
 
                    }
 

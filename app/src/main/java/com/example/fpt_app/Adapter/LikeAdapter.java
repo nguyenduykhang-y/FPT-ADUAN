@@ -65,12 +65,13 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
         if (like == null){
             return;
         }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-        Glide.with(context).load(like.getImage_url())
-                .into(holder.proImg);
-        holder.tvName.setText(like.getName());
-        holder.tvPrice.setText(decimalFormat.format(like.getPrice())+" VND");
-        holder.quantity.setText(String.valueOf("Số lượng: " + like.getQuantity()));
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+            Glide.with(context).load(like.getImage_url())
+                    .into(holder.proImg);
+            holder.tvName.setText(like.getName());
+            holder.tvPrice.setText(decimalFormat.format(like.getPrice())+" VND");
+
+
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +148,6 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
             tvName = itemView.findViewById(R.id.tvNameCart);
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
-            quantity = itemView.findViewById(R.id.tvQuantityCart);
             dele = itemView.findViewById(R.id.imgdelete);
         }
     }

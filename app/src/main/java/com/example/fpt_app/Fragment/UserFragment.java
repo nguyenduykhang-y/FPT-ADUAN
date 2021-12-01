@@ -47,7 +47,7 @@ public class UserFragment extends Fragment  {
     private ImageView Setting;
     private TextView tv;
 
-    private List<User> listUser;
+
 
 
     public UserFragment() {
@@ -74,9 +74,8 @@ public class UserFragment extends Fragment  {
         });
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
-        User u = new User();
 
-        service.Profile(u).enqueue(getProfile);
+        service.Profile().enqueue(getProfile);
 //        btnout = v.findViewById(R.id.btnlogout);
 //        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 //        AccessToken token = tokenManager.getToken();
@@ -96,26 +95,26 @@ public class UserFragment extends Fragment  {
 //        Toast.makeText(getActivity(), "Logout Suscess", Toast.LENGTH_SHORT).show();
 //
 //    }
-Callback<List<User>> getProfile = new Callback<List<User>>() {
+    Callback<User> getProfile = new Callback<User>() {
     @Override
-    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+    public void onResponse(Call<User> call, Response<User> response) {
         if (response.isSuccessful()){
+            User u =  new User();
+            u = response.body();
 
-            Log.d("aaaa", listUser.toString());
-//            AccessToken token = response.body();
-//            tokenManager.getToken();
-//
-//            Toast.makeText(FogotActivity.this, "Send email Suscess", Toast.LENGTH_SHORT).show();
-//
-//
+            tv.setText(u.getEmail());
+
+
+
+
         } else {
             Log.e(">>>>>", response.message());
         }
     }
 
     @Override
-    public void onFailure(Call<List<User>> call, Throwable t) {
+    public void onFailure(Call<User> call, Throwable t) {
         Log.e(">>>>>", t.getMessage());
     }
-};
+    };
 }
