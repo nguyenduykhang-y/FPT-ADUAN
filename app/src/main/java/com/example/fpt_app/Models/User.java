@@ -3,54 +3,25 @@ package com.example.fpt_app.Models;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String full_name, email, password, confirm_password, userImage;
-//    private Integer id, phone;
-
-
+    private String name, email, password, confirm_password, phone;
 
     public User() {
     }
 
-    public User(String full_name, String email, String password, String confirm_password) {
-//        this.id = id;
-        this.full_name = full_name;
+    public User(String name, String email, String password, String confirm_password, String phone) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.confirm_password = confirm_password;
-//        this.phone = phone;
+        this.phone = phone;
     }
 
-//    public String getUserImage() {
-//        return userImage;
-//    }
-//
-//    public void setUserImage(String userImage) {
-//        this.userImage = userImage;
-//    }
-//
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-//
-//    public Integer getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(Integer phone) {
-//        this.phone = phone;
-//    }
-
-
-    public String getFull_name() {
-        return full_name;
+    public String getName() {
+        return name;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -75,5 +46,13 @@ public class User implements Serializable {
 
     public void setConfirm_password(String confirm_password) {
         this.confirm_password = confirm_password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

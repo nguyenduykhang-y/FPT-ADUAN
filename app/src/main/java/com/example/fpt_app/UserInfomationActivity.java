@@ -2,6 +2,7 @@ package com.example.fpt_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,18 +10,32 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fpt_app.Models.AccessTokenManager;
+import com.example.fpt_app.Models.User;
+import com.example.fpt_app.MyRetrofit.IRetrofitService;
+import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class UserInfomationActivity extends AppCompatActivity {
     private TextView tvBackSetting;
-    private ImageView ivBackSetting;
-
+    private ImageView ivBackSetting, ivToPassword;
+    private String BASE_URL = "http://10.0.2.2:8081/";
+    private AccessTokenManager tokenManager;
+    private TextView name, email, phone;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_information);
-
+        name = findViewById(R.id.edtName);
+        email = findViewById(R.id.tvEmail);
+        phone = findViewById(R.id.tvPhone);
         tvBackSetting = findViewById(R.id.tvBackSetting);
         ivBackSetting = findViewById(R.id.ivBackSetting);
+        ivToPassword = findViewById(R.id.ivToPassword);
 
         tvBackSetting.setClickable(true);
         ivBackSetting.setClickable(true);
@@ -32,6 +47,13 @@ public class UserInfomationActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        ivToPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(UserInfomationActivity.this, FogotActivity.class);
+                startActivity(i);
+            }
+        });
         ivBackSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +61,30 @@ public class UserInfomationActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        IRetrofitService service = new RetrofitBuilder()
+                .createService(IRetrofitService.class, BASE_URL);
+
+        service.Profile().enqueue(getProfile);
 
     }
+
+    Callback<User> getProfile = new Callback<User>() {
+        @Override
+        public void onResponse(Call<User> call, Response<User> response) {
+            if (response.isSuccessful()){
+                User u = new User();
+                u = response.body();
+                name.setText(u.getName());
+                email.setText(u.getEmail());
+                phone.setText(u.getPhone());
+            } else {
+                Log.e(">>>>>", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<User> call, Throwable t) {
+            Log.e(">>>>>", t.getMessage());
+        }
+    };
 }

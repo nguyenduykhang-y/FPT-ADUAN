@@ -1,7 +1,6 @@
 package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Cart> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -82,13 +82,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
            @Override
            public void onClick(View v) {
 
-
-
                IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 
                service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
                    @Override
                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                       ResponseModel model = response.body();
+                       if(model.getStatus()){
+                           IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                           service.CartGetALL();
+
+                       } else {
+                           Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+                       }
 
                    }
 
@@ -101,10 +107,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                notifyItemRemoved(position);
                notifyItemRangeChanged(position, data.size());
                notifyDataSetChanged();
+
+
            }
        });
 
     }
+
 
 
     @Override

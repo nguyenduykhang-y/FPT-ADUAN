@@ -50,22 +50,14 @@ public class UserSettingActivity extends AppCompatActivity {
         });
         //onClick
 
-//        tvUserInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(UserSettingActivity.this, UserInfomationActivity.class);
-//                startActivity(i);
-//            }
-//        });
+        tvUserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(UserSettingActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
 
-//        tvFavProduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Fragment fragment = new UserFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.flUserSetting, fragment).commit();
-//            }
-//        });
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

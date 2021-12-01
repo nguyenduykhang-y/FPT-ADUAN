@@ -69,13 +69,17 @@ public class CartActivity extends AppCompatActivity {
                 if (data.size() == 0){
                     data = response.body();
                     adapter = new CartAdapter(getBaseContext(), data);
+
                     int sum = 0;
                     List<Cart> carts= data;
-                    for (Cart c : carts){
-                        sum+= c.getPrice();
+                    if(carts != null){
+                        for (Cart c : carts){
+                            sum+= c.getPrice();
+                        }
+                        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+                        txtGiaTien.setText(decimalFormat.format(sum)+" VNĐ");
                     }
-                    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-                    txtGiaTien.setText(decimalFormat.format(sum)+" VNĐ");
+
                     mRecycle.setAdapter(adapter);
 
                 } else {

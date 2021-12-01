@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner_erea);
         v = findViewById(R.id.tvEmail);
 
-        Intent i = getIntent();
-        if (i.getExtras() != null){
-            String email = i.getStringExtra("data");
-            v.setText("Welll!!!!"  + email);
-        }
+//        Intent i = getIntent();
+//        if (i.getExtras() != null){
+//            String email = i.getStringExtra("data");
+//            v.setText("Welll!!!!"  + email);
+//        }
 
         setUpViewPager();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.homeapp));
