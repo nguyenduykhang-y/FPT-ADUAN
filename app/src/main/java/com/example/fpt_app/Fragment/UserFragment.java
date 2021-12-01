@@ -24,6 +24,7 @@ import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThontinActivity;
+import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 
 
@@ -32,7 +33,7 @@ public class UserFragment extends Fragment  {
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
-    private ImageView Setting;
+    private ImageView Setting, UserInsert;
 
 
     public UserFragment() {
@@ -49,10 +50,18 @@ public class UserFragment extends Fragment  {
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         Setting = v.findViewById(R.id.iconGH);
+        UserInsert = v.findViewById(R.id.ivUserInsert);
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), UserSettingActivity.class);
+                startActivity(i);
+            }
+        });
+        UserInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), UserInsertActivity.class);
                 startActivity(i);
             }
         });
