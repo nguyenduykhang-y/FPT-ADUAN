@@ -40,6 +40,7 @@ import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -101,6 +102,16 @@ public class ProductFormActivity extends AppCompatActivity {
             }
         });
 
+
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+//        img_url = getIntent().getStringExtra("imgesview");
+//        Glide.with(getBaseContext()).load(img_url).into(img);
+//        editTextProductName.setText(getIntent().getStringExtra("name"));
+//        editTextProductPrice.setText(decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price")))+" VNĐ");
+//        spinnerCategories.(getIntent().getStringExtra("category_id"));
+//        editTextProductQuantity.setText(getIntent().getStringExtra("quantity"));
+//        idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
+
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,6 +133,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 if (product_id == -1){
                     service1.productInsert(p).enqueue(insert_update_CB);
+
                 } else {
                     service1.productUpdate(p).enqueue(insert_update_CB);
                 }
@@ -229,7 +241,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 ResponseModel model = response.body();
                 if(model.getStatus()){
                     Toast.makeText(ProductFormActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
-                    finish();
+                    startActivity(new Intent(ProductFormActivity.this, UserInsertActivity.class));
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");
                 }

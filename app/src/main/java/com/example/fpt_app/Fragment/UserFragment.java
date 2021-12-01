@@ -30,6 +30,7 @@ import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThontinActivity;
+import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 
 import java.util.List;
@@ -44,8 +45,12 @@ public class UserFragment extends Fragment  {
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
+
+    private ImageView Setting, UserInsert;
+=======
     private ImageView Setting;
     private TextView tvName, tvEmail;
+
 
 
 
@@ -64,8 +69,12 @@ public class UserFragment extends Fragment  {
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         Setting = v.findViewById(R.id.iconGH);
+
+        UserInsert = v.findViewById(R.id.ivUserInsert);
+
         tvName = v.findViewById(R.id.userName);
         tvEmail = v.findViewById(R.id.userEmail);
+
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,10 +82,29 @@ public class UserFragment extends Fragment  {
                 startActivity(i);
             }
         });
+
+        UserInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), UserInsertActivity.class);
+                startActivity(i);
+            }
+        });
+//        btnout = v.findViewById(R.id.btnlogout);
+//        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
+//        AccessToken token = tokenManager.getToken();
+//
+//        if (token.getAccess_token()!=null){
+//            startActivity(new Intent(getActivity(), ProductActivity.class));
+//
+//        }
+//        btnout.setOnClickListener(this);
+
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.Profile().enqueue(getProfile);
+
 
         return  v;
     }
