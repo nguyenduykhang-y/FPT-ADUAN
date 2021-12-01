@@ -70,6 +70,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
         service.productGetAll().enqueue(getAllCB);
+
         btnA.setOnClickListener(this);
         btnB.setOnClickListener(this);
         btnC.setOnClickListener(this);

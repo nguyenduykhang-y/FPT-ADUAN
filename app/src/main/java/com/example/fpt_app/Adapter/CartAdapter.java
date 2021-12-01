@@ -1,7 +1,6 @@
 package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -81,6 +81,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+
                IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 
                service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
@@ -106,10 +107,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                notifyItemRemoved(position);
                notifyItemRangeChanged(position, data.size());
                notifyDataSetChanged();
+
+
            }
        });
 
     }
+
 
 
     @Override

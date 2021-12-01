@@ -53,7 +53,7 @@ public class UserSettingActivity extends AppCompatActivity {
         tvUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(UserSettingActivity.this, UserInfomationActivity.class);
+                Intent i = new Intent(UserSettingActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });
