@@ -43,14 +43,7 @@
         android:textStyle="bold"
         android:textColor="@color/homeapp"
         android:textSize="18dp" />
-    <TextView
-        android:id="@+id/tvQuantityCart"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Số lượng:"
-        android:textStyle="bold"
-        android:layout_weight="1"
-        android:textSize="18dp" />
+
 </LinearLayout>
 
     <Button

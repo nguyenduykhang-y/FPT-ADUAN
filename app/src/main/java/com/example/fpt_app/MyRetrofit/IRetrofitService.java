@@ -51,7 +51,7 @@ public interface IRetrofitService {
     Call<AccessToken> dangky(@Body User user);
 
     @POST("views/user_get_profile.php")
-    Call<List<User>> Profile(@Body User user);
+    Call<User> Profile();
 
     @POST("views/product_get_all.php")
     Call<List<Product>> productGetAll();

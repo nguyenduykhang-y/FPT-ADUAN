@@ -84,9 +84,12 @@ public class SPLikeActivity extends AppCompatActivity {
         public void onResponse(Call<List<Like>> call, Response<List<Like>> response) {
             if (response.isSuccessful()){
                 if (data.size() == 0){
-                    data = response.body();
-                    adapter = new LikeAdapter(getBaseContext(), data);
-                    mRecycle.setAdapter(adapter);
+
+                        data = response.body();
+                        adapter = new LikeAdapter(getBaseContext(), data);
+                        mRecycle.setAdapter(adapter);
+
+
                 } else {
                     data.clear();
                     data.addAll(response.body());
