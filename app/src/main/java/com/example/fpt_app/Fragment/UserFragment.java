@@ -45,7 +45,7 @@ public class UserFragment extends Fragment  {
     Button btnout;
     private Switch aSwitch;
     private ImageView Setting;
-    private TextView tv;
+    private TextView tvName, tvEmail;
 
 
 
@@ -64,7 +64,8 @@ public class UserFragment extends Fragment  {
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         Setting = v.findViewById(R.id.iconGH);
-        tv = v.findViewById(R.id.userName);
+        tvName = v.findViewById(R.id.userName);
+        tvEmail = v.findViewById(R.id.userEmail);
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,37 +77,18 @@ public class UserFragment extends Fragment  {
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.Profile().enqueue(getProfile);
-//        btnout = v.findViewById(R.id.btnlogout);
-//        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
-//        AccessToken token = tokenManager.getToken();
-//
-//        if (token.getAccess_token()!=null){
-//            startActivity(new Intent(getActivity(), ProductActivity.class));
-//
-//        }
-//        btnout.setOnClickListener(this);
+
         return  v;
     }
-//
-//    @Override
-//    public void onClick(View v) {
-//        tokenManager.deleteToken();
-//        startActivity(new Intent(getActivity(), LoginActivity.class));
-//        Toast.makeText(getActivity(), "Logout Suscess", Toast.LENGTH_SHORT).show();
-//
-//    }
+
     Callback<User> getProfile = new Callback<User>() {
     @Override
     public void onResponse(Call<User> call, Response<User> response) {
         if (response.isSuccessful()){
             User u =  new User();
             u = response.body();
-
-            tv.setText(u.getEmail());
-
-
-
-
+            tvName.setText(u.getName());
+            tvEmail.setText(u.getEmail());
         } else {
             Log.e(">>>>>", response.message());
         }

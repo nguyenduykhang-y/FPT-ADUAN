@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText fullname,edtEmail, edtPassword, edtConfirmPassword;
+    private EditText fullname,edtEmail, edtPassword, edtConfirmPassword, phones;
     private Button btnRegister;
     int position;
     String email;
@@ -42,16 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnRegister = findViewById(R.id.btnRegister);
+        phones = findViewById(R.id.phone);
         setTitle("Register an account");
-
-//        back = findViewById(R.id.back);
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent ds = new Intent(RegisterActivity.this, LoginActivity.class);
-//                startActivity(ds);
-//            }
-//        });
 
 
         IRetrofitService service = new RetrofitBuilder()
@@ -65,9 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String newEmail = edtEmail.getText().toString();
                 String newPassword = edtPassword.getText().toString();
                 String confirmNewPassword = edtConfirmPassword.getText().toString();
+                String phone = phones.getText().toString();
 
-
-                service.dangky(new User(full_name, newEmail, newPassword, confirmNewPassword)).enqueue(registerCB);
+                service.dangky(new User(full_name, newEmail, newPassword, confirmNewPassword, phone)).enqueue(registerCB);
 
 
             }

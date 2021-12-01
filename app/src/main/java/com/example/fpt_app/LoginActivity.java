@@ -82,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
             if (response.isSuccessful()){
                 AccessToken token = response.body();
                 tokenManager.saveToken(token);
-                Person p = new Person();
                 if (token.getIs_auth()){
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     Toast.makeText(LoginActivity.this, "Suscess", Toast.LENGTH_SHORT).show();

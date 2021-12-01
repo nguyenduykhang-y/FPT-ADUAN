@@ -83,7 +83,19 @@
 
 
         />
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:layout_below="@+id/edPassword"
+        android:inputType="textPersonName"
 
+
+        />
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="186dp"
