@@ -30,7 +30,6 @@ import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThontinActivity;
-import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 
 import java.util.List;
@@ -45,12 +44,8 @@ public class UserFragment extends Fragment  {
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
-
-    private ImageView Setting, UserInsert;
-
-
-    private TextView tvName, tvEmail;
-
+    private ImageView Setting, ivUserInsert;
+    private TextView tvName, tvEmail,tvShop;
 
 
 
@@ -69,12 +64,10 @@ public class UserFragment extends Fragment  {
 
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         Setting = v.findViewById(R.id.iconGH);
-
-        UserInsert = v.findViewById(R.id.ivUserInsert);
-
         tvName = v.findViewById(R.id.userName);
         tvEmail = v.findViewById(R.id.userEmail);
-
+        ivUserInsert = v.findViewById(R.id.ivUserInsert);
+        tvShop = v.findViewById(R.id.tvShop);
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,48 +76,36 @@ public class UserFragment extends Fragment  {
             }
         });
 
-        UserInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), UserInsertActivity.class);
-                startActivity(i);
-            }
-        });
-//        btnout = v.findViewById(R.id.btnlogout);
-//        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
-//        AccessToken token = tokenManager.getToken();
-//
-//        if (token.getAccess_token()!=null){
-//            startActivity(new Intent(getActivity(), ProductActivity.class));
-//
-//        }
-//        btnout.setOnClickListener(this);
+
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.Profile().enqueue(getProfile);
 
-
         return  v;
     }
 
     Callback<User> getProfile = new Callback<User>() {
-    @Override
-    public void onResponse(Call<User> call, Response<User> response) {
-        if (response.isSuccessful()){
-            User u =  new User();
-            u = response.body();
-            tvName.setText(u.getName());
-            tvEmail.setText(u.getEmail());
-        } else {
-            Log.e(">>>>>", response.message());
+        @Override
+        public void onResponse(Call<User> call, Response<User> response) {
+            if (response.isSuccessful()){
+                User u =  new User();
+                u = response.body();
+                tvName.setText(u.getName());
+                tvEmail.setText(u.getEmail());
+                if (u.getRoles().equals("2")){
+                    ivUserInsert.setVisibility(View.VISIBLE);
+                    tvShop.setVisibility(View.VISIBLE);
+                }
+            } else {
+                Log.e(">>>>>", response.message());
+            }
         }
-    }
 
-    @Override
-    public void onFailure(Call<User> call, Throwable t) {
-        Log.e(">>>>>", t.getMessage());
-    }
+        @Override
+        public void onFailure(Call<User> call, Throwable t) {
+            Log.e(">>>>>", t.getMessage());
+        }
     };
 }
