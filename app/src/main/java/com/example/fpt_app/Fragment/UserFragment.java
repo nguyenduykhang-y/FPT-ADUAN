@@ -76,8 +76,6 @@ public class UserFragment extends Fragment  {
             }
         });
 
-
-
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 

@@ -20,8 +20,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserInfomationActivity extends AppCompatActivity {
-    private TextView tvBackSetting;
-    private ImageView ivBackSetting, ivToPassword;
+
+    private ImageView ic_back, ivToPassword;
     private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
     private TextView name, email, phone;
@@ -33,14 +33,10 @@ public class UserInfomationActivity extends AppCompatActivity {
         name = findViewById(R.id.edtName);
         email = findViewById(R.id.tvEmail);
         phone = findViewById(R.id.tvPhone);
-        tvBackSetting = findViewById(R.id.tvBackSetting);
-        ivBackSetting = findViewById(R.id.ivBackSetting);
+        ic_back = findViewById(R.id.ivBack);
         ivToPassword = findViewById(R.id.ivToPassword);
 
-        tvBackSetting.setClickable(true);
-        ivBackSetting.setClickable(true);
-
-        tvBackSetting.setOnClickListener(new View.OnClickListener() {
+        ic_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(UserInfomationActivity.this, UserSettingActivity.class);
@@ -54,7 +50,7 @@ public class UserInfomationActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        ivBackSetting.setOnClickListener(new View.OnClickListener() {
+        ic_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(UserInfomationActivity.this, UserSettingActivity.class);
