@@ -133,8 +133,6 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                            }
                        });
                        data.remove(position);
-                       notifyItemRemoved(position);
-                       notifyItemRangeChanged(position, data.size());
                        notifyDataSetChanged();
 
                    }

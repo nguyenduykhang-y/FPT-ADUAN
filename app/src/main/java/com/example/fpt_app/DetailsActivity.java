@@ -3,6 +3,7 @@ package com.example.fpt_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -31,13 +32,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
-    private ImageView img,like;
+    private ImageView img,gh;
 
-    private TextView tv, tvGia;
+    private TextView tv, tvGia, tvName;
     private Button btn;
     private Integer product_id = -1;
     private TextView tvCategory_id,tvQuantity;
-    private Button btnADDGH;
+    private Button btnADDGH, mua;
     private List<ProductCategory> data;
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
@@ -59,7 +60,9 @@ public class DetailsActivity extends AppCompatActivity {
         tvCategory_id = findViewById(R.id.tvCategoryID);
         tvQuantity= findViewById(R.id.tvQuantity);
         btnADDGH= findViewById(R.id.addtoGio);
-
+        gh = findViewById(R.id.iconGH);
+        tvName = findViewById(R.id.tvNamSP);
+        mua = findViewById(R.id.mua);
 
         //get từ adapter qua
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
@@ -69,7 +72,8 @@ public class DetailsActivity extends AppCompatActivity {
         tvGia.setText(decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price")))+" VNĐ");
         tvQuantity.setText("Số Lượng: "+ getIntent().getStringExtra("quantity"));
         idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
-
+        tvName.setText(getIntent().getStringExtra("name"));
+        mua.setText("Mua ngay " + decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price"))) + " VNĐ");
         IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service1.productCategoryGetAll().enqueue(getAllProductCategoryCB);
 
@@ -89,7 +93,13 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
-
+        gh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailsActivity.this,CartActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
     public void onCustomToggleClick(View view) {
@@ -102,6 +112,7 @@ public class DetailsActivity extends AppCompatActivity {
         cart.setQuantity(Integer.parseInt(getIntent().getStringExtra("quantity")));
         IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service1.LikeInsert(cart).enqueue(insert_like);
+
 
     }
     Callback<ResponseModel> insert_cart = new Callback<ResponseModel>() {
