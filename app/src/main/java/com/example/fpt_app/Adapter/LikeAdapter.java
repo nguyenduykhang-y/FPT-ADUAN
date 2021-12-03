@@ -1,7 +1,9 @@
 package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,7 +62,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
 
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull final CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final Like like = data.get(position);
         if (like == null){
             return;
@@ -91,38 +93,58 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
         holder.dele.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
-               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-
-               service.likeDelete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+               //pass the 'context' here
+               AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
+               alertDialog.setTitle("Bỏ like Sản phẩm");
+               alertDialog.setIcon(R.drawable.delete_bin_48px);
+               alertDialog.setMessage("Bạn có muốn bỏ like sản phẩm này không ?" + like.getName());
+               alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                    @Override
-                   public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                       if (response.isSuccessful()){
-                           ResponseModel model = response.body();
-                           if(model.getStatus()){
-                               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                               service.LikeGetALL();
-                           } else {
-                               Log.e(">>>>>deleteCB getStatus failed", "detele failed");
-                           }
-                       } else{
-                           Log.e(">>>>>deleteCB onResponse", response.message());
-                       }
-                   }
-
-                   @Override
-                   public void onFailure(Call<ResponseModel> call, Throwable t) {
-                       Log.d("fail",""+t.getMessage() );
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.cancel();
                    }
                });
-               data.remove(position);
-               notifyItemRemoved(position);
-               notifyItemRangeChanged(position, data.size());
-               notifyDataSetChanged();
+               alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+
+                       // DO SOMETHING HERE
+                       IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+
+                       service.likeDelete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+                           @Override
+                           public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                               if (response.isSuccessful()){
+                                   ResponseModel model = response.body();
+                                   if(model.getStatus()){
+                                       IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                                       service.LikeGetALL();
+                                   } else {
+                                       Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+                                   }
+                               } else{
+                                   Log.e(">>>>>deleteCB onResponse", response.message());
+                               }
+                           }
+
+                           @Override
+                           public void onFailure(Call<ResponseModel> call, Throwable t) {
+                               Log.d("fail",""+t.getMessage() );
+                           }
+                       });
+                       data.remove(position);
+                       notifyItemRemoved(position);
+                       notifyItemRangeChanged(position, data.size());
+                       notifyDataSetChanged();
+
+                   }
+               });
+               alertDialog.show();
            }
        });
 
     }
+
 
 
     @Override
