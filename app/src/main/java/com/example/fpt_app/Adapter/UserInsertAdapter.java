@@ -2,6 +2,7 @@ package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
+import com.example.fpt_app.ProductFormActivity;
 import com.example.fpt_app.R;
 
 import java.text.DecimalFormat;
@@ -62,15 +64,8 @@ public class UserInsertAdapter extends RecyclerView.Adapter<UserInsertAdapter.Us
             @Override
             public void onClick(View v) {
 
-//                Intent in = new Intent(context, ProductFormActivity.class);
-//                in.putExtra("id",String.valueOf(product.getId()));
-//                in.putExtra("imgesview",String.valueOf(product.getImage_url()));
-//                in.putExtra("name", product.getName());
-//                in.putExtra("quantity",String.valueOf(product.getQuantity()));
-//                in.putExtra("category_id",String.valueOf(product.getCategory_id()));
-//                in.putExtra("price", String.valueOf(product.getPrice()));
-//                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(in);
+                Intent in = new Intent(context, ProductFormActivity.class);
+                context.startActivity(in);
 
             }
         });

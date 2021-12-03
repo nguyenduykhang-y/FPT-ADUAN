@@ -30,6 +30,7 @@ import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThontinActivity;
+import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 
 import java.util.List;
@@ -75,7 +76,13 @@ public class UserFragment extends Fragment  {
                 startActivity(i);
             }
         });
-
+        ivUserInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), UserInsertActivity.class);
+                startActivity(i);
+            }
+        });
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
 
