@@ -67,7 +67,8 @@
             android:layout_width="245dp"
             android:layout_height="49dp"
             android:layout_below="@+id/edtPassword"
-             android:layout_marginLeft="80dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/tahoma"
             android:text="Đăng nhập"
             android:textColor="@color/white"
             android:layout_marginTop="18dp"
@@ -137,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bạn chưa có tài khoản?Đăngký"
-        android:textSize="14dp"
+        android:textSize="20dp"
         android:layout_weight="2"
         android:fontFamily="@font/tahoma"
         android:textStyle="normal" />
