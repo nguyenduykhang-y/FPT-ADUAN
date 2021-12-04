@@ -69,8 +69,8 @@ public class DetailsLikeActivity extends AppCompatActivity {
                 cart.setIdProduct(idProduct);
                 cart.setName(tv.getText().toString());
                 cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
-                cart.setCategory_id(Integer.parseInt(tvCategory_id.getText().toString()));
-                cart.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
+                cart.setCategory_id(Integer.parseInt(getIntent().getStringExtra("category_id")));
+                cart.setQuantity(Integer.parseInt(getIntent().getStringExtra("quantity")));
 
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.CartInsert(cart).enqueue(insert_cart);

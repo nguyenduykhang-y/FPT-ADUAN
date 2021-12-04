@@ -14,26 +14,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đăng Nhập"
-        android:layout_marginTop="200dp"
-         android:layout_marginLeft="50dp"
-        android:textSize="25dp"
+        android:layout_marginTop="150dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="40dp"
+        android:fontFamily="@font/tahomabd"
         android:textColor="#233178"
 
 
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="315dp"
             android:layout_height="49dp"
-            android:layout_marginLeft="50dp"
             android:layout_marginTop="22dp"
             android:ems="10"
             android:text="d@gmail.com"
             android:hint="Username"
+            android:padding="10dp"
             android:layout_below="@+id/DN"
             android:inputType="textPersonName"
+            android:background="@drawable/background"
 
             />
 
@@ -41,18 +48,19 @@
             android:id="@+id/editTextPassword"
             android:layout_width="315dp"
             android:layout_height="49dp"
-            android:layout_marginLeft="50dp"
             android:layout_marginTop="32dp"
             android:ems="10"
             android:text="1"
             android:layout_below="@+id/edtUser"
             android:hint="Password"
+            android:padding="10dp"
+            android:background="@drawable/background"
             android:inputType="textPassword"
             android:layout_marginBottom="20dp"
   />
 
 
-
+    </LinearLayout>
 
         <Button
             android:id="@+id/buttonSignIn"
@@ -76,22 +84,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-
+        android:gravity="center"
         android:text="OR"
         android:textSize="14dp"
         android:textColor="@color/blue"
-        android:textAlignment="center"
         android:textStyle="normal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
     <Button
         android:id="@+id/btnFB"
         android:layout_width="315dp"
         android:layout_height="49dp"
         android:layout_below="@+id/tvOR"
-        android:layout_marginLeft="50dp"
         android:drawableLeft="@drawable/facebook"
         android:text="Login with Facebook"
         android:textColor="#000000"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/tahomabd"
         android:textSize="15dp"
        android:backgroundTint="@color/white"
         android:textAllCaps="false"
@@ -101,33 +115,37 @@
         android:layout_width="315dp"
         android:layout_height="49dp"
         android:layout_below="@+id/btnFB"
-        android:layout_marginLeft="50dp"
         android:drawableLeft="@drawable/google"
         android:backgroundTint="@color/white"
         android:textAllCaps="false"
+        android:fontFamily="@font/tahomabd"
         android:text="Login with Google"
         android:textColor="#000000"
         android:layout_marginTop="16dp"
         android:textSize="15dp"
         />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+
     <TextView
         android:id="@+id/dangky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
         android:text="Bạn chưa có tài khoản?Đăngký"
         android:textSize="14dp"
+        android:layout_weight="2"
+        android:fontFamily="@font/tahoma"
         android:textStyle="normal" />
-    <TextView
-        android:id="@+id/btnForgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="50dp"
-        android:text="Bạn quên mật khẩu"
-        android:textSize="14dp"
-        android:textStyle="normal" />
-
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:src="@drawable/next_page_48px"/>
+    </LinearLayout>
 
 </LinearLayout>
