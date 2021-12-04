@@ -76,8 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 .into(holder.proImg);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
-
-
+        holder.quantity.setText(String.valueOf(cart.getQuantity()));
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -129,7 +128,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg,imgdelete;
-        private TextView tvName, tvPrice;
+        private TextView tvName, tvPrice, quantity;
         private CardView mCardView;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -139,6 +138,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
             imgdelete = itemView.findViewById(R.id.imgdelete);
+            quantity = itemView.findViewById(R.id.tvQuantity);
         }
     }
 
