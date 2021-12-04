@@ -2,6 +2,7 @@ package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -95,19 +96,27 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
            public void onClick(View v) {
                //pass the 'context' here
                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
-               alertDialog.setTitle("Bỏ like Sản phẩm");
-               alertDialog.setIcon(R.drawable.delete_bin_48px);
-               alertDialog.setMessage("Bạn có muốn bỏ like sản phẩm này không ?" + like.getName());
-               alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+               View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog, null);
+               ImageView img ;
+               Button btnNo, btnYes;
+               TextView tvTC, tvText;
+               img = dialogView.findViewById(R.id.imgDialog);
+               btnNo = dialogView.findViewById(R.id.btnNo);
+               btnYes = dialogView.findViewById(R.id.btnYes);
+               tvTC = dialogView.findViewById(R.id.tvTC);
+               tvText = dialogView.findViewById(R.id.tvText);
+               alertDialog.setView(dialogView);
+               alertDialog.setCancelable(true);
+               btnNo.setOnClickListener(new View.OnClickListener() {
                    @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       dialog.cancel();
+                   public void onClick(View view) {
+
                    }
                });
-               alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
 
+               btnYes.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
                        // DO SOMETHING HERE
                        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 
@@ -134,15 +143,16 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                        });
                        data.remove(position);
                        notifyDataSetChanged();
+                       alertDialog.setCancelable(true);
 
                    }
                });
-               alertDialog.show();
+               AlertDialog dialog = alertDialog.create();
+               dialog.show();
            }
        });
 
     }
-
 
 
     @Override
@@ -156,11 +166,12 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
 
 
 
+
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg;
         private TextView tvName, tvPrice, quantity;
         private CardView mCardView;
-        private Button dele;
+        private Button dele,btnNo;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -169,6 +180,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
             dele = itemView.findViewById(R.id.imgdelete);
+
         }
     }
 
