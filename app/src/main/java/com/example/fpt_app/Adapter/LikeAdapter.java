@@ -95,7 +95,9 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
            @Override
            public void onClick(View v) {
                //pass the 'context' here
+               //pass the 'context' here
                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
+
                View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog, null);
                ImageView img ;
                Button btnNo, btnYes;
@@ -114,12 +116,21 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                    @Override
                    public void onClick(View view) {
                     dialog.cancel();
+
+               alertDialog.setTitle("Bỏ like Sản phẩm");
+               alertDialog.setIcon(R.drawable.delete_bin_48px);
+               alertDialog.setMessage("Bạn có muốn bỏ like sản phẩm này không ?" + like.getName());
+               alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.cancel();
+
                    }
                });
-
-               btnYes.setOnClickListener(new View.OnClickListener() {
+               alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                    @Override
-                   public void onClick(View view) {
+                   public void onClick(DialogInterface dialog, int which) {
+
                        // DO SOMETHING HERE
                        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 
@@ -146,13 +157,20 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                        });
                        data.remove(position);
                        notifyDataSetChanged();
+
                        alertDialog.setCancelable(true);
                        dialog.cancel();
                    }
                });
 
+
+
+                   }
+               });
+               alertDialog.show();
+
            }
-       });
+        });
 
     }
 

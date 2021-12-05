@@ -103,14 +103,7 @@ public class ProductFormActivity extends AppCompatActivity {
         });
 
 
-//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-//        img_url = getIntent().getStringExtra("imgesview");
-//        Glide.with(getBaseContext()).load(img_url).into(img);
-//        editTextProductName.setText(getIntent().getStringExtra("name"));
-//        editTextProductPrice.setText(decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price")))+" VNĐ");
-//        spinnerCategories.(getIntent().getStringExtra("category_id"));
-//        editTextProductQuantity.setText(getIntent().getStringExtra("quantity"));
-//        idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
+
 
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -82,34 +82,51 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
-               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-
-               service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+               //pass the 'context' here
+               AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
+               alertDialog.setTitle("Bỏ like Sản phẩm");
+               alertDialog.setIcon(R.drawable.delete_bin_48px);
+               alertDialog.setMessage("Bạn có muốn bỏ sản phẩm này không ?" + cart.getName());
+               alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                    @Override
-                   public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                       ResponseModel model = response.body();
-                       if(model.getStatus()){
-                           IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                           service.CartGetALL();
-
-                       } else {
-                           Log.e(">>>>>deleteCB getStatus failed", "detele failed");
-                       }
-
-                   }
-
-                   @Override
-                   public void onFailure(Call<ResponseModel> call, Throwable t) {
-                       Log.d("fail",""+t.getMessage() );
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.cancel();
                    }
                });
-               data.remove(position);
-               notifyItemRemoved(position);
-               notifyItemRangeChanged(position, data.size());
-               notifyDataSetChanged();
+               alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
 
+                       // DO SOMETHING HERE
+                       IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 
+                       service.cart_delete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+                           @Override
+                           public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                               if (response.isSuccessful()){
+                                   ResponseModel model = response.body();
+                                   if(model.getStatus()){
+                                       IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                                       service.LikeGetALL();
+                                   } else {
+                                       Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+                                   }
+                               } else{
+                                   Log.e(">>>>>deleteCB onResponse", response.message());
+                               }
+                           }
+
+                           @Override
+                           public void onFailure(Call<ResponseModel> call, Throwable t) {
+                               Log.d("fail",""+t.getMessage() );
+                           }
+                       });
+                       data.remove(position);
+                       notifyDataSetChanged();
+
+                   }
+               });
+               alertDialog.show();
            }
        });
 //       holder.btnCong.setOnClickListener(new View.OnClickListener() {

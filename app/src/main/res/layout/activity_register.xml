@@ -14,9 +14,10 @@
         android:layout_height="wrap_content"
         android:text="Đăng kí tài khoản"
         android:layout_marginTop="90dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginLeft="40dp"
         android:textSize="25dp"
         android:textColor="#233178"
+        android:fontFamily="@font/tahomabd"
 
 
         />
@@ -27,30 +28,37 @@
         android:text="Nhập thông tin"
         android:layout_below="@id/DN"
         android:layout_marginTop="22dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginLeft="40dp"
         android:textSize="20dp"
         android:textColor="#000000"
+        android:fontFamily="@font/tahomabd"
 
 
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/fullname"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
+        android:layout_height="49dp"
+        android:background="@drawable/background"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Username"
         android:layout_below="@+id/tvNhapthongtin"
         android:inputType="textPersonName"
-
+        android:padding="10dp"
 
         />
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
+        android:layout_height="49dp"
+        android:background="@drawable/background"
+        android:padding="10dp"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Email"
@@ -59,22 +67,24 @@
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
+        android:layout_height="49dp"
+        android:background="@drawable/background"
+
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Password"
         android:layout_below="@+id/edEmail"
         android:inputType="textPersonName"
-
+        android:padding="10dp"
 
         />
 
     <EditText
         android:id="@+id/edtConfirmPassword"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
+        android:layout_height="49dp"
+        android:background="@drawable/background"
+        android:padding="10dp"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Enter the password"
@@ -86,44 +96,46 @@
     <EditText
         android:id="@+id/phone"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
+        android:layout_height="49dp"
+        android:background="@drawable/background"
+
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Phone"
         android:layout_below="@+id/edPassword"
         android:inputType="textPersonName"
 
-
+        android:padding="10dp"
         />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="186dp"
-        android:layout_height="wrap_content"
+        android:layout_width="245dp"
+        android:layout_height="49dp"
         android:layout_below="@+id/edReenterPassword"
-        android:layout_marginLeft="118dp"
-
         android:text="Xác nhận"
         android:backgroundTint="@color/homeapp"
         android:textColor="#FFFFFF"
         android:layout_marginTop="22dp"
         android:textSize="18dp"
-
+        android:fontFamily="@font/tahomabd"
         android:textAllCaps="false"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="40dp"
-
-
+       android:layout_marginLeft="73dp"
+        android:layout_marginTop="30dp"
         >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:src="@drawable/facebook"/>
         <TextView
             android:id="@+id/TextOR"
@@ -131,7 +143,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
-            android:text="OR" />
+            android:text="OR"
+            android:fontFamily="@font/tahomabd"/>
 
 
         <ImageView
@@ -141,18 +154,30 @@
             android:layout_marginLeft="40dp"
             android:src="@drawable/google"/>
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
     <TextView
         android:id="@+id/LogInbtn"
         android:onClick="LognIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="70dp"
+
         android:text="Quay lại màng hình đăng nhập"
-        android:textSize="14dp"
-        android:textStyle="normal" />
+        android:textSize="20dp"
+        android:textStyle="normal"
+       />
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
 
+                android:src="@drawable/next_page_48px"/>
+        </LinearLayout>
+    </LinearLayout>
 
 
 

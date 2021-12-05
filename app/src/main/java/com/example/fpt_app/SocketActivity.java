@@ -3,6 +3,7 @@ package com.example.fpt_app;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,7 +31,7 @@ import okio.ByteString;
 public class SocketActivity extends AppCompatActivity {
 
     EditText editTextData;
-    ImageView buttonSend;
+    Button buttonSend;
     ListView list_msg;
 
     MessageAdapter adapter;

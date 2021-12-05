@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserInsertAdapter extends RecyclerView.Adapter<UserInsertAdapter.UserInsertViewHolder> {
+public class UserInsertAdapter extends BaseAdapter {
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Product> data;
     private Context context;
@@ -40,15 +41,13 @@ public class UserInsertAdapter extends RecyclerView.Adapter<UserInsertAdapter.Us
         this.context = context;
     }
 
-
-    @NonNull
     @Override
-    public UserInsertAdapter.UserInsertViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_insert, parent, false);
-        return new UserInsertViewHolder(v);
+    public int getCount() {
+        return data.size();
     }
 
     @Override
+
     public void onBindViewHolder(@NonNull UserInsertAdapter.UserInsertViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Product product = data.get(position);
         if (product == null) {
@@ -96,29 +95,47 @@ public class UserInsertAdapter extends RecyclerView.Adapter<UserInsertAdapter.Us
             }
         });
 
+    public Object getItem(int i) {
+        return data.get(i);
+    }
+
+
+    @Override
+    public long getItemId(int i) {
+        return i;
     }
 
     @Override
-    public int getItemCount() {
-        if(data !=null ){
-            return data.size();
-        }
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        View View = view;
+        if (view == null){
+            view = View.inflate(viewGroup.getContext(), R.layout.item_user_insert, null);
+            TextView tvUserProductName = (TextView) view.findViewById(R.id.tvUserProductName);
+            TextView tvUserProductPrice = (TextView) view.findViewById(R.id.tvUserProductPrice);
 
-        return 0;
+
+            ImageView userProImg = (ImageView) view.findViewById(R.id.ivUserProductImage);
+            UserInsertViewHolder holder = new UserInsertViewHolder(tvUserProductName, tvUserProductPrice, userProImg);
+            view.setTag(holder);
+        }
+        UserInsertViewHolder holder = (UserInsertViewHolder) view.getTag();
+        Product p = (Product) getItem(i);
+        holder.tvUserProductName.setText(p.getName());
+        holder.tvUserProductPrice.setText(String.valueOf(p.getPrice()) + " VNĐ");
+        Glide.with(context).load(p.getImage_url())
+                .into(holder.userProImg);
+
+        return view;
     }
 
-    public class UserInsertViewHolder extends RecyclerView.ViewHolder {
-        private ImageView userProImg, userDelImg, userBackIcon;
-        private TextView tvUserProductName, tvUserProductPrice;
-        private CardView mCardView;
+    private static class UserInsertViewHolder{
+        final TextView tvUserProductName, tvUserProductPrice;
+        final ImageView userProImg;
 
-        public UserInsertViewHolder(@NonNull View itemView) {
-            super(itemView);
-            userProImg = itemView.findViewById(R.id.ivUserProductImage);
-            tvUserProductName = itemView.findViewById(R.id.tvUserProductName);
-            tvUserProductPrice = itemView.findViewById(R.id.tvUserProductPrice);
-            mCardView = itemView.findViewById(R.id.user_insert_item);
-            userDelImg = itemView.findViewById(R.id.ivUserProductDelete);
+        public UserInsertViewHolder(TextView tvUserProductName, TextView tvUserProductPrice, ImageView userProImg) {
+            this.tvUserProductName = tvUserProductName;
+            this.tvUserProductPrice = tvUserProductPrice;
+            this.userProImg = userProImg;
         }
     }
 }

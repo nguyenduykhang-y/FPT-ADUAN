@@ -2,11 +2,14 @@ package com.example.fpt_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -34,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserInsertActivity extends AppCompatActivity {
-    private RecyclerView mRecycle;
+    private ListView lvUserInsert;
     private FloatingActionButton btnUserProductInsert;
     private ImageView ivBack;
     private List<Product> data = new ArrayList<>();
@@ -51,10 +54,8 @@ public class UserInsertActivity extends AppCompatActivity {
         //anh xa
         ivBack = findViewById(R.id.back_icon);
         btnUserProductInsert = findViewById(R.id.btnUserProductInsert);
-        mRecycle = findViewById(R.id.lvUserInsert);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-        mRecycle.setLayoutManager(gridLayoutManager);
-        tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
+        lvUserInsert = findViewById(R.id.lvUserInsert);
+
 
 
 
@@ -63,12 +64,32 @@ public class UserInsertActivity extends AppCompatActivity {
 
         service.productGetAll().enqueue(userProductGetAll);
 
+        lvUserInsert.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Product p = (Product) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getBaseContext(), ProductFormActivity.class);
+                intent.putExtra("id", p.getId());
+                startActivity(intent);
+            }
+        });
+
+        lvUserInsert.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Product p = (Product) adapterView.getItemAtPosition(i);
+                XacNhanXoa(p);
+                return true;
+            }
+        });
+
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserInsertActivity.this, MainActivity.class));
             }
         });
+
         btnUserProductInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,6 +125,13 @@ public class UserInsertActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("onResume: ", "onResume>>>>");
+        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+        service.productGetAll().enqueue(userProductGetAll);
+    }
 
     Callback<ResponseModel> userProductDelete = new Callback<ResponseModel>() {
         @Override
@@ -135,11 +163,11 @@ public class UserInsertActivity extends AppCompatActivity {
                 if (data.size() == 0){
                     data = response.body();
                     userAdapter = new UserInsertAdapter(data, getBaseContext());
-                    mRecycle.setAdapter(userAdapter);
+                    lvUserInsert.setAdapter(userAdapter);
                 } else {
                     data.clear();
                     data.addAll(response.body());
-                    mRecycle.setAdapter(userAdapter);
+                    lvUserInsert.setAdapter(userAdapter);
                     userAdapter.notifyDataSetChanged();
                 }
             } else {
