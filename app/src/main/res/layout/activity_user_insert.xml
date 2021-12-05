@@ -8,13 +8,15 @@
 
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/lvUserInsert"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:listitem="@layout/item_user_insert"/>
+        android:padding="10dp"
+        android:layout_below="@+id/header" />
     <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -31,7 +33,7 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/back_icon"
             android:fontFamily="@font/tahomabd"
-            android:text="Trở về"
+            android:text="Thêm sản phẩm của shop"
             android:textColor="@color/homeapp"
             android:textSize="20dp" />
     </RelativeLayout>
@@ -49,8 +51,8 @@
             android:id="@+id/btnUserProductInsert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/homeapp"
-            android:tint="#FFFF"
+            app:backgroundTint="@color/homeapp"
+            app:tint="@color/white"
             android:src="@drawable/ic_add" />
 
     </LinearLayout>
