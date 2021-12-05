@@ -94,7 +94,7 @@ public class OderCTAdapter extends RecyclerView.Adapter<OderCTAdapter.CartViewHo
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             tvnameSP = itemView.findViewById(R.id.tvnameSP);
-            tvPrice = itemView.findViewById(R.id.txtPrice);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
 
         }
     }

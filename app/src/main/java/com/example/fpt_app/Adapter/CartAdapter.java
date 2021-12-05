@@ -1,6 +1,7 @@
 package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -83,19 +83,31 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
            @Override
            public void onClick(View v) {
                //pass the 'context' here
-               AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
-               alertDialog.setTitle("Bỏ like Sản phẩm");
-               alertDialog.setIcon(R.drawable.delete_bin_48px);
-               alertDialog.setMessage("Bạn có muốn bỏ sản phẩm này không ?" + cart.getName());
-               alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+               android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(v.getRootView().getContext());
+
+               View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog, null);
+               ImageView img ;
+               Button btnNo, btnYes;
+               TextView tvTC, tvText;
+               img = dialogView.findViewById(R.id.imgDialog);
+               btnNo = dialogView.findViewById(R.id.btnNo);
+               btnYes = dialogView.findViewById(R.id.btnYes);
+               tvTC = dialogView.findViewById(R.id.tvTC);
+               tvText = dialogView.findViewById(R.id.tvText);
+               alertDialog.setView(dialogView);
+               alertDialog.setCancelable(true);
+               AlertDialog dialog = alertDialog.create();
+               dialog.show();
+
+               btnNo.setOnClickListener(new View.OnClickListener() {
                    @Override
-                   public void onClick(DialogInterface dialog, int which) {
+                   public void onClick(View view) {
                        dialog.cancel();
                    }
                });
-               alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+               btnYes.setOnClickListener(new View.OnClickListener() {
                    @Override
-                   public void onClick(DialogInterface dialog, int which) {
+                   public void onClick(View view) {
 
                        // DO SOMETHING HERE
                        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
@@ -123,10 +135,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                        });
                        data.remove(position);
                        notifyDataSetChanged();
-
+                       dialog.cancel();
                    }
                });
-               alertDialog.show();
            }
        });
 //       holder.btnCong.setOnClickListener(new View.OnClickListener() {

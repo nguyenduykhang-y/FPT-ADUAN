@@ -37,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private List<Like> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -95,7 +95,6 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
            @Override
            public void onClick(View v) {
                //pass the 'context' here
-               //pass the 'context' here
                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
 
                View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog, null);
@@ -113,23 +112,14 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                dialog.show();
 
                btnNo.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View view) {
-                    dialog.cancel();
-
-               alertDialog.setTitle("Bỏ like Sản phẩm");
-               alertDialog.setIcon(R.drawable.delete_bin_48px);
-               alertDialog.setMessage("Bạn có muốn bỏ like sản phẩm này không ?" + like.getName());
-               alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       dialog.cancel();
-
-                   }
-               });
-               alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
+                                            @Override
+                                            public void onClick(View view) {
+                                                dialog.cancel();
+                                            }
+                                        });
+               btnYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
                        // DO SOMETHING HERE
                        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
@@ -157,18 +147,9 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                        });
                        data.remove(position);
                        notifyDataSetChanged();
-
-                       alertDialog.setCancelable(true);
                        dialog.cancel();
                    }
                });
-
-
-
-                   }
-               });
-               alertDialog.show();
-
            }
         });
 
@@ -180,12 +161,8 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
         if(data !=null ){
             return data.size();
         }
-
         return 0;
     }
-
-
-
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg;
