@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/tahoma"
-                    android:text="Tên sản phẩm"
+                    android:text="Số lượng sản phẩm"
                     android:textColor="@color/homeapp"
                     android:textSize="12dp" />
 
