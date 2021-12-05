@@ -39,13 +39,13 @@
 
             android:layout_weight="6"/>
 
-        <ImageView
+        <Button
             android:id="@+id/buttonSend"
-            android:layout_width="0dp"
+            android:layout_width="50dp"
             android:layout_height="35dp"
             android:text="Send"
             android:layout_marginTop="4dp"
-
+            android:backgroundTint="@color/homeapp"
             android:layout_weight="1"/>
 
     </LinearLayout>

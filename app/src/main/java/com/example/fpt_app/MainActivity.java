@@ -179,4 +179,10 @@ public class MainActivity extends AppCompatActivity {
         return list;
 
     }
+
+    public void Mess(View view) {
+        Intent ds = new Intent(MainActivity.this, SocketActivity.class);
+        startActivity(ds);
+
+    }
 }
