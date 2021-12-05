@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.fpt_app.Adapter.CartAdapter;
 import com.example.fpt_app.Adapter.ProductAdapter;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Cart;
+import com.example.fpt_app.Models.Oder;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
@@ -42,6 +44,9 @@ public class CartActivity extends AppCompatActivity {
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
+    Button btnThanhToan;
+    List<Cart> carts;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +56,7 @@ public class CartActivity extends AppCompatActivity {
         txtGiaTien = findViewById(R.id.TvGiaTien);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1);
         mRecycle.setLayoutManager(gridLayoutManager);
-
+        btnThanhToan= findViewById(R.id.btnThanhtoan);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
 
@@ -60,6 +65,18 @@ public class CartActivity extends AppCompatActivity {
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.CartGetALL().enqueue(getALLCart);
+        Log.d("soluong", String.valueOf(getIntent().getStringExtra("soluong")));
+
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+        });
+
+
 
     }
     Callback<List<Cart>> getALLCart = new Callback<List<Cart>>() {
@@ -70,11 +87,14 @@ public class CartActivity extends AppCompatActivity {
                     data = response.body();
                     adapter = new CartAdapter(getBaseContext(), data);
 
-                    int sum = 0;
-                    List<Cart> carts= data;
+                    double sum = 0;
+
+                    carts = data;
+
                     if(carts != null){
                         for (Cart c : carts){
-                            sum+= c.getPrice();
+//                        double so = (double) (c.getPrice()* Double.parseDouble(getIntent().getStringExtra("soluong")));
+                            sum += c.getPrice();
                         }
                         DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
                         txtGiaTien.setText(decimalFormat.format(sum)+" VNĐ");

@@ -3,12 +3,15 @@ package com.example.fpt_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +21,12 @@ import com.example.fpt_app.Adapter.CategoryAdapter;
 import com.example.fpt_app.Models.Cart;
 import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.ListSP;
+import com.example.fpt_app.Models.Oder;
+import com.example.fpt_app.Models.OderCT;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ProductCategory;
 import com.example.fpt_app.Models.ResponseModel;
+import com.example.fpt_app.Models.User;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
@@ -37,7 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tv, tvGia, tvName;
     private Button btn;
     private Integer product_id = -1;
-    private TextView tvCategory_id,tvQuantity;
+    private TextView tvCategory_id;
     private Button btnADDGH, mua;
     private List<ProductCategory> data;
 
@@ -47,6 +53,8 @@ public class DetailsActivity extends AppCompatActivity {
     private Integer category_id = 0;
     private Integer cart_id = -1;
     private Integer idProduct =0 ;
+     int id ;
+    String phone,nameuser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +66,6 @@ public class DetailsActivity extends AppCompatActivity {
          btn = findViewById(R.id.mua);
          tvGia = findViewById(R.id.tvGia);
         tvCategory_id = findViewById(R.id.tvCategoryID);
-        tvQuantity= findViewById(R.id.tvQuantity);
         btnADDGH= findViewById(R.id.addtoGio);
         gh = findViewById(R.id.iconGH);
         tvName = findViewById(R.id.tvNamSP);
@@ -70,12 +77,17 @@ public class DetailsActivity extends AppCompatActivity {
         Glide.with(getBaseContext()).load(img_url).into(img);
         tv.setText(getIntent().getStringExtra("name"));
         tvGia.setText(decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price")))+" VNĐ");
-        tvQuantity.setText("Số Lượng: "+ getIntent().getStringExtra("quantity"));
         idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
         tvName.setText(getIntent().getStringExtra("name"));
         mua.setText("Mua ngay " + decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price"))) + " VNĐ");
         IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service1.productCategoryGetAll().enqueue(getAllProductCategoryCB);
+
+//        int id = getIntent().getIntExtra("idUser")
+        IRetrofitService service = new RetrofitBuilder()
+                .createService(IRetrofitService.class, BASE_URL);
+
+        service.Profile().enqueue(getProfile);
 
         btnADDGH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +98,6 @@ public class DetailsActivity extends AppCompatActivity {
                 cart.setName(tv.getText().toString());
                 cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
                 cart.setCategory_id(Integer.parseInt(getIntent().getStringExtra("category_id")));
-                cart.setQuantity(Integer.parseInt(getIntent().getStringExtra("quantity")));
 
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.CartInsert(cart).enqueue(insert_cart);
@@ -100,7 +111,71 @@ public class DetailsActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+         mua.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+//
+//            Oder oder = new Oder();
+//            oder.setOderId(id);
+//            oder.setNameUser(nameuser);
+//            oder.setProductID(idProduct);
+//            oder.setPhone(phone);
+//
+//            IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+//            service1.insertOder(oder).enqueue(insert_oder);
+              Button btnCancle ,btnOke;
+              EditText edtQuantity,edtAddress;
 
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
+            View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog_ct, null);
+            alertDialog.setView(dialogView);
+            alertDialog.setCancelable(true);
+             btnOke = dialogView.findViewById(R.id.btnOke);
+            btnCancle= dialogView.findViewById(R.id.btnCancle);
+            edtQuantity =dialogView.findViewById(R.id.edtQuantity);
+            edtAddress = dialogView.findViewById(R.id.edtAddress);
+            AlertDialog dialog = alertDialog.create();
+            dialog.show();
+                btnOke.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Oder oder = new Oder();
+                        oder.setOderId(id);
+                        oder.setNameUser(nameuser);
+                        oder.setProductID(idProduct);
+                        oder.setPhone(phone);
+
+                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                 service1.insertOder(oder).enqueue(insert_oder);
+                        OderCT oderCT = new OderCT();
+
+                        double price = Double.parseDouble(getIntent().getStringExtra("price"));
+                        int soluong =  Integer.parseInt(edtQuantity.getText().toString());
+                        double  gia = soluong*price;
+                        oderCT.setOderId(id);
+                        oderCT.setProductId(idProduct);
+                        oderCT.setNamePr(tv.getText().toString());
+                        oderCT.setQuantity(soluong);
+                        oderCT.setPrice(gia);
+                        oderCT.setAddress(edtAddress.getText().toString());
+
+                        service.insertOderCT(oderCT).enqueue(inserOderCT);
+                        dialog.cancel();
+
+                    }
+                });
+                btnCancle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+
+
+        }
+         });
     }
     public void onCustomToggleClick(View view) {
         Like cart = new Like();
@@ -109,7 +184,6 @@ public class DetailsActivity extends AppCompatActivity {
         cart.setName(tv.getText().toString());
         cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
         cart.setCategory_id(Integer.parseInt(getIntent().getStringExtra("category_id")));
-        cart.setQuantity(Integer.parseInt(getIntent().getStringExtra("quantity")));
         IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service1.LikeInsert(cart).enqueue(insert_like);
 
@@ -122,6 +196,46 @@ public class DetailsActivity extends AppCompatActivity {
                 ResponseModel model = response.body();
                 if(model.getStatus()){
                     Toast.makeText(DetailsActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e(">>>>>insertCB getStatus failed", "insert failed");
+                }
+            } else{
+                Log.e(">>>>>insertCB onResponse", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseModel> call, Throwable t) {
+            Log.e(">>>>>insertCB onFailure", t.getMessage());
+        }
+    };
+    Callback<ResponseModel> inserOderCT = new Callback<ResponseModel>() {
+        @Override
+        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+            if (response.isSuccessful()){
+                ResponseModel model = response.body();
+                if(model.getStatus()){
+                    Toast.makeText(DetailsActivity.this, "Đã  mua hàng", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e(">>>>>insertCB getStatus failed", "insert failed");
+                }
+            } else{
+                Log.e(">>>>>insertCB onResponse", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseModel> call, Throwable t) {
+            Log.e(">>>>>insertCB onFailure", t.getMessage());
+        }
+    };
+    Callback<ResponseModel> insert_oder = new Callback<ResponseModel>() {
+        @Override
+        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+            if (response.isSuccessful()){
+                ResponseModel model = response.body();
+                if(model.getStatus()){
+                    Toast.makeText(DetailsActivity.this, "Đã  mua hàng", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");
                 }
@@ -177,6 +291,32 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         public void onFailure(Call<List<ProductCategory>> call, Throwable t) {
             Log.e("getAllProductCategoryCB onResponse: ", t.getMessage());
+        }
+    };
+
+    Callback<User> getProfile = new Callback<User>() {
+        @Override
+        public void onResponse(Call<User> call, Response<User> response) {
+            if (response.isSuccessful()){
+                User u =  new User();
+                u = response.body();
+                id = u.getUserId();
+                 nameuser = u.getName();
+                phone = u.getPhone();
+
+//                if (u.getRoles().equals("2")){
+//                    ivUserInsert.setVisibility(View.VISIBLE);
+//                    tvShop.setVisibility(View.VISIBLE);
+//                }
+
+            } else {
+                Log.e(">>>>>", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<User> call, Throwable t) {
+            Log.e(">>>>>", t.getMessage());
         }
     };
 }

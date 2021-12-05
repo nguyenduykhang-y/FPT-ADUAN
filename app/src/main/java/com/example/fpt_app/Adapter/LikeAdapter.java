@@ -107,10 +107,13 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                tvText = dialogView.findViewById(R.id.tvText);
                alertDialog.setView(dialogView);
                alertDialog.setCancelable(true);
+               AlertDialog dialog = alertDialog.create();
+               dialog.show();
+
                btnNo.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View view) {
-
+                    dialog.cancel();
                    }
                });
 
@@ -144,11 +147,10 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                        data.remove(position);
                        notifyDataSetChanged();
                        alertDialog.setCancelable(true);
-
+                       dialog.cancel();
                    }
                });
-               AlertDialog dialog = alertDialog.create();
-               dialog.show();
+
            }
        });
 

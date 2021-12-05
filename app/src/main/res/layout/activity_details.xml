@@ -109,16 +109,10 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/tahoma"
                         android:id="@+id/tvCategoryID"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="18sp"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/tahoma"
-                        android:id="@+id/tvQuantity"/>
+
                 </LinearLayout>
                     <Button
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:text="Mua ngay"

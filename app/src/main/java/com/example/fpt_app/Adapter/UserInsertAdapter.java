@@ -65,6 +65,7 @@ public class UserInsertAdapter extends RecyclerView.Adapter<UserInsertAdapter.Us
             public void onClick(View v) {
 
                 Intent in = new Intent(context, ProductFormActivity.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(in);
 
             }

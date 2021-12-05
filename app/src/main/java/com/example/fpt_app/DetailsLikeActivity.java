@@ -27,10 +27,9 @@ public class DetailsLikeActivity extends AppCompatActivity {
     private ImageView img,like;
 
     private TextView tv, tvGia;
-    private Button btn;
     private Integer product_id = -1;
     private TextView tvCategory_id,tvQuantity;
-    private Button btnADDGH;
+    private Button btnADDGH,btnmua;
 
 
     private static String BASE_URL = "http://10.0.2.2:8081/";
@@ -47,7 +46,7 @@ public class DetailsLikeActivity extends AppCompatActivity {
         //ánh xạ
         img = (ImageView)findViewById(R.id.imgdetail);
          tv = findViewById(R.id.tvTesst);
-         btn = findViewById(R.id.mua);
+         btnmua = findViewById(R.id.mua);
          tvGia = findViewById(R.id.tvGia);
         tvQuantity= findViewById(R.id.tvQuantity);
         btnADDGH= findViewById(R.id.addtoGio);
@@ -58,8 +57,8 @@ public class DetailsLikeActivity extends AppCompatActivity {
         Glide.with(getBaseContext()).load(img_url).into(img);
         tv.setText(getIntent().getStringExtra("name"));
         tvGia.setText(decimalFormat.format(Double.parseDouble(getIntent().getStringExtra("price")))+" VNĐ");
-        tvQuantity.setText("Số lượng: " + getIntent().getStringExtra("quantity"));
         idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
+
 
         btnADDGH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,15 +68,20 @@ public class DetailsLikeActivity extends AppCompatActivity {
                 cart.setIdProduct(idProduct);
                 cart.setName(tv.getText().toString());
                 cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
-                cart.setCategory_id(Integer.parseInt(getIntent().getStringExtra("category_id")));
-                cart.setQuantity(Integer.parseInt(getIntent().getStringExtra("quantity")));
+                cart.setCategory_id(Integer.parseInt(tvCategory_id.getText().toString()));
+
 
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.CartInsert(cart).enqueue(insert_cart);
 
             }
         });
+        btnmua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
     }
     public void onCustomToggleClick(View view) {
