@@ -17,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fpt_app.DetailsActivity;
 import com.example.fpt_app.FogotActivity;
 import com.example.fpt_app.LoginActivity;
 import com.example.fpt_app.Models.AccessToken;
@@ -90,7 +91,7 @@ public class UserFragment extends Fragment  {
 
         return  v;
     }
-
+//
     Callback<User> getProfile = new Callback<User>() {
         @Override
         public void onResponse(Call<User> call, Response<User> response) {
@@ -99,10 +100,12 @@ public class UserFragment extends Fragment  {
                 u = response.body();
                 tvName.setText(u.getName());
                 tvEmail.setText(u.getEmail());
+
                 if (u.getRoles().equals("2")){
                     ivUserInsert.setVisibility(View.VISIBLE);
                     tvShop.setVisibility(View.VISIBLE);
                 }
+
             } else {
                 Log.e(">>>>>", response.message());
             }

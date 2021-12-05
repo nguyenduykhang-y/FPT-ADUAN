@@ -3,19 +3,28 @@ package com.example.fpt_app.Models;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String name, email, password, confirm_password, phone, roles;
-
+    private String  name, email, password, confirm_password, phone, roles;
+    private int id;
 
     public User() {
     }
 
-    public User(String name, String email, String password, String confirm_password, String phone, String roles) {
+    public User(int id ,String name, String email, String password, String confirm_password, String phone, String roles) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.confirm_password = confirm_password;
         this.phone = phone;
         this.roles = roles;
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return id;
+    }
+
+    public void setUserId(int userId) {
+        id = id;
     }
 
     public String getName() {

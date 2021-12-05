@@ -4,6 +4,8 @@ package com.example.fpt_app.MyRetrofit;
 import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.Cart;
 import com.example.fpt_app.Models.Like;
+import com.example.fpt_app.Models.Oder;
+import com.example.fpt_app.Models.OderCT;
 import com.example.fpt_app.Models.Person;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ProductCategory;
@@ -72,11 +74,22 @@ public interface IRetrofitService {
     @POST("views/product_category_get_all.php")
     Call<List<ProductCategory>> productCategoryGetAll();
 
+    @POST("views/insert_oderCT.php")
+    Call<ResponseModel> insertOderCT (@Body OderCT oderct);
+
+    @POST("views/insert_oder.php")
+    Call<ResponseModel> insertOder (@Body Oder oder);
+
     @POST("views/product_insert.php")
     Call<ResponseModel> productInsert(@Body Product product);
 
     @POST("views/like_insert.php")
     Call<ResponseModel> LikeInsert(@Body Like like);
+
+
+    @POST("views/get_all_OderCT.php")
+    Call<List<OderCT>> OderCTGETALL();
+
 
     @POST("views/gh_insert.php")
     Call<ResponseModel> CartInsert(@Body Cart cart);

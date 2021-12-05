@@ -78,13 +78,13 @@
                 >
 
                 <Button
-                    android:id="@+id/btnDecrease"
+                    android:id="@+id/btnTru"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/homeapp"
                     android:text="-" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnIncrease"
+                    android:id="@+id/btnCong"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/homeapp"

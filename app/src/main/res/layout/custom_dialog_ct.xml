@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+     <EditText
+         android:id="@+id/edtQuantity"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:hint="Nhập số lượng"
+         android:layout_marginTop="10dp"
+         android:fontFamily="@font/tahoma"/>
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Nhập Địa chỉ"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/tahoma"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnCancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancle"
+            android:backgroundTint="@color/homeapp"
+            />
+        <Button
+            android:id="@+id/btnOke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="oke"
+            android:backgroundTint="@color/homeapp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

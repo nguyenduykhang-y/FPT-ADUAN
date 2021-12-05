@@ -47,9 +47,58 @@ public class UserInsertAdapter extends BaseAdapter {
     }
 
     @Override
+
+    public void onBindViewHolder(@NonNull UserInsertAdapter.UserInsertViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Product product = data.get(position);
+        if (product == null) {
+            return;
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+        Glide.with(context).load(product.getImage_url())
+                .into(holder.userProImg);
+        holder.tvUserProductName.setText(product.getName());
+        holder.tvUserProductPrice.setText(decimalFormat.format(product.getPrice()) + " VND");
+
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent in = new Intent(context, ProductFormActivity.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(in);
+
+            }
+        });
+        holder.userDelImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+
+                service.productDelete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+                    @Override
+                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseModel> call, Throwable t) {
+                        Log.d("fail",""+t.getMessage() );
+                    }
+                });
+                data.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, data.size());
+                notifyDataSetChanged();
+            }
+        });
+
     public Object getItem(int i) {
         return data.get(i);
     }
+
 
     @Override
     public long getItemId(int i) {

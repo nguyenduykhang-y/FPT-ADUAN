@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import com.example.fpt_app.CartActivity;
+import com.example.fpt_app.DetailsActivity;
 import com.example.fpt_app.Models.Cart;
 
 import com.example.fpt_app.Models.Product;
@@ -45,7 +48,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private Context context;
 //    private RecyclerView mRecyclerView;
     private static int count = 0;
-    private int pr;
+    private double soluong= 1;
 
     public CartAdapter(Context context, List<Cart> data) {
         this.data = data;
@@ -76,7 +79,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 .into(holder.proImg);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
-        holder.quantity.setText(String.valueOf(cart.getQuantity()));
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -127,6 +129,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                alertDialog.show();
            }
        });
+//       holder.btnCong.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//                soluong = soluong + 1;
+//                holder.quantity.setText(String.valueOf(soluong));
+//
+//           }
+//       });
+//        holder.btnTru.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                soluong = soluong - 1;
+//                holder.quantity.setText(String.valueOf(soluong));
+//            }
+//        });
+
 
     }
 
@@ -145,8 +163,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg,imgdelete;
-        private TextView tvName, tvPrice, quantity;
+        private TextView tvName, tvPrice;
+        private EditText quantity;
         private CardView mCardView;
+        private Button btnTru,btnCong;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -156,6 +176,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             mCardView = itemView.findViewById(R.id.cart_item);
             imgdelete = itemView.findViewById(R.id.imgdelete);
             quantity = itemView.findViewById(R.id.tvQuantity);
+            btnTru= itemView.findViewById(R.id.btnTru);
+            btnCong = itemView.findViewById(R.id.btnCong);
+
         }
     }
 
