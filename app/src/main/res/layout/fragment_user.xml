@@ -315,7 +315,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_add_box"/>
+                android:src="@drawable/ic_add_box"
+                android:visibility="gone"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -349,6 +350,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15dp"
+                android:visibility="gone"
                 />
 
         </RelativeLayout>

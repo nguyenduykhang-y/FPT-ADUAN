@@ -47,8 +47,8 @@ public class UserInsertAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Object getItem(int i) {
+        return data.get(i);
     }
 
 
