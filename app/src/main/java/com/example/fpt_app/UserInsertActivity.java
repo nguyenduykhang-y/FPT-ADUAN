@@ -129,8 +129,6 @@ public class UserInsertActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.e("onResume: ", "onResume>>>>");
-        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-        service.productGetAll().enqueue(userProductGetAll);
     }
 
     Callback<ResponseModel> userProductDelete = new Callback<ResponseModel>() {
