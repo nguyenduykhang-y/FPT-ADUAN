@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,6 +57,7 @@ public class CartActivity extends AppCompatActivity {
         txtGiaTien = findViewById(R.id.TvGiaTien);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1);
         mRecycle.setLayoutManager(gridLayoutManager);
+
         btnThanhToan= findViewById(R.id.btnThanhtoan);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
@@ -65,13 +67,18 @@ public class CartActivity extends AppCompatActivity {
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.CartGetALL().enqueue(getALLCart);
+
         Log.d("soluong", String.valueOf(getIntent().getStringExtra("soluong")));
+
+
 
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Cart> cartList = ((CartAdapter) mRecycle.getAdapter()).getData();
+                for (Cart cart : cartList){
 
-
+                }
 
             }
         });
@@ -79,13 +86,20 @@ public class CartActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    private Context getCt(){
+        return this;
+    }
+
     Callback<List<Cart>> getALLCart = new Callback<List<Cart>>() {
         @Override
         public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
             if (response.isSuccessful()){
                 if (data.size() == 0){
                     data = response.body();
-                    adapter = new CartAdapter(getBaseContext(), data);
+                    adapter = new CartAdapter(getCt(), data);
 
                     double sum = 0;
                     List<Cart> carts;
