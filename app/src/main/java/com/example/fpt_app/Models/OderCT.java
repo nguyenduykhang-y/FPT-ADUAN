@@ -1,6 +1,7 @@
 package com.example.fpt_app.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class OderCT implements Serializable {
         private int oderctId;
@@ -10,11 +11,12 @@ public class OderCT implements Serializable {
         private int quantity;
         private double price;
         private String address;
+        private String date;
 
     public OderCT() {
     }
 
-    public OderCT(int oderctId, int oderId, int productId, String namePr, int quantity, double price, String address) {
+    public OderCT(int oderctId, int oderId, int productId, String namePr, int quantity, double price, String address,String date) {
         this.oderctId = oderctId;
         this.oderId = oderId;
         this.productId = productId;
@@ -22,6 +24,15 @@ public class OderCT implements Serializable {
         this.quantity = quantity;
         this.price = price;
         this.address = address;
+        this.date =date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getOderctId() {

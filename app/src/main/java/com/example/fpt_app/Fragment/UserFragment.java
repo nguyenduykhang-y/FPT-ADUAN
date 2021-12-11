@@ -26,10 +26,12 @@ import com.example.fpt_app.Models.Person;
 import com.example.fpt_app.Models.User;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
+import com.example.fpt_app.OderCTActivity;
 import com.example.fpt_app.ProductActivity;
 import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.SPLikeActivity;
+import com.example.fpt_app.ThongkeActivity;
 import com.example.fpt_app.ThontinActivity;
 import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
@@ -46,7 +48,7 @@ public class UserFragment extends Fragment  {
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
-    private ImageView Setting, ivUserInsert;
+    private ImageView Setting, ivUserInsert,imgOderCt,imgThongke;
     private TextView tvName, tvEmail,tvShop;
 
 
@@ -70,6 +72,8 @@ public class UserFragment extends Fragment  {
         tvEmail = v.findViewById(R.id.userEmail);
         ivUserInsert = v.findViewById(R.id.ivUserInsert);
         tvShop = v.findViewById(R.id.tvShop);
+        imgOderCt=v.findViewById(R.id.imageViewDelivering);
+        imgThongke=v.findViewById(R.id.imageThongke);
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +85,20 @@ public class UserFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), UserInsertActivity.class);
+                startActivity(i);
+            }
+        });
+        imgOderCt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), OderCTActivity.class);
+                startActivity(i);
+            }
+        });
+        imgThongke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ThongkeActivity.class);
                 startActivity(i);
             }
         });
@@ -100,11 +118,11 @@ public class UserFragment extends Fragment  {
                 u = response.body();
                 tvName.setText(u.getName());
                 tvEmail.setText(u.getEmail());
-
-                if (u.getRoles().equals("2")){
-                    ivUserInsert.setVisibility(View.VISIBLE);
-                    tvShop.setVisibility(View.VISIBLE);
-                }
+//
+//                if (u.getRoles().equals("2")){
+//                    ivUserInsert.setVisibility(View.VISIBLE);
+//                    tvShop.setVisibility(View.VISIBLE);
+//                }
 
             } else {
                 Log.e(">>>>>", response.message());

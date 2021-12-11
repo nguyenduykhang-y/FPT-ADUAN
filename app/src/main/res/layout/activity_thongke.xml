@@ -29,11 +29,28 @@
             android:textColor="@color/homeapp"
             android:textSize="20dp" />
     </RelativeLayout>
+    <Button
+        android:id="@+id/btnNgay1"
+        android:layout_width="120dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="60dp"
+        android:text="Ngay 1"
+        android:backgroundTint="@color/homeapp"
+        android:layout_below="@+id/header"/>
+    <Button
+        android:id="@+id/btnNgay2"
+        android:layout_width="120dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:text="Ngay 2"
+        android:backgroundTint="@color/homeapp"
+        android:layout_below="@+id/header"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_Oder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_oderct"
-        android:layout_below="@+id/header"
+        android:layout_below="@+id/btnNgay1"
         />
 </RelativeLayout>
