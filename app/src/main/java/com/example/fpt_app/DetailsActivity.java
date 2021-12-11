@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +33,9 @@ import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -123,8 +128,8 @@ public class DetailsActivity extends AppCompatActivity {
 //
 //            IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 //            service1.insertOder(oder).enqueue(insert_oder);
-              Button btnCancle ,btnOke;
-              EditText edtQuantity,edtAddress;
+              Button btnCancle ,btnOke,btnDate;
+              EditText edtQuantity,edtAddress,edtDate;
 
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
@@ -135,8 +140,36 @@ public class DetailsActivity extends AppCompatActivity {
             btnCancle= dialogView.findViewById(R.id.btnCancle);
             edtQuantity =dialogView.findViewById(R.id.edtQuantity);
             edtAddress = dialogView.findViewById(R.id.edtAddress);
+            btnDate = dialogView.findViewById(R.id.btnDate);
+            edtDate = dialogView.findViewById(R.id.edtDate);
             AlertDialog dialog = alertDialog.create();
             dialog.show();
+
+            btnDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Date today = new Date();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(today);
+
+                    final int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+                    final int months = cal.get(Calendar.MONTH);
+                    final int years = cal.get(Calendar.YEAR);
+                    final Calendar calendar = Calendar.getInstance();
+                    int date = calendar.get(Calendar.DAY_OF_MONTH);
+                    int month = calendar.get(Calendar.MONTH);
+                    int year = calendar.get(Calendar.YEAR);
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(DetailsActivity.this,new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            calendar.set(i,i1,i2);
+                            edtDate.setText(simpleDateFormat.format(calendar.getTime()));
+                        }
+                    },years,months,dayOfWeek);
+                    datePickerDialog.show();
+                }
+            });
                 btnOke.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -150,6 +183,7 @@ public class DetailsActivity extends AppCompatActivity {
                  service1.insertOder(oder).enqueue(insert_oder);
                         OderCT oderCT = new OderCT();
 
+
                         double price = Double.parseDouble(getIntent().getStringExtra("price"));
                         int soluong =  Integer.parseInt(edtQuantity.getText().toString());
                         double  gia = soluong*price;
@@ -159,7 +193,7 @@ public class DetailsActivity extends AppCompatActivity {
                         oderCT.setQuantity(soluong);
                         oderCT.setPrice(gia);
                         oderCT.setAddress(edtAddress.getText().toString());
-
+                        oderCT.setDate(edtDate.getText().toString());
                         service.insertOderCT(oderCT).enqueue(inserOderCT);
                         dialog.cancel();
 

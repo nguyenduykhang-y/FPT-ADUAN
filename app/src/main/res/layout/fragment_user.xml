@@ -233,7 +233,7 @@
             android:paddingRight="20dp">
 
             <ImageView
-                android:id="@+id/imageViewCoin"
+                android:id="@+id/imageThongke"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"

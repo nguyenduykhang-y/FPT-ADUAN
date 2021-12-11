@@ -45,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
     Button btnThanhToan;
-    List<Cart> carts;
+
     int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class CartActivity extends AppCompatActivity {
                     adapter = new CartAdapter(getBaseContext(), data);
 
                     double sum = 0;
-
+                    List<Cart> carts;
                     carts = data;
 
                     if(carts != null){

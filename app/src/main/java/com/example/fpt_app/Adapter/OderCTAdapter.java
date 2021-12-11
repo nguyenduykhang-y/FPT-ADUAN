@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fpt_app.Models.Cart;
+import com.example.fpt_app.Models.OderCT;
 import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
@@ -32,13 +33,13 @@ import retrofit2.Response;
 
 public class OderCTAdapter extends RecyclerView.Adapter<OderCTAdapter.CartViewHolder>  {
     private static String BASE_URL = "http://10.0.2.2:8081/";
-    private List<Cart> data;
+    private List<OderCT> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
     private static int count = 0;
     private double soluong= 1;
 
-    public OderCTAdapter(Context context, List<Cart> data) {
+    public OderCTAdapter(Context context, List<OderCT> data) {
         this.data = data;
         this.context = context;
 
@@ -58,15 +59,16 @@ public class OderCTAdapter extends RecyclerView.Adapter<OderCTAdapter.CartViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        final Cart cart = data.get(position);
-        if (cart == null){
+        final OderCT oderCT = data.get(position);
+        if (oderCT == null){
             return;
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-        Glide.with(context).load(cart.getImage_url())
-                .into(holder.proImg);
-//        holder.tvName.setText(cart.getName());
-        holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
+
+        holder.tvnameSP.setText(oderCT.getNamePr());
+        holder.tvPrice.setText("Giá: " + decimalFormat.format(oderCT.getPrice())+" VND");
+        holder.tvQuantity.setText("Số lượng: " + oderCT.getQuantity());
+        holder.tvDate.setText("Ngày: " +oderCT.getDate());
 
 
 
@@ -88,13 +90,15 @@ public class OderCTAdapter extends RecyclerView.Adapter<OderCTAdapter.CartViewHo
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg,imgdelete;
-        private TextView tvnameSP, tvPrice,tvQuantity;
+        private TextView tvnameSP, tvPrice,tvQuantity,tvDate;
 
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             tvnameSP = itemView.findViewById(R.id.tvnameSP);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvQuantity= itemView.findViewById(R.id.tvQuantity);
+            tvDate= itemView.findViewById(R.id.tvDate);
 
         }
     }
