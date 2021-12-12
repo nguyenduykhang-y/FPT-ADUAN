@@ -4,14 +4,14 @@ public class Shop {
     private String storeId;
     private String storeName;
     private String storeAddress;
-    private int storePhone;
+    private String storePhone;
     private String storeImage;
     private String storeEmail;
 
     public Shop() {
     }
 
-    public Shop(String storeId, String storeName, String storeAddress, int storePhone, String storeImage, String storeEmail) {
+    public Shop(String storeId, String storeName, String storeAddress, String storePhone, String storeImage, String storeEmail) {
         this.storeId = storeId;
         this.storeName = storeName;
         this.storeAddress = storeAddress;
@@ -54,11 +54,11 @@ public class Shop {
         this.storeId = storeId;
     }
 
-    public int getStorePhone() {
+    public String getStorePhone() {
         return storePhone;
     }
 
-    public void setStorePhone(int storePhone) {
+    public void setStorePhone(String storePhone) {
         this.storePhone = storePhone;
     }
 

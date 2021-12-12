@@ -17,6 +17,9 @@
         <activity android:name=".ThongkeActivity"></activity>
         <activity android:name=".OderCTActivity" />
         <activity
+            android:name=".Activity_Register_Shop"
+            android:exported="false" />
+        <activity
             android:name=".DetailsUserInsertActivity"
             android:exported="false" />
         <activity
