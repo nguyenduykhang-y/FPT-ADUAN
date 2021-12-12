@@ -1,7 +1,10 @@
 package com.example.fpt_app.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.2.2:8081/";
+    private static String BASE_URL = "http://10.0.3.2:8081/";
     private List<Like> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -60,7 +63,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
 
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull final CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final Like like = data.get(position);
         if (like == null){
             return;
@@ -91,36 +94,64 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
         holder.dele.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+               //pass the 'context' here
+               AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
 
-               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+               View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog, null);
+               ImageView img ;
+               Button btnNo, btnYes;
+               TextView tvTC, tvText;
+               img = dialogView.findViewById(R.id.imgDialog);
+               btnNo = dialogView.findViewById(R.id.btnNo);
+               btnYes = dialogView.findViewById(R.id.btnYes);
+               tvTC = dialogView.findViewById(R.id.tvTC);
+               tvText = dialogView.findViewById(R.id.tvText);
+               alertDialog.setView(dialogView);
+               alertDialog.setCancelable(true);
+               AlertDialog dialog = alertDialog.create();
+               dialog.show();
 
-               service.likeDelete(data.get(position)).enqueue(new Callback<ResponseModel>() {
-                   @Override
-                   public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                       if (response.isSuccessful()){
-                           ResponseModel model = response.body();
-                           if(model.getStatus()){
-                               IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                               service.LikeGetALL();
-                           } else {
-                               Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+               btnNo.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                dialog.cancel();
+                                            }
+                                        });
+               btnYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                       // DO SOMETHING HERE
+                       IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+
+                       service.likeDelete(data.get(position)).enqueue(new Callback<ResponseModel>() {
+                           @Override
+                           public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                               if (response.isSuccessful()){
+                                   ResponseModel model = response.body();
+                                   if(model.getStatus()){
+                                       IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+                                       service.LikeGetALL();
+                                   } else {
+                                       Log.e(">>>>>deleteCB getStatus failed", "detele failed");
+                                   }
+                               } else{
+                                   Log.e(">>>>>deleteCB onResponse", response.message());
+                               }
                            }
-                       } else{
-                           Log.e(">>>>>deleteCB onResponse", response.message());
-                       }
-                   }
 
-                   @Override
-                   public void onFailure(Call<ResponseModel> call, Throwable t) {
-                       Log.d("fail",""+t.getMessage() );
+                           @Override
+                           public void onFailure(Call<ResponseModel> call, Throwable t) {
+                               Log.d("fail",""+t.getMessage() );
+                           }
+                       });
+                       data.remove(position);
+                       notifyDataSetChanged();
+                       dialog.cancel();
                    }
                });
-               data.remove(position);
-               notifyItemRemoved(position);
-               notifyItemRangeChanged(position, data.size());
-               notifyDataSetChanged();
            }
-       });
+        });
 
     }
 
@@ -130,17 +161,14 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
         if(data !=null ){
             return data.size();
         }
-
         return 0;
     }
-
-
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg;
         private TextView tvName, tvPrice, quantity;
         private CardView mCardView;
-        private Button dele;
+        private Button dele,btnNo;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -149,6 +177,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
             dele = itemView.findViewById(R.id.imgdelete);
+
         }
     }
 

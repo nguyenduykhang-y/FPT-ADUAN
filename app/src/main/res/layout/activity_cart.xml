@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CartActivity">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lvCart"
         android:layout_width="match_parent"
@@ -15,10 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/lvCart"
+        android:padding="10dp"
         android:layout_alignParentBottom="true">
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
@@ -29,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/homeapp"
                 android:textSize="15dp"
-
+                android:layout_weight="2"
                 android:text="Tổng Cộng:" />
             <TextView
                 android:id="@+id/TvGiaTien"
@@ -42,9 +44,9 @@
                 android:text="0 Đ" />
         </LinearLayout>
         <Button
-            android:id="@+id/button1"
-            android:layout_width="0dp"
-            android:layout_weight="3"
+            android:id="@+id/btnThanhtoan"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/homeapp"
             android:text="Thanh Toán" />

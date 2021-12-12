@@ -103,14 +103,7 @@ public class ProductFormActivity extends AppCompatActivity {
         });
 
 
-//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-//        img_url = getIntent().getStringExtra("imgesview");
-//        Glide.with(getBaseContext()).load(img_url).into(img);
-//        editTextProductName.setText(getIntent().getStringExtra("name"));
-//        editTextProductPrice.setText(decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price")))+" VNĐ");
-//        spinnerCategories.(getIntent().getStringExtra("category_id"));
-//        editTextProductQuantity.setText(getIntent().getStringExtra("quantity"));
-//        idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
+
 
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +121,6 @@ public class ProductFormActivity extends AppCompatActivity {
                 p.setImage_url(image_url);
                 p.setName(editTextProductName.getText().toString());
                 p.setPrice(Integer.parseInt(editTextProductPrice.getText().toString()));
-                p.setQuantity(Integer.parseInt(editTextProductQuantity.getText().toString()));
                 p.setId(product_id);
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 if (product_id == -1){
@@ -215,7 +207,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 Product p = response.body();
                 editTextProductName.setText(p.getName());
                 editTextProductPrice.setText(String.valueOf(p.getPrice()));
-                editTextProductQuantity.setText(String.valueOf(p.getQuantity()));
+
                 int index = getIndex(data, p.getCategory_id());
                 spinnerCategories.setSelection(index);
                 category_id = p.getCategory_id();
@@ -286,7 +278,7 @@ public class ProductFormActivity extends AppCompatActivity {
                 spinnerCategories.setSelection(category_id);
                 if (product_id != -1){
                     IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                    service.productGetById(new Product(product_id, null, 0, 0, null, null))
+                    service.productGetById(new Product(product_id, null, 0, null, null))
                             .enqueue(getByIdCB);
                 }
             } else {

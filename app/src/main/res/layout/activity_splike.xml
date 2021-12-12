@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SPLikeActivity">
+
+
     <LinearLayout
         android:id="@+id/btnBackUser"
         android:layout_width="match_parent"
@@ -14,8 +16,8 @@
         android:paddingLeft="10dp">
         <ImageView
             android:id="@+id/ivBackSetting"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
 
             android:src="@drawable/ic_back"/>

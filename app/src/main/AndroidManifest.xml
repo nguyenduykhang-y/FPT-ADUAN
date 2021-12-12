@@ -14,6 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ThongkeActivity"></activity>
+        <activity android:name=".OderCTActivity" />
         <activity
             android:name=".Activity_Register_Shop"
             android:exported="false" />
@@ -48,7 +50,9 @@
         <activity
             android:name=".ProductActivity"
             android:exported="false" />
-        <activity android:name=".SocketActivity" />
+        <activity
+            android:name=".SocketActivity"
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" />

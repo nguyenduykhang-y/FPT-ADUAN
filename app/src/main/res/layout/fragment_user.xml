@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/flUserSetting"
+    android:padding="10dp"
     tools:context=".Screen.ViewActivity">
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -140,6 +147,7 @@
             android:textStyle="bold"
             android:text="Các thông tin về sản phẩm"/>
         <RelativeLayout
+
             android:id="@+id/ButtonProductInfo"
             android:layout_width="390dp"
             android:layout_height="110dp"
@@ -152,6 +160,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+
+            android:id="@+id/imageViewButtonOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="30dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:id="@+id/imageThongke"
+                android:layout_width="50dp"
+
                 android:layout_alignParentLeft="true"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp">
@@ -238,6 +258,7 @@
                     android:src="@drawable/ic_coin"
                     />
 
+
                 <ImageView
                     android:id="@+id/imageViewFree"
                     android:layout_width="50dp"
@@ -255,6 +276,24 @@
             <RelativeLayout
                 android:id="@+id/tvOther"
                 android:layout_width="390dp"
+
+            <ImageView
+                android:id="@+id/ivUserInsert"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_add_box"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/tvOther2"
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewButtonOther2">
+            <TextView
+                android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageViewButtonOther">
                 <TextView
@@ -320,7 +359,18 @@
                 android:id="@+id/tvOther2"
                 android:layout_width="390dp"
                 android:layout_height="wrap_content"
+
                 android:layout_below="@+id/imageViewButtonOther2">
+
+                android:layout_alignParentRight="true"
+                android:paddingRight="5dp"
+                android:text="Thêm sản phẩm"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:visibility="gone"
+                />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -350,6 +400,7 @@
                     android:textColor="@color/black"
                     android:textSize="15dp"/>
 
+
             </RelativeLayout>
 
 
@@ -357,3 +408,7 @@
 
     </RelativeLayout>
 </FrameLayout>
+
+</RelativeLayout>
+</ScrollView>
+

@@ -6,18 +6,16 @@ public class Product implements Serializable {
     private Integer id;
     private String name;
     private Integer price;
-    private Integer quantity;
     private String image_url;
     private Integer category_id;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, Integer price, Integer quantity, String image_url, Integer category_id) {
+    public Product(Integer id, String name, Integer price,  String image_url, Integer category_id) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.image_url = image_url;
         this.category_id = category_id;
     }
@@ -44,14 +42,6 @@ public class Product implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public String getImage_url() {

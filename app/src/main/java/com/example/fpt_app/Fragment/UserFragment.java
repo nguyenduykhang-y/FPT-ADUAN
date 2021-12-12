@@ -24,7 +24,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.fpt_app.Activity_Register_Shop;
+
+import com.example.fpt_app.DetailsActivity;
+
 import com.example.fpt_app.FogotActivity;
 import com.example.fpt_app.LoginActivity;
 import com.example.fpt_app.Models.AccessToken;
@@ -33,12 +37,15 @@ import com.example.fpt_app.Models.Person;
 import com.example.fpt_app.Models.User;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
+import com.example.fpt_app.OderCTActivity;
 import com.example.fpt_app.ProductActivity;
 import com.example.fpt_app.R;
 import com.example.fpt_app.RegisterActivity;
 import com.example.fpt_app.Activity_Register_Shop;
 import com.example.fpt_app.SPLikeActivity;
+import com.example.fpt_app.ThongkeActivity;
 import com.example.fpt_app.ThontinActivity;
+import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 
 import java.util.List;
@@ -53,7 +60,7 @@ public class UserFragment extends Fragment  {
     private AccessTokenManager tokenManager;
     Button btnout;
     private Switch aSwitch;
-    private ImageView Setting, ivUserInsert;
+    private ImageView Setting, ivUserInsert,imgOderCt,imgThongke;
     private TextView tvName, tvEmail,tvShop;
     UserFragment context;
     String name, email, phone;
@@ -80,6 +87,8 @@ public class UserFragment extends Fragment  {
         tvEmail = v.findViewById(R.id.userEmail);
         ivUserInsert = v.findViewById(R.id.ivUserInsert);
         tvShop = v.findViewById(R.id.tvShop);
+        imgOderCt=v.findViewById(R.id.imageViewDelivering);
+        imgThongke=v.findViewById(R.id.imageThongke);
         Setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +96,28 @@ public class UserFragment extends Fragment  {
                 startActivity(i);
             }
         });
-
+=
+        ivUserInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), UserInsertActivity.class);
+                startActivity(i);
+            }
+        });
+        imgOderCt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), OderCTActivity.class);
+                startActivity(i);
+            }
+        });
+        imgThongke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ThongkeActivity.class);
+                startActivity(i);
+            }
+        });
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
@@ -96,6 +126,7 @@ public class UserFragment extends Fragment  {
 
         return  v;
     }
+
     private void Registration_Confirmation(int gravity){
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -144,6 +175,7 @@ public class UserFragment extends Fragment  {
         dialog.show();
     }
 
+
     Callback<User> getProfile = new Callback<User>() {
         @Override
         public void onResponse(Call<User> call, Response<User> response) {
@@ -156,6 +188,7 @@ public class UserFragment extends Fragment  {
 
                 tvName.setText(name);
                 tvEmail.setText(u.getEmail());
+
                 ivUserInsert.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -170,6 +203,14 @@ public class UserFragment extends Fragment  {
                         }
                     }
                 });
+
+//
+//                if (u.getRoles().equals("2")){
+//                    ivUserInsert.setVisibility(View.VISIBLE);
+//                    tvShop.setVisibility(View.VISIBLE);
+//                }
+
+
             } else {
                 Log.e(">>>>>", response.message());
             }

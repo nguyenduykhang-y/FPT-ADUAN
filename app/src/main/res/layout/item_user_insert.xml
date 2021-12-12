@@ -12,39 +12,37 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <RelativeLayout
-        android:id="@+id/ImageProduct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/ivUserProductImage"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"/>
-        <ImageView
-            android:id="@+id/ivUserProductDelete"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignBottom="@+id/ivUserProductImage"
-            android:layout_alignParentRight="true"
-            android:paddingRight="10dp"
-            android:background="@drawable/icons8_delete_trash_24px_1"
-            android:textColor="#fff" />
-    </RelativeLayout>
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            />
+
     <TextView
         android:id="@+id/tvUserProductName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ImageProduct"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/tahoma"
         android:paddingTop="10dp"
+        android:layout_toRightOf="@+id/ivUserProductImage"
         android:paddingLeft="10dp"
         android:textSize="18dp"
         android:text="Asus"/>
+
+
+
         <TextView
             android:id="@+id/tvUserProductPrice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivUserProductImage"
             android:layout_below="@+id/tvUserProductName"
-            android:textSize="18dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:textColor="@color/homeapp"
             android:text="15.000.000"/>

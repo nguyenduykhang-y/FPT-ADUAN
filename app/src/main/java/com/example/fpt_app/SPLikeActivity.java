@@ -75,8 +75,7 @@ public class SPLikeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.e("onResume: ", "onResume>>>>");
-        IRetrofitService service = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-        service.LikeGetALL().enqueue(getALLlike);
+        mRecycle.setTooltipText("aaa");
 
     }
     Callback<List<Like>> getALLlike = new Callback<List<Like>>() {
@@ -84,11 +83,9 @@ public class SPLikeActivity extends AppCompatActivity {
         public void onResponse(Call<List<Like>> call, Response<List<Like>> response) {
             if (response.isSuccessful()){
                 if (data.size() == 0){
-
                         data = response.body();
                         adapter = new LikeAdapter(getBaseContext(), data);
                         mRecycle.setAdapter(adapter);
-
 
                 } else {
                     data.clear();

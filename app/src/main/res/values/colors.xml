@@ -11,5 +11,9 @@
     <color name="homeapp">#FF6600</color>
     <color name="blue">#1EAB8B</color>
     <color name="green">#008000</color>
+
     <color name="Orange">#FF9800</color>
+
+    <color name="red">#FF0000</color>
+
 </resources>

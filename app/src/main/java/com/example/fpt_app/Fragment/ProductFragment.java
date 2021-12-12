@@ -17,12 +17,14 @@ import android.widget.SearchView;
 import com.example.fpt_app.Adapter.ListAdapter;
 import com.example.fpt_app.Adapter.ProductAdapter;
 import com.example.fpt_app.Models.AccessTokenManager;
+import com.example.fpt_app.Models.Cart;
 import com.example.fpt_app.Models.ListSP;
 import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 import com.example.fpt_app.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +48,7 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private AccessTokenManager tokenManager;
+    String category_id ;
     public ProductFragment() {
         // Required empty public constructor
     }
@@ -91,6 +94,15 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
                     data = response.body();
                     productAdapter = new ProductAdapter(data, getContext());
                     mRecyclerView.setAdapter(productAdapter);
+
+//                    if(data != null){
+//                        for (Product c : data){
+//                           c.getCategory_id();
+//                            Log.d("dđ", String.valueOf(c.getCategory_id()));
+//                        }
+//
+//                    }
+
                 } else {
                     data.clear();
                     data.addAll(response.body());
@@ -111,17 +123,27 @@ public class ProductFragment extends Fragment implements View.OnClickListener, S
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnAsus:
-                scrollToItem(0);
+                    scrollToItem( 0);
+                    break;
+
             case R.id.btnHP:
                 scrollToItem( 2);
+                break;
             case R.id.btnGM:
                 scrollToItem(4);
-        }
+                break;
+            }
     }
 
     private void scrollToItem(int i) {
-        if (gridLayoutManager == null){
+        if (gridLayoutManager == null) {
+
             return;
+        }if(data != null) {
+            for (Product c : data) {
+                c.getCategory_id();
+                Log.d("dđ", String.valueOf(c.getCategory_id()));
+            }
         }
         gridLayoutManager.scrollToPositionWithOffset(i, 0);
     }
