@@ -37,6 +37,7 @@ import com.example.fpt_app.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>  {
     private static String BASE_URL = "http://10.0.2.2:8081/";
-    private List<Cart> data;
+    private List<Cart> data = new ArrayList<>();
     private Map<Cart, Integer> cartMap;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -62,13 +63,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return data;
     }
 
+    public Map<Cart, Integer> getCartMap() {
+        return cartMap;
+    }
+
     public CartAdapter(Context context, List<Cart> data) {
         this.data = data;
         cartMap = new HashMap<>();
-        data.forEach(cart -> {
-            //TODO: set real q
-            cartMap.put(cart, 1);
-        });
+        if(data != null) {
+            data.forEach(cart -> {
+                //TODO: set real q
+                cartMap.put(cart, 1);
+            });
+        }
         this.context = context;
         txtGiaTien = ((Activity) context).findViewById(R.id.TvGiaTien);
 
@@ -97,7 +104,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 .into(holder.proImg);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
-        holder.tvquantity.setText(String.valueOf(cart.getQuantity()));
+
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -154,46 +161,46 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                        });
                        cartMap.remove(data.get(position));
                        data.remove(position);
-//                       txtGiaTien.setText(getTotal());
+                       txtGiaTien.setText(getTotal());
                        notifyDataSetChanged();
                        dialog.cancel();
                    }
                });
            }
        });
-//       holder.btnCong.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//                soluong = soluong + 1;
-//                Cart c = data.get(position);
-//                cartMap.put(c, soluong);
-//                holder.quantity.setText(String.valueOf(soluong));
-//               txtGiaTien.setText(getTotal());
-//           }
-//       });
+       holder.btnCong.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+                soluong = soluong + 1;
+                Cart c = data.get(position);
+                cartMap.put(c, soluong);
+                holder.tvquantity.setText(String.valueOf(soluong));
+               txtGiaTien.setText(getTotal());
+           }
+       });
 
-//        holder.btnTru.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                soluong = soluong - 1;
-//                Cart c = data.get(position);
-//                cartMap.put(c,soluong);
-//                holder.quantity.setText(String.valueOf(soluong));
-////                txtGiaTien.setText(ChiagetTotal());
-//            }
-//        });
+        holder.btnTru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                soluong = soluong - 1;
+                Cart c = data.get(position);
+                cartMap.put(c,soluong);
+                holder.tvquantity.setText(String.valueOf(soluong));
+                txtGiaTien.setText(getTotal());
+            }
+        });
 
 
     }
 
-//    private String getTotal(){
-//        double sum = 0;
-//        for (Map.Entry<Cart, Integer> e : cartMap.entrySet()){
-//            sum += e.getKey().getPrice() * e.getValue();
-//        }
-//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-//        return decimalFormat.format(sum)+" VNĐ";
-//    }
+    private String getTotal(){
+        double sum = 0;
+        for (Map.Entry<Cart, Integer> e : cartMap.entrySet()){
+            sum += e.getKey().getPrice() * e.getValue();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+        return decimalFormat.format(sum)+" VNĐ";
+    }
 //    private String ChiagetTotal(){
 //        for (Map.Entry<Cart, Integer> e : cartMap.entrySet()){
 //            sum -= e.getKey().getPrice() / e.getValue();

@@ -11,23 +11,22 @@ public class Cart implements Serializable {
     private Integer quantity;
     private String image_url;
     private Integer category_id;
-    private String address;
-    private String date;
+//    private String address;
+//    private String date;
 
 
     public Cart() {
     }
 
-    public Cart(Integer id, Integer idProduct, String name, Double price, Integer quantity, String image_url, Integer category_id, String address, String date) {
+    public Cart(Integer id, Integer idProduct, String name, Double price,  String image_url, Integer category_id) {
         this.id = id;
         this.idProduct = idProduct;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.image_url = image_url;
         this.category_id = category_id;
-        this.address = address;
-        this.date = date;
+//        this.address = address;
+//        this.date = date;
     }
 
     public Integer getId() {
@@ -78,28 +77,28 @@ public class Cart implements Serializable {
         this.category_id = category_id;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+//    public Integer getQuantity() {
+//        return quantity;
+//    }
+//
+//    public void setQuantity(Integer quantity) {
+//        this.quantity = quantity;
+//    }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
 
 }

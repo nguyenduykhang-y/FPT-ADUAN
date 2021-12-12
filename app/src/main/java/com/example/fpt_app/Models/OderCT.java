@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class OderCT implements Serializable {
-        private int oderctId;
-        private int userId;
+        private String oderctId;
+        private int idUser;
 //        private int oderId;
         private int productId;
 //        private String namePr;
@@ -28,9 +28,9 @@ public class OderCT implements Serializable {
 //        this.date =date;
 //    }
 
-    public OderCT(int oderctId, int userId, int productId, int quantity, double price, String address, String date) {
+    public OderCT(String oderctId, int idUser, int productId, int quantity, double price, String address, String date) {
         this.oderctId = oderctId;
-        this.userId = userId;
+        this.idUser = idUser;
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
@@ -46,20 +46,20 @@ public class OderCT implements Serializable {
         this.date = date;
     }
 
-    public int getOderctId() {
+    public String getOderctId() {
         return oderctId;
     }
 
-    public void setOderctId(int oderctId) {
+    public void setOderctId(String oderctId) {
         this.oderctId = oderctId;
     }
 
     public int getUserId() {
-        return userId;
+        return idUser;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getProductId() {
