@@ -57,6 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private int  soluong= 1;
     private TextView txtGiaTien;
 
+
     public List<Cart> getData() {
         return data;
     }
@@ -96,6 +97,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 .into(holder.proImg);
         holder.tvName.setText(cart.getName());
         holder.tvPrice.setText(decimalFormat.format(cart.getPrice())+" VND");
+        holder.tvquantity.setText(String.valueOf(cart.getQuantity()));
        holder.imgdelete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -152,45 +154,53 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                        });
                        cartMap.remove(data.get(position));
                        data.remove(position);
-                       txtGiaTien.setText(getTotal());
+//                       txtGiaTien.setText(getTotal());
                        notifyDataSetChanged();
                        dialog.cancel();
                    }
                });
            }
        });
-       holder.btnCong.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-                soluong = soluong + 1;
-                Cart c = data.get(position);
-                cartMap.put(c, soluong);
-                holder.quantity.setText(String.valueOf(soluong));
+//       holder.btnCong.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//                soluong = soluong + 1;
+//                Cart c = data.get(position);
+//                cartMap.put(c, soluong);
+//                holder.quantity.setText(String.valueOf(soluong));
+//               txtGiaTien.setText(getTotal());
+//           }
+//       });
 
-               txtGiaTien.setText(getTotal());
-           }
-       });
-
-        holder.btnTru.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                soluong = soluong - 1;
-                holder.quantity.setText(String.valueOf(soluong));
-            }
-        });
+//        holder.btnTru.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                soluong = soluong - 1;
+//                Cart c = data.get(position);
+//                cartMap.put(c,soluong);
+//                holder.quantity.setText(String.valueOf(soluong));
+////                txtGiaTien.setText(ChiagetTotal());
+//            }
+//        });
 
 
     }
 
-    private String getTotal(){
-        double sum = 0;
-        for (Map.Entry<Cart, Integer> e : cartMap.entrySet()){
-            sum += e.getKey().getPrice() * e.getValue();
-        }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
-        return decimalFormat.format(sum)+" VNĐ";
-    }
-
+//    private String getTotal(){
+//        double sum = 0;
+//        for (Map.Entry<Cart, Integer> e : cartMap.entrySet()){
+//            sum += e.getKey().getPrice() * e.getValue();
+//        }
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+//        return decimalFormat.format(sum)+" VNĐ";
+//    }
+//    private String ChiagetTotal(){
+//        for (Map.Entry<Cart, Integer> e : cartMap.entrySet()){
+//            sum -= e.getKey().getPrice() / e.getValue();
+//        }
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+//        return decimalFormat.format(sum)+" VNĐ";
+//    }
 
 
     @Override
@@ -207,7 +217,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public class CartViewHolder extends RecyclerView.ViewHolder{
         private ImageView proImg,imgdelete;
         private TextView tvName, tvPrice,tvSumPrice;
-        private EditText quantity;
+        private EditText tvquantity;
         private CardView mCardView;
         private Button btnTru,btnCong;
 
@@ -218,7 +228,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvPrice = itemView.findViewById(R.id.tvPriceCart);
             mCardView = itemView.findViewById(R.id.cart_item);
             imgdelete = itemView.findViewById(R.id.imgdelete);
-            quantity = itemView.findViewById(R.id.tvQuantity);
+            tvquantity = itemView.findViewById(R.id.tvQuantityCart);
             btnTru= itemView.findViewById(R.id.btnTru);
             btnCong = itemView.findViewById(R.id.btnCong);
             tvSumPrice= itemView.findViewById(R.id.TvGiaTien);

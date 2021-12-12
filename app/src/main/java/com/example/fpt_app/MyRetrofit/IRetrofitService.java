@@ -90,7 +90,8 @@ public interface IRetrofitService {
     @POST("views/get_all_OderCT.php")
     Call<List<OderCT>> OderCTGETALL();
 
-
+    @POST("views/insert_oderCT.php")
+    Call<ResponseModel> OderCTInsert(@Body OderCT oderCT);
     @POST("views/gh_insert.php")
     Call<ResponseModel> CartInsert(@Body Cart cart);
 

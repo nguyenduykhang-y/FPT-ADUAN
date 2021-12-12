@@ -30,6 +30,15 @@
             android:textSize="20dp" />
     </RelativeLayout>
     <Button
+        android:id="@+id/btnLoc"
+        android:layout_width="120dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="140dp"
+        android:layout_height="60dp"
+        android:text="Loc"
+        android:backgroundTint="@color/homeapp"
+        android:layout_below="@+id/header"/>
+    <Button
         android:id="@+id/btnNgay1"
         android:layout_width="120dp"
         android:layout_marginTop="5dp"
