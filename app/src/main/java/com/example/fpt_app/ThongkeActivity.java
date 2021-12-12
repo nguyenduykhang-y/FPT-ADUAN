@@ -20,11 +20,13 @@ import com.example.fpt_app.Models.OderCT;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,9 +118,23 @@ public class ThongkeActivity extends AppCompatActivity {
             btnLoc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    btnNgay1.getText();
-                    btnNgay2.getText();
-
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        Date from = simpleDateFormat.parse(btnNgay1.getText().toString());
+                        Date to = simpleDateFormat.parse(btnNgay2.getText().toString());
+                        List<OderCT> filter = data.stream().filter(oderCT -> {
+                            try {
+                                Date date = simpleDateFormat.parse(oderCT.getDate());
+                                return  date.equals(from) || date.equals(to) || (date.after(from) && date.before(to)) ;
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            return false;
+                        }).collect(Collectors.toList());
+                        mRecycle.setAdapter(new OderCTAdapter(getBaseContext(), filter));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -138,12 +154,7 @@ public class ThongkeActivity extends AppCompatActivity {
                     data = response.body();
                     adapter = new OderCTAdapter(getBaseContext(),data);
                     mRecycle.setAdapter(adapter);
-                    btnLoc.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(ThongkeActivity.this, "abc", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+
                 } else {
                     data.clear();
                     data.addAll(response.body());

@@ -104,6 +104,9 @@ public interface IRetrofitService {
     @POST("views/like_delete.php")
     Call<ResponseModel> likeDelete(@Body Like like);
 
+    @POST("views/gh_deleteAll.php")
+    Call<ResponseModel> cart_delete_all();
+
     @POST("views/gh_delete.php")
     Call<ResponseModel> cart_delete(@Body Cart cart);
 
