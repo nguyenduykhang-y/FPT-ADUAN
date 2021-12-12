@@ -5,9 +5,10 @@ import java.util.Date;
 
 public class OderCT implements Serializable {
         private int oderctId;
-        private int oderId;
+        private int userId;
+//        private int oderId;
         private int productId;
-        private String namePr;
+//        private String namePr;
         private int quantity;
         private double price;
         private String address;
@@ -16,15 +17,25 @@ public class OderCT implements Serializable {
     public OderCT() {
     }
 
-    public OderCT(int oderctId, int oderId, int productId, String namePr, int quantity, double price, String address,String date) {
+//    public OderCT(int oderctId, int userId, int productId, String namePr, int quantity, double price, String address,String date) {
+//        this.oderctId = oderctId;
+//        this.userId = userId;
+//        this.productId = productId;
+//        this.namePr = namePr;
+//        this.quantity = quantity;
+//        this.price = price;
+//        this.address = address;
+//        this.date =date;
+//    }
+
+    public OderCT(int oderctId, int userId, int productId, int quantity, double price, String address, String date) {
         this.oderctId = oderctId;
-        this.oderId = oderId;
+        this.userId = userId;
         this.productId = productId;
-        this.namePr = namePr;
         this.quantity = quantity;
         this.price = price;
         this.address = address;
-        this.date =date;
+        this.date = date;
     }
 
     public String getDate() {
@@ -43,12 +54,12 @@ public class OderCT implements Serializable {
         this.oderctId = oderctId;
     }
 
-    public int getOderId() {
-        return oderId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setOderId(int oderId) {
-        this.oderId = oderId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getProductId() {
@@ -59,13 +70,13 @@ public class OderCT implements Serializable {
         this.productId = productId;
     }
 
-    public String getNamePr() {
-        return namePr;
-    }
-
-    public void setNamePr(String namePr) {
-        this.namePr = namePr;
-    }
+//    public String getNamePr() {
+//        return namePr;
+//    }
+//
+//    public void setNamePr(String namePr) {
+//        this.namePr = namePr;
+//    }
 
     public int getQuantity() {
         return quantity;

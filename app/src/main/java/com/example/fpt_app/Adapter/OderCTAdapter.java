@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fpt_app.Models.Cart;
 import com.example.fpt_app.Models.OderCT;
+import com.example.fpt_app.Models.Product;
 import com.example.fpt_app.Models.ResponseModel;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
@@ -60,12 +61,16 @@ public class OderCTAdapter extends RecyclerView.Adapter<OderCTAdapter.CartViewHo
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final OderCT oderCT = data.get(position);
+        Product product = new Product();
+
         if (oderCT == null){
             return;
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+//            if (id == product.getId()){
+//                holder.tvnameSP.setText(product.getName());
+//            }
 
-        holder.tvnameSP.setText(oderCT.getNamePr());
         holder.tvPrice.setText("Giá: " + decimalFormat.format(oderCT.getPrice())+" VND");
         holder.tvQuantity.setText("Số lượng: " + oderCT.getQuantity());
         holder.tvDate.setText("Ngày: " +oderCT.getDate());

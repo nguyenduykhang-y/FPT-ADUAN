@@ -51,7 +51,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tvCategory_id;
     private Button btnADDGH, mua;
     private List<ProductCategory> data;
-
+    Button btnCancle ,btnOke,btnDate;
+    EditText edtQuantity,edtAddress,edtDate;
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
     private String img_url= null;
@@ -85,6 +86,9 @@ public class DetailsActivity extends AppCompatActivity {
         idProduct=Integer.parseInt((getIntent().getStringExtra("id")));
         tvName.setText(getIntent().getStringExtra("name"));
         mua.setText("Mua ngay " + decimalFormat.format(Integer.parseInt(getIntent().getStringExtra("price"))) + " VNĐ");
+
+
+
         IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
         service1.productCategoryGetAll().enqueue(getAllProductCategoryCB);
 
@@ -97,16 +101,73 @@ public class DetailsActivity extends AppCompatActivity {
         btnADDGH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cart cart = new Cart();
+                Button btnCancle ,btnOke,btnDate;
+                EditText edtQuantity,edtAddress,edtDate;
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
+                View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog_ct, null);
+                alertDialog.setView(dialogView);
+                alertDialog.setCancelable(true);
+                btnOke = dialogView.findViewById(R.id.btnOke);
+                btnCancle= dialogView.findViewById(R.id.btnCancle);
+                edtQuantity =dialogView.findViewById(R.id.edtQuantity);
+                edtAddress = dialogView.findViewById(R.id.edtAddress);
+                btnDate = dialogView.findViewById(R.id.btnDate);
+                edtDate = dialogView.findViewById(R.id.edtDate);
+                AlertDialog dialog = alertDialog.create();
+                dialog.show();
+
+                btnDate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Date today = new Date();
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTime(today);
+
+                        final int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+                        final int months = cal.get(Calendar.MONTH);
+                        final int years = cal.get(Calendar.YEAR);
+                        final Calendar calendar = Calendar.getInstance();
+                        int date = calendar.get(Calendar.DAY_OF_MONTH);
+                        int month = calendar.get(Calendar.MONTH);
+                        int year = calendar.get(Calendar.YEAR);
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(DetailsActivity.this,new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                calendar.set(i,i1,i2);
+                                edtDate.setText(simpleDateFormat.format(calendar.getTime()));
+                            }
+                        },years,months,dayOfWeek);
+                        datePickerDialog.show();
+                    }
+                });
+                btnOke.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cart cart = new Cart();
                 cart.setImage_url(img_url);
                 cart.setIdProduct(idProduct);
                 cart.setName(tv.getText().toString());
                 cart.setPrice(Double.parseDouble(getIntent().getStringExtra("price")));
+                cart.setQuantity(Integer.parseInt(edtQuantity.getText().toString()));
                 cart.setCategory_id(Integer.parseInt(getIntent().getStringExtra("category_id")));
+                cart.setAddress(edtAddress.getText().toString());
+                cart.setDate(edtDate.getText().toString());
+
 
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.CartInsert(cart).enqueue(insert_cart);
 
+                dialog.cancel();
+                    }
+                });
+                btnCancle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
             }
         });
         gh.setOnClickListener(new View.OnClickListener() {
@@ -128,8 +189,7 @@ public class DetailsActivity extends AppCompatActivity {
 //
 //            IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
 //            service1.insertOder(oder).enqueue(insert_oder);
-              Button btnCancle ,btnOke,btnDate;
-              EditText edtQuantity,edtAddress,edtDate;
+
 
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
@@ -148,54 +208,36 @@ public class DetailsActivity extends AppCompatActivity {
             btnDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Date today = new Date();
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(today);
 
-                    final int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-                    final int months = cal.get(Calendar.MONTH);
-                    final int years = cal.get(Calendar.YEAR);
-                    final Calendar calendar = Calendar.getInstance();
-                    int date = calendar.get(Calendar.DAY_OF_MONTH);
-                    int month = calendar.get(Calendar.MONTH);
-                    int year = calendar.get(Calendar.YEAR);
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(DetailsActivity.this,new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                            calendar.set(i,i1,i2);
-                            edtDate.setText(simpleDateFormat.format(calendar.getTime()));
-                        }
-                    },years,months,dayOfWeek);
-                    datePickerDialog.show();
                 }
+
             });
                 btnOke.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Oder oder = new Oder();
-                        oder.setOderId(id);
-                        oder.setNameUser(nameuser);
-                        oder.setProductID(idProduct);
-                        oder.setPhone(phone);
-
-                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-                 service1.insertOder(oder).enqueue(insert_oder);
-                        OderCT oderCT = new OderCT();
-
-
-                        double price = Double.parseDouble(getIntent().getStringExtra("price"));
-                        int soluong =  Integer.parseInt(edtQuantity.getText().toString());
-                        double  gia = soluong*price;
-                        oderCT.setOderId(id);
-                        oderCT.setProductId(idProduct);
-                        oderCT.setNamePr(tv.getText().toString());
-                        oderCT.setQuantity(soluong);
-                        oderCT.setPrice(gia);
-                        oderCT.setAddress(edtAddress.getText().toString());
-                        oderCT.setDate(edtDate.getText().toString());
-                        service.insertOderCT(oderCT).enqueue(inserOderCT);
-                        dialog.cancel();
+//                        Oder oder = new Oder();
+//                        oder.setOderId(id);
+//                        oder.setNameUser(nameuser);
+//                        oder.setProductID(idProduct);
+//                        oder.setPhone(phone);
+//
+//                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
+//                 service1.insertOder(oder).enqueue(insert_oder);
+//                        OderCT oderCT = new OderCT();
+//
+//
+//                        double price = Double.parseDouble(getIntent().getStringExtra("price"));
+//                        int soluong =  Integer.parseInt(edtQuantity.getText().toString());
+//                        double  gia = soluong*price;
+//                        oderCT.setOderId(id);
+//                        oderCT.setProductId(idProduct);
+//                        oderCT.setNamePr(tv.getText().toString());
+//                        oderCT.setQuantity(soluong);
+//                        oderCT.setPrice(gia);
+//                        oderCT.setAddress(edtAddress.getText().toString());
+//                        oderCT.setDate(edtDate.getText().toString());
+//                        service.insertOderCT(oderCT).enqueue(inserOderCT);
+//                        dialog.cancel();
 
                     }
                 });
@@ -353,4 +395,5 @@ public class DetailsActivity extends AppCompatActivity {
             Log.e(">>>>>", t.getMessage());
         }
     };
+
 }

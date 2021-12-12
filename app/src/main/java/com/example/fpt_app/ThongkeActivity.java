@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.fpt_app.Adapter.OderCTAdapter;
 import com.example.fpt_app.Models.AccessTokenManager;
@@ -35,7 +36,7 @@ public class ThongkeActivity extends AppCompatActivity {
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
     private OderCTAdapter adapter;
-    Button btnNgay1,btnNgay2;
+    Button btnNgay1,btnNgay2,btnLoc;
     ImageView imgBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +47,17 @@ public class ThongkeActivity extends AppCompatActivity {
         imgBack = findViewById(R.id.back_icon);
         btnNgay1= findViewById(R.id.btnNgay1);
         btnNgay2=findViewById(R.id.btnNgay2);
+        btnLoc = findViewById(R.id.btnLoc);
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1);
         mRecycle.setLayoutManager(gridLayoutManager);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
+        service.OderCTGETALL().enqueue(getALLCart);
 
+        // ngay 1
         btnNgay1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +83,9 @@ public class ThongkeActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+
+        //ngay 2
         btnNgay2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +111,18 @@ public class ThongkeActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-        service.OderCTGETALL().enqueue(getALLCart);
+
+//loc hoa don
+            btnLoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    btnNgay1.getText();
+                    btnNgay2.getText();
+
+                }
+            });
+
+
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +138,12 @@ public class ThongkeActivity extends AppCompatActivity {
                     data = response.body();
                     adapter = new OderCTAdapter(getBaseContext(),data);
                     mRecycle.setAdapter(adapter);
+                    btnLoc.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(ThongkeActivity.this, "abc", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
                     data.clear();
                     data.addAll(response.body());
