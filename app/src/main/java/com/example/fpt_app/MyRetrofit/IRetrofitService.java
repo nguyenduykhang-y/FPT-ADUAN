@@ -96,4 +96,8 @@ public interface IRetrofitService {
     @POST("views/get_all_TB.php")
     Call<List<TB>> TBgetALLL();
 
+    @POST("views/store_insert.php")
+    Call<ResponseModel> StoreInsert(@Body Shop shop);
+
+
 }
