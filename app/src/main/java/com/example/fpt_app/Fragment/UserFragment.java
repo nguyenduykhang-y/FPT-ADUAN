@@ -96,7 +96,7 @@ public class UserFragment extends Fragment  {
                 startActivity(i);
             }
         });
-=
+
         ivUserInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
