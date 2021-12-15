@@ -37,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Like> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
@@ -83,7 +83,6 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder
                 in.putExtra("id",String.valueOf(like.getId()));
                 in.putExtra("imgesview",String.valueOf(like.getImage_url()));
                 in.putExtra("name", like.getName());
-                in.putExtra("quantity",String.valueOf(like.getQuantity()));
                 in.putExtra("category_id",String.valueOf(like.getCategory_id()));
                 in.putExtra("price", String.valueOf(like.getPrice()));
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
