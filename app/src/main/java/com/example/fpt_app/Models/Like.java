@@ -7,19 +7,18 @@ public class Like implements Serializable {
     private Integer idProduct;
     private String name;
     private Double price;
-    private Integer quantity;
     private String image_url;
     private Integer category_id;
 
     public Like() {
     }
 
-    public Like(Integer id, Integer idProduct, String name, Double price, Integer quantity, String image_url, Integer category_id) {
+    public Like(Integer id, Integer idProduct, String name, Double price,  String image_url, Integer category_id) {
         this.id = id;
         this.idProduct = idProduct;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+
         this.image_url = image_url;
         this.category_id = category_id;
     }
@@ -56,13 +55,6 @@ public class Like implements Serializable {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     public String getImage_url() {
         return image_url;
