@@ -2,7 +2,10 @@ package com.example.fpt_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +47,13 @@ public class UserSettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 tokenManager.deleteToken();
                 startActivity(new Intent(getBaseContext(), LoginActivity.class));
-                Toast.makeText(UserSettingActivity.this, "Logout Suscess", Toast.LENGTH_SHORT).show();
+                LayoutInflater layoutInflater = getLayoutInflater();
+                View layout = layoutInflater.inflate(R.layout.custom_toast, (ViewGroup)findViewById(R.id.toast));
+                final Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                toast.show();
                 finish();
             }
         });
