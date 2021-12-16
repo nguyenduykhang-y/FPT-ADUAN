@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -84,9 +87,14 @@ public class LoginActivity extends AppCompatActivity {
                 tokenManager.saveToken(token);
                 if (token.getIs_auth()){
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    Toast.makeText(LoginActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View layout = layoutInflater.inflate(R.layout.custom_toast_login, (ViewGroup)findViewById(R.id.toast));
+                    final Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.setView(layout);
+                    toast.show();
                     finish();
-
                 }
             } else {
                 Log.e(">>>>>", response.message());
