@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -217,7 +219,13 @@ public class DetailsActivity extends AppCompatActivity {
             if (response.isSuccessful()){
                 ResponseModel model = response.body();
                 if(model.getStatus()){
-                    Toast.makeText(DetailsActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View layout = layoutInflater.inflate(R.layout.custom_toast_cart, (ViewGroup)findViewById(R.id.toast));
+                    final Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.setView(layout);
+                    toast.show();
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");
                 }
@@ -277,7 +285,13 @@ public class DetailsActivity extends AppCompatActivity {
             if (response.isSuccessful()){
                 ResponseModel model = response.body();
                 if(model.getStatus()){
-                    Toast.makeText(getApplicationContext(), "Đã thích sản phẩm", Toast.LENGTH_SHORT).show();
+                    LayoutInflater layoutInflater = getLayoutInflater();
+                    View layout = layoutInflater.inflate(R.layout.custom_toast_like, (ViewGroup)findViewById(R.id.toast));
+                    final Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.setView(layout);
+                    toast.show();
                 } else {
                     Log.e(">>>>>insertCB getStatus failed", "insert failed");
                 }
