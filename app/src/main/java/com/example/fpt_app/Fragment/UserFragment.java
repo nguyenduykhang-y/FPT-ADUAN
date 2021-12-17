@@ -97,13 +97,7 @@ public class UserFragment extends Fragment  {
             }
         });
 
-//        ivUserInsert.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getContext(), UserInsertActivity.class);
-//                startActivity(i);
-//            }
-//        });
+
         imgOderCt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,7 +194,10 @@ public class UserFragment extends Fragment  {
                             Registration_Confirmation(Gravity.CENTER);
 
                         }else if(u.getRoles().equals("2")){
-                            Intent intent =  new Intent(getContext(),UserInsertActivity.class);
+
+                            Intent intent =  new Intent(getContext(), UserInsertActivity.class);
+
+
                             startActivity(intent);
                         }
                     }

@@ -92,6 +92,7 @@ public class Activity_Register_Shop extends AppCompatActivity {
                 service1.StoreInsert(shop).enqueue(insert_store_CB);
 
 
+
             }
         });
 

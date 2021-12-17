@@ -315,8 +315,10 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_add_box"
-                    />
+
+                    android:src="@drawable/ic_add_box" />
+
+
 
             </RelativeLayout>
             <RelativeLayout
