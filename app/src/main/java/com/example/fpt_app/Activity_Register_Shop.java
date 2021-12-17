@@ -86,21 +86,7 @@ public class Activity_Register_Shop extends AppCompatActivity {
                 shop.setStorePhone(phoneShop);
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.StoreInsert(shop).enqueue(insert_store_CB);
-                Callback<ResponseModel> callback = new Callback<ResponseModel>() {
-                    @Override
-                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                        if (response.body().getStatus().equals(true)){
 
-
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseModel> call, Throwable t) {
-
-                    }
-                };
 
 
             }

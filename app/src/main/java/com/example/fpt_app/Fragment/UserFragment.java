@@ -198,7 +198,7 @@ public class UserFragment extends Fragment  {
                             Registration_Confirmation(Gravity.CENTER);
 
                         }else if(u.getRoles().equals("2")){
-                            Intent intent =  new Intent();
+                            Intent intent =  new Intent(getContext(), UserInsertActivity.class);
                             startActivity(intent);
                         }
                     }

@@ -304,7 +304,6 @@ public class ProductFormActivity extends AppCompatActivity {
     private void initActivity(){
         editTextProductName = (EditText) findViewById(R.id.editTextProductName);
         editTextProductPrice = (EditText) findViewById(R.id.editTextProductPrice);
-        editTextProductQuantity = (EditText) findViewById(R.id.editTextProductQuantity);
         spinnerCategories = (Spinner) findViewById(R.id.spinnerCategories);
         textViewTakePhoto = (TextView) findViewById(R.id.TakePhoto);
         imageViewProduct = (ImageView) findViewById(R.id.imageViewProduct);
