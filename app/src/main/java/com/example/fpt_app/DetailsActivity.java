@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,7 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
     private Integer category_id = 0;
     private Integer cart_id = -1;
     private Integer idProduct =0 ;
-     int id ;
+     int id, userId;
     String phone,nameuser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,37 +157,44 @@ public class DetailsActivity extends AppCompatActivity {
             btnDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Date today = new Date();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(today);
 
+                    final int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+                    final int months = cal.get(Calendar.MONTH);
+                    final int years = cal.get(Calendar.YEAR);
+                    final Calendar calendar = Calendar.getInstance();
+                    int date = calendar.get(Calendar.DAY_OF_MONTH);
+                    int month = calendar.get(Calendar.MONTH);
+                    int year = calendar.get(Calendar.YEAR);
+
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(DetailsActivity.this,new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            calendar.set(i,i1,i2);
+                            edtDate.setText(simpleDateFormat.format(calendar.getTime()));
+                        }
+                    },years,months,dayOfWeek);
+                    datePickerDialog.show();
                 }
 
             });
                 btnOke.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Oder oder = new Oder();
-//                        oder.setOderId(id);
-//                        oder.setNameUser(nameuser);
-//                        oder.setProductID(idProduct);
-//                        oder.setPhone(phone);
-//
-//                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
-//                 service1.insertOder(oder).enqueue(insert_oder);
-//                        OderCT oderCT = new OderCT();
-//
-//
-//                        double price = Double.parseDouble(getIntent().getStringExtra("price"));
-//                        int soluong =  Integer.parseInt(edtQuantity.getText().toString());
-//                        double  gia = soluong*price;
-//                        oderCT.setOderId(id);
-//                        oderCT.setProductId(idProduct);
-//                        oderCT.setNamePr(tv.getText().toString());
-//                        oderCT.setQuantity(soluong);
-//                        oderCT.setPrice(gia);
-//                        oderCT.setAddress(edtAddress.getText().toString());
-//                        oderCT.setDate(edtDate.getText().toString());
-//                        service.insertOderCT(oderCT).enqueue(inserOderCT);
-//                        dialog.cancel();
-
+                        String orderId = UUID.randomUUID().toString();
+                        OderCT oderCT = new OderCT();
+                        oderCT.setOderctId(orderId);
+                        oderCT.setUserId(userId);
+                        oderCT.setProductId(idProduct);
+                        oderCT.setQuantity(Integer.parseInt(edtQuantity.getText().toString()));
+                        oderCT.setPrice(Integer.parseInt(getIntent().getStringExtra("price")));
+                        oderCT.setDate(edtDate.getText().toString());
+                        oderCT.setAddress(edtAddress.getText().toString());
+                        service.insertOderCT(oderCT).enqueue(inserOderCT);
+                        dialog.cancel();
                     }
                 });
                 btnCancle.setOnClickListener(new View.OnClickListener() {
@@ -336,8 +344,8 @@ public class DetailsActivity extends AppCompatActivity {
             if (response.isSuccessful()){
                 User u =  new User();
                 u = response.body();
-                id = u.getUserId();
-                 nameuser = u.getName();
+                userId = u.getUserId();
+                nameuser = u.getName();
                 phone = u.getPhone();
 
 //                if (u.getRoles().equals("2")){
