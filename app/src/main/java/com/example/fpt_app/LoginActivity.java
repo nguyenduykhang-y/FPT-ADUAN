@@ -88,7 +88,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (token.getIs_auth()){
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     LayoutInflater layoutInflater = getLayoutInflater();
+
                     View layout = layoutInflater.inflate(R.layout.custom_toast_login, (ViewGroup)findViewById(R.id.toast));
+
                     final Toast toast = new Toast(getApplicationContext());
                     toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast.setDuration(Toast.LENGTH_SHORT);

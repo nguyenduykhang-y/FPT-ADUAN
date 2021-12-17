@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:id="@+id/toast"
+
+    android:id="@+id/toastLG"
+
     android:background="@drawable/background"
     android:orientation="vertical">
 
