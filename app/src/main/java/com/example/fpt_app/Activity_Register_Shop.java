@@ -65,6 +65,8 @@ public class Activity_Register_Shop extends AppCompatActivity {
             String phone = bundle.getString("phone","");
             emailShop = email;
             phoneShop = phone;
+            Log.d("av", "onCreate: "+emailShop);
+            Log.d("av", "onCreate: "+phoneShop);
         }
 
         TakePhoto.setOnClickListener(new View.OnClickListener() {
@@ -80,27 +82,14 @@ public class Activity_Register_Shop extends AppCompatActivity {
                 Shop shop = new Shop();
                 // validation
                 shop.setStoreImage(image_url);
+                Log.d("TAG", "onClick: "+ image_url);
+
                 shop.setStoteName(edtShopName.getText().toString());
                 shop.setStoreAddress(edtShopAddress.getText().toString());
                 shop.setStoreEmail(emailShop);
                 shop.setStorePhone(phoneShop);
                 IRetrofitService service1 = new RetrofitBuilder().createService(IRetrofitService.class, BASE_URL);
                 service1.StoreInsert(shop).enqueue(insert_store_CB);
-                Callback<ResponseModel> callback = new Callback<ResponseModel>() {
-                    @Override
-                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                        if (response.body().getStatus().equals(true)){
-
-
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseModel> call, Throwable t) {
-
-                    }
-                };
 
 
             }
@@ -188,7 +177,9 @@ public class Activity_Register_Shop extends AppCompatActivity {
             if (response.isSuccessful()){
                 Response2PikModel model = response.body();
                 image_url = model.getSaved();
-                Log.d("debug", image_url);
+
+                Log.d("img", String.valueOf(image_url));
+
                 Glide.with(Activity_Register_Shop.this)
                         .load(image_url)
                         .into(imageViewProduct);
