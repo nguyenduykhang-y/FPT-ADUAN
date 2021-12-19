@@ -72,27 +72,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:text="1" />
-            <TextView
-                android:id="@+id/ShopNum"
-                android:layout_width="0px"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:text="1" />
-
-            <TextView
-                android:id="@+id/SaleNum"
-                android:layout_width="0px"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:text="1" />
 
         </LinearLayout>
         <LinearLayout
@@ -109,25 +88,9 @@
                 android:textSize="18dp"
                 android:textColor="@color/black"
                 android:text="Yêu thích" />
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0px"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:textColor="@color/black"
-                android:text="Shop" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0px"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:textColor="@color/black"
-                android:text="Giảm giá" />
+
+
 
         </LinearLayout>
         <TextView

@@ -55,7 +55,6 @@ public class DetailsActivity extends AppCompatActivity {
     private Button btnADDGH, mua;
     private List<ProductCategory> data;
     Button btnCancle ,btnOke;
-    ImageView btnDate;
     EditText edtQuantity,edtAddress,edtDate;
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
@@ -64,6 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
     private Integer cart_id = -1;
     private Integer idProduct =0 ;
      int id, userId;
+        Calendar calendar;
     String phone,nameuser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,41 +150,18 @@ public class DetailsActivity extends AppCompatActivity {
             btnCancle= dialogView.findViewById(R.id.btnCancle);
             edtQuantity =dialogView.findViewById(R.id.edtQuantity);
             edtAddress = dialogView.findViewById(R.id.edtAddress);
-            btnDate = dialogView.findViewById(R.id.btnDate);
+
             edtDate = dialogView.findViewById(R.id.edtDate);
             AlertDialog dialog = alertDialog.create();
             dialog.show();
+            calendar = Calendar.getInstance();
 
-            btnDate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Date today = new Date();
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(today);
-
-                    final int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-                    final int months = cal.get(Calendar.MONTH);
-                    final int years = cal.get(Calendar.YEAR);
-                    final Calendar calendar = Calendar.getInstance();
-                    int date = calendar.get(Calendar.DAY_OF_MONTH);
-                    int month = calendar.get(Calendar.MONTH);
-                    int year = calendar.get(Calendar.YEAR);
-
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(DetailsActivity.this,new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                            calendar.set(i,i1,i2);
-                            edtDate.setText(simpleDateFormat.format(calendar.getTime()));
-                        }
-                    },years,months,dayOfWeek);
-                    datePickerDialog.show();
-                }
-
-            });
                 btnOke.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd ");
+                        String date = simpleDateFormat.format(calendar.getTime());
+                        Log.d("TAG", "onClick: "+date);
                         String orderId = UUID.randomUUID().toString();
                         OderCT oderCT = new OderCT();
                         oderCT.setOderctId(orderId);
@@ -192,7 +169,7 @@ public class DetailsActivity extends AppCompatActivity {
                         oderCT.setProductId(idProduct);
                         oderCT.setQuantity(Integer.parseInt(edtQuantity.getText().toString()));
                         oderCT.setPrice(Integer.parseInt(getIntent().getStringExtra("price")));
-                        oderCT.setDate(edtDate.getText().toString());
+                        oderCT.setDate(date);
                         oderCT.setAddress(edtAddress.getText().toString());
                         service.insertOderCT(oderCT).enqueue(inserOderCT);
                         dialog.cancel();
@@ -322,6 +299,7 @@ public class DetailsActivity extends AppCompatActivity {
                 data = response.body();
                 List<ProductCategory> cate =data;
                 int id_ca = Integer.parseInt(getIntent().getStringExtra("category_id"));
+
                 for (ProductCategory b: cate){
                     if (id_ca == b.getId()){
                         tvCategory_id.setText("Thể loại: "+b.getName());
