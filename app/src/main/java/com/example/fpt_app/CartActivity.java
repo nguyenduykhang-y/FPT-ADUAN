@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +61,8 @@ public class CartActivity extends AppCompatActivity {
     Button btnThanhToan;
     String name;
     int id;
-    Button btnCancle ,btnOke,btnDate;
+    Button btnCancle ,btnOke;
+    ImageView btnDate;
     EditText edtQuantity,edtAddress,edtDate;
     int userId;
     String phone, nameuser;

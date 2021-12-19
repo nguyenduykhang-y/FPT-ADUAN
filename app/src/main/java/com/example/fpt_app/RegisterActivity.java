@@ -77,7 +77,8 @@ public class RegisterActivity extends AppCompatActivity {
 //                    if (token.getIs_auth()) {
 //                        startActivity(new Intent(getBaseContext(), IndexActivity.class));
                 Toast.makeText(RegisterActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
-
+                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                finish();
 
             } else {
                 Log.e(">>>>>", response.message());

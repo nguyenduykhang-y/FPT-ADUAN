@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:padding="10dp"
     >
     <TextView
@@ -63,18 +62,17 @@
         android:ems="10"
         android:hint="Email"
         android:layout_below="@+id/edName"
-        android:inputType="textPersonName" />
+       />
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="315dp"
         android:layout_height="49dp"
         android:background="@drawable/background"
-
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Password"
         android:layout_below="@+id/edEmail"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:padding="10dp"
 
         />
@@ -89,7 +87,7 @@
         android:ems="10"
         android:hint="Enter the password"
         android:layout_below="@+id/edPassword"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
 
 
         />
@@ -98,13 +96,11 @@
         android:layout_width="315dp"
         android:layout_height="49dp"
         android:background="@drawable/background"
-
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Phone"
         android:layout_below="@+id/edPassword"
         android:inputType="textPersonName"
-
         android:padding="10dp"
         />
     </LinearLayout>
@@ -164,7 +160,6 @@
         android:onClick="LognIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Quay lại màng hình đăng nhập"
         android:textSize="20dp"
         android:textStyle="normal"

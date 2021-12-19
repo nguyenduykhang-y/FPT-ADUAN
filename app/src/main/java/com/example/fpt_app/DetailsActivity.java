@@ -54,7 +54,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tvCategory_id;
     private Button btnADDGH, mua;
     private List<ProductCategory> data;
-    Button btnCancle ,btnOke,btnDate;
+    Button btnCancle ,btnOke;
+    ImageView btnDate;
     EditText edtQuantity,edtAddress,edtDate;
     private static String BASE_URL = "http://10.0.2.2:8081/";
     private static String BASE_2PIK_URL = "https://2.pik.vn/";
@@ -142,7 +143,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
-            View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog_ct, null);
+            View dialogView = LayoutInflater.from(v.getRootView().getContext()).inflate(R.layout.custom_dialog_muangay, null);
             alertDialog.setView(dialogView);
             alertDialog.setCancelable(true);
              btnOke = dialogView.findViewById(R.id.btnOke);
