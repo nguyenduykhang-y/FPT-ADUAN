@@ -6,7 +6,15 @@
     android:orientation="vertical"
     >
 
-
+     <EditText
+         android:id="@+id/edtQuantity"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:hint="Nhập số lượng"
+         android:padding="10dp"
+         android:layout_marginTop="10dp"
+         android:background="@drawable/background"
+         android:fontFamily="@font/tahoma"/>
     <EditText
         android:id="@+id/edtAddress"
         android:layout_width="match_parent"

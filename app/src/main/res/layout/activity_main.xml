@@ -47,42 +47,6 @@
           android:layout_height="wrap_content"
           android:orientation="horizontal">
 
-         <LinearLayout
-             android:layout_width="120dp"
-             android:layout_height="54dp"
-             android:layout_marginStart="5dp"
-             android:layout_marginTop="44dp"
-             android:background="@drawable/radius_custom"
-             android:orientation="vertical">
-
-            <Spinner
-                android:id="@+id/spinner_erea"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-         </LinearLayout>
-
-         <LinearLayout
-             android:layout_width="wrap_content"
-             android:layout_height="50dp"
-             android:layout_marginLeft="10dp"
-             android:layout_marginTop="44dp"
-             android:background="@drawable/botron_button">>
-
-            <SearchView
-                android:id="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="@font/tahoma"
-                android:iconifiedByDefault="false"
-                android:queryHint="Tìm.."
-                android:textSize="18sp" />
-
-
-         </LinearLayout>
-
       </LinearLayout>
 
    </RelativeLayout>

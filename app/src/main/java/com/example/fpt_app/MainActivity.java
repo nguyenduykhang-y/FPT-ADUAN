@@ -106,20 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        ereaAdapter = new EreaAdapter(this, R.layout.item_selected, getListErea());
-        spinner.setAdapter(ereaAdapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-                Toast.makeText(MainActivity.this,ereaAdapter.getItem(i).getName(), Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
             // intent gio hang activity
         iconGH.setOnClickListener(new View.OnClickListener() {
             @Override
