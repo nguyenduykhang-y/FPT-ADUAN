@@ -62,7 +62,7 @@ public class CartActivity extends AppCompatActivity {
     String name;
     int id;
     Button btnCancle ,btnOke;
-    ImageView btnDate;
+    Calendar calendar;
     EditText edtQuantity,edtAddress,edtDate;
     int userId;
     String phone, nameuser;
@@ -98,41 +98,15 @@ public class CartActivity extends AppCompatActivity {
                 btnCancle= dialogView.findViewById(R.id.btnCancle);
                 edtQuantity =dialogView.findViewById(R.id.edtQuantity);
                 edtAddress = dialogView.findViewById(R.id.edtAddress);
-                btnDate = dialogView.findViewById(R.id.btnDate);
                 edtDate = dialogView.findViewById(R.id.edtDate);
                 AlertDialog dialog = alertDialog.create();
                 dialog.show();
-
-                btnDate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Date today = new Date();
-                        Calendar cal = Calendar.getInstance();
-                        cal.setTime(today);
-
-                        final int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-                        final int months = cal.get(Calendar.MONTH);
-                        final int years = cal.get(Calendar.YEAR);
-                        final Calendar calendar = Calendar.getInstance();
-                        int date = calendar.get(Calendar.DAY_OF_MONTH);
-                        int month = calendar.get(Calendar.MONTH);
-                        int year = calendar.get(Calendar.YEAR);
-
-                        DatePickerDialog datePickerDialog = new DatePickerDialog(CartActivity.this,new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                calendar.set(i,i1,i2);
-                                edtDate.setText(simpleDateFormat.format(calendar.getTime()));
-                            }
-                        },years,months,dayOfWeek);
-                        datePickerDialog.show();
-                    }
-
-                });
+                calendar = Calendar.getInstance();
                 btnOke.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd ");
+                        String date = simpleDateFormat.format(calendar.getTime());
                         Map<Cart, Integer> cartMap = ((CartAdapter) mRecycle.getAdapter()).getCartMap();
                         String orderId = UUID.randomUUID().toString();
                         for (Map.Entry<Cart, Integer> e : cartMap.entrySet()) {
@@ -143,9 +117,10 @@ public class CartActivity extends AppCompatActivity {
                             oderCT.setProductId(e.getKey().getIdProduct());
                             oderCT.setQuantity(e.getValue());
                             oderCT.setPrice(e.getKey().getPrice());
-                            oderCT.setDate(edtDate.getText().toString());
+                            oderCT.setDate(date);
                             oderCT.setAddress(edtAddress.getText().toString());
                             service.insertOderCT(oderCT).enqueue(inserOderCT);
+
                         }
                         service.cart_delete_all().enqueue(delete_all_cart);
                     dialog.cancel();

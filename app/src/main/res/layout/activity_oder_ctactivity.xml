@@ -25,7 +25,7 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/back_icon"
             android:fontFamily="@font/tahomabd"
-            android:text="Hoá đơn sản phẩm"
+            android:text="Sản Phẩm đã mua"
             android:textColor="@color/homeapp"
             android:textSize="20dp" />
     </RelativeLayout>

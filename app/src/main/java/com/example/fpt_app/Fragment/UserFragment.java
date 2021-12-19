@@ -27,12 +27,14 @@ import android.widget.Toast;
 
 import com.example.fpt_app.Activity_Register_Shop;
 
+import com.example.fpt_app.Adapter.LikeAdapter;
 import com.example.fpt_app.DetailsActivity;
 
 import com.example.fpt_app.FogotActivity;
 import com.example.fpt_app.LoginActivity;
 import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.AccessTokenManager;
+import com.example.fpt_app.Models.Like;
 import com.example.fpt_app.Models.Person;
 import com.example.fpt_app.Models.User;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
@@ -48,6 +50,7 @@ import com.example.fpt_app.ThontinActivity;
 import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -61,10 +64,10 @@ public class UserFragment extends Fragment  {
     Button btnout;
     private Switch aSwitch;
     private ImageView Setting, ivUserInsert,imgOderCt,imgThongke;
-    private TextView tvName, tvEmail,tvShop;
+    private TextView tvName, tvEmail,tvShop,tvFavNum;
     UserFragment context;
     String name, email, phone;
-
+    private List<Like> data = new ArrayList<>();
 
 
 
@@ -87,6 +90,7 @@ public class UserFragment extends Fragment  {
         tvEmail = v.findViewById(R.id.userEmail);
         ivUserInsert = v.findViewById(R.id.ivUserInsert);
         tvShop = v.findViewById(R.id.tvShop);
+        tvFavNum= v.findViewById(R.id.FavNum);
         imgOderCt=v.findViewById(R.id.imageViewDelivering);
         imgThongke=v.findViewById(R.id.imageThongke);
         Setting.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +121,7 @@ public class UserFragment extends Fragment  {
                 .createService(IRetrofitService.class, BASE_URL);
 
         service.Profile().enqueue(getProfile);
-
+        service.LikeGetALL().enqueue(getALLlike);
         return  v;
     }
 
@@ -218,6 +222,37 @@ public class UserFragment extends Fragment  {
         @Override
         public void onFailure(Call<User> call, Throwable t) {
             Log.e(">>>>>", t.getMessage());
+        }
+    };
+    Callback<List<Like>> getALLlike = new Callback<List<Like>>() {
+        @Override
+        public void onResponse(Call<List<Like>> call, Response<List<Like>> response) {
+            if (response.isSuccessful()){
+                if (data.size() == 0){
+                    data = response.body();
+
+
+                    List<Like>likes= data;
+                    if(likes != null){
+                        tvFavNum.setText(String.valueOf(likes.size()));
+                    }else {
+                        tvFavNum.setText("0");
+                    }
+
+
+                } else {
+                    data.clear();
+                    data.addAll(response.body());
+
+                }
+            } else {
+                Log.e(">>>>>getAllCB onResponse", response.message());
+            }
+        }
+
+        @Override
+        public void onFailure(Call<List<Like>> call, Throwable t) {
+            Log.e(">>>>>getAllCB onFailure", t.getMessage());
         }
     };
 }

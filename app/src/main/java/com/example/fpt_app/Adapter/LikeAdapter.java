@@ -37,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.CartViewHolder>  {
-    private static String BASE_URL = "http://10.0.3.2:8081/";
+    private static String BASE_URL = "http://10.0.2.2:8081/";
     private List<Like> data;
     private Context context;
 //    private RecyclerView mRecyclerView;
