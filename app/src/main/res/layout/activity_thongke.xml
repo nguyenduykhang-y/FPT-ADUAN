@@ -58,7 +58,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_Oder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="565dp"
         tools:listitem="@layout/item_oderct"
         android:layout_below="@+id/btnNgay1"
         />
@@ -71,7 +71,10 @@
         android:text="Tổng tiền: 100,000,000 VNĐ"
         android:fontFamily="@font/tahoma"
         android:textColor="@color/homeapp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
+        android:layout_below="@+id/rcv_Oder"
        />
 </RelativeLayout>
