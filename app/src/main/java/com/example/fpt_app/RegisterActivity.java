@@ -2,7 +2,9 @@ package com.example.fpt_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,11 +20,26 @@ import com.example.fpt_app.Models.User;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
+import java.time.format.TextStyle;
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
+    private static final Pattern PASSWORD_PATTEN =
+            Pattern.compile("^" +
+                    "(?=.*[0-9])" +         //Ít nhất một chữ số
+                    "(?=.*[a-z])" +         //Ít nhất một chữ thường
+                    //"(?=.*[a-zA-Z])" +      //Any letter
+                    "(?=.*[A-Z])" +         //Ít nhất một chữ hoa
+                    "(?=.*[@#$%^&*=])" +    //Ít nhất một kí tự đặc biệt
+                    "(?=\\S+$)" +           //Không được có khoảng trắng
+                    ".{6,}" +               //Có ít nhất 6 kí tự
+                    "$");
+    private static final Pattern PHONE_PATTEN =
+            Pattern.compile("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$");
     private EditText fullname,edtEmail, edtPassword, edtConfirmPassword, phones;
     private Button btnRegister;
     int position;
@@ -61,7 +78,39 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirmNewPassword = edtConfirmPassword.getText().toString();
                 String phone = phones.getText().toString();
 
-                service.dangky(new User(0,full_name, newEmail, newPassword, confirmNewPassword, phone, roles)).enqueue(registerCB);
+                if (TextUtils.isEmpty(full_name)){
+                    fullname.setError("Tên không được để trống");
+                    return;
+                }else if (TextUtils.isEmpty(newEmail)){
+                    edtEmail.setError("Email không được để trống");
+                    return;
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()){
+                    edtEmail.setError("Email không đúng định dạng");
+                    return;
+                }else if (TextUtils.isEmpty(newPassword)){
+                    edtPassword.setError("Mật khẩu không được để trống");
+                    return;
+                }else if (!PASSWORD_PATTEN.matcher(newPassword).matches()){
+                    edtPassword.setError("Mật khẩu phải có: \n" +
+                            "- Ít nhất một chữ số \n" +
+                            "- Ít nhất một chữ thường \n" +
+                            "- Ít nhất một chữ hoa \n" +
+                            "- Ít nhất một kí tự đặc biệt \n" +
+                            "- Không được có khoảng trắng \n" +
+                            "- Ít nhất 6 kí tự");
+                    return;
+                }else if (newPassword.equals(confirmNewPassword) == false){
+                    edtConfirmPassword.setError("Mật khẩu xác nhận không đúng");
+                    return;
+                }else if (TextUtils.isEmpty(phone)){
+                    phones.setError("Số điện thoại không được để trống");
+                    return;
+                }else if (!PHONE_PATTEN.matcher(phone).matches()){
+                    phones.setError("vui lòng nhập đúng định dạng số điện thoại");
+                    return;
+                } else{
+                    service.dangky(new User(0,full_name, newEmail, newPassword, confirmNewPassword, phone, roles)).enqueue(registerCB);
+                }
 
 
             }
@@ -74,14 +123,12 @@ public class RegisterActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 AccessToken token = response.body();
                 tokenManager.saveToken(token);
-//                    if (token.getIs_auth()) {
-//                        startActivity(new Intent(getBaseContext(), IndexActivity.class));
-                Toast.makeText(RegisterActivity.this, "Suscess", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                Toast.makeText(RegisterActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 finish();
 
             } else {
-                Log.e(">>>>>", response.message());
+                Toast.makeText(getApplicationContext(), "Email đã tồn tại", Toast.LENGTH_SHORT).show();
             }
         }
 
