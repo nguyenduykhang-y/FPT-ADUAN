@@ -58,7 +58,7 @@ public class ChiTietOfShopActivity extends AppCompatActivity implements SearchVi
         img_url = getIntent().getStringExtra("imgShop");
         Glide.with(getBaseContext()).load(img_url).into(img);
         textViewShopName.setText(getIntent().getStringExtra("name"));
-        StoreAddress.setText(getIntent().getStringExtra("address"));
+        StoreAddress.setText("Địa chỉ: " + getIntent().getStringExtra("address"));
 
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
 

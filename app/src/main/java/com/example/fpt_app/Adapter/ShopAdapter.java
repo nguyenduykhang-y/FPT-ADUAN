@@ -54,7 +54,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         Glide.with(context).load(shop.getStoreImage())
                 .into(holder.storeImg);
         holder.tvName.setText(shop.getStoreName());
-        holder.tvAddress.setText(shop.getStoreAddress());
+        holder.tvAddress.setText("Địa Chỉ: "+ shop.getStoreAddress());
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override

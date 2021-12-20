@@ -200,8 +200,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/ic_coin"
-                    />
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/hoadon" />
 
                 <ImageView
                     android:id="@+id/imageViewFree"
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="35dp"
                     android:layout_centerVertical="true"
-                    android:text="Xu"
+                    android:text="Hoá đơn"
                     android:textColor="@color/black"
                     android:textSize="15dp"/>
                 <TextView
