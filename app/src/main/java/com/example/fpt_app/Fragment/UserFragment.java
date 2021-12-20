@@ -1,14 +1,11 @@
 package com.example.fpt_app.Fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -22,31 +19,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.fpt_app.Activity_Register_Shop;
 
-import com.example.fpt_app.Adapter.LikeAdapter;
-import com.example.fpt_app.DetailsActivity;
-
-import com.example.fpt_app.FogotActivity;
-import com.example.fpt_app.LoginActivity;
-import com.example.fpt_app.Models.AccessToken;
 import com.example.fpt_app.Models.AccessTokenManager;
 import com.example.fpt_app.Models.Like;
-import com.example.fpt_app.Models.Person;
 import com.example.fpt_app.Models.User;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 import com.example.fpt_app.OderCTActivity;
-import com.example.fpt_app.ProductActivity;
 import com.example.fpt_app.R;
-import com.example.fpt_app.RegisterActivity;
-import com.example.fpt_app.Activity_Register_Shop;
-import com.example.fpt_app.SPLikeActivity;
 import com.example.fpt_app.ThongkeActivity;
-import com.example.fpt_app.ThontinActivity;
 import com.example.fpt_app.UserInsertActivity;
 import com.example.fpt_app.UserSettingActivity;
 

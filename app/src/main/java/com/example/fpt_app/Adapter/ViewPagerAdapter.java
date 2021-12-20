@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.fpt_app.Fragment.HomeFragment;
-import com.example.fpt_app.Fragment.NotiFragment;
 import com.example.fpt_app.Fragment.ProductFragment;
 import com.example.fpt_app.Fragment.ShopFragment;
 import com.example.fpt_app.Fragment.UserFragment;
@@ -31,10 +30,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 ShopFragment f3 = new ShopFragment();
                 return f3;
+
             case 3:
-                NotiFragment f4 = new NotiFragment();
-                return f4;
-            case 4:
                 UserFragment f5 = new UserFragment();
                 return  f5;
         }
@@ -43,6 +40,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 }

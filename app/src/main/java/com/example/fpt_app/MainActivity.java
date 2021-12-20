@@ -3,7 +3,6 @@ package com.example.fpt_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -12,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,13 +19,10 @@ import android.widget.Toast;
 import com.example.fpt_app.Adapter.EreaAdapter;
 import com.example.fpt_app.Adapter.ViewPagerAdapter;
 import com.example.fpt_app.Fragment.HomeFragment;
-import com.example.fpt_app.Fragment.NotiFragment;
 import com.example.fpt_app.Fragment.ProductFragment;
 import com.example.fpt_app.Fragment.ShopFragment;
 import com.example.fpt_app.Fragment.UserFragment;
 import com.example.fpt_app.Models.Erea;
-import com.example.fpt_app.Models.User;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -87,19 +82,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Ban chon menu shop", Toast.LENGTH_SHORT).show();
                         viewPager.setCurrentItem(2);
                         break;
-                    case R.id.noti:
-                        NotiFragment notiFragment = new NotiFragment();
-                        FragmentManager fragment4 = getSupportFragmentManager();
-                                        fragment4.beginTransaction().add(R.id.ViewPager,notiFragment).commit();
-                        Toast.makeText(MainActivity.this, "Ban chon menu noti", Toast.LENGTH_SHORT).show();
-                        viewPager.setCurrentItem(3);
-                        break;
                     case R.id.user:
                         UserFragment userFragment = new UserFragment();
                         FragmentManager fragment5 = getSupportFragmentManager();
                         fragment5.beginTransaction().add(R.id.ViewPager,userFragment).commit();
                         Toast.makeText(MainActivity.this, "Ban chon menu user", Toast.LENGTH_SHORT).show();
-                        viewPager.setCurrentItem(4);
+                        viewPager.setCurrentItem(3);
                         break;
                 }
                 return true;
@@ -140,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
                         bt_nv.getMenu().findItem(R.id.shop).setChecked(true);
                         break;
                     case 3:
-                        bt_nv.getMenu().findItem(R.id.noti).setChecked(true);
-                        break;
-                    case 4:
                         bt_nv.getMenu().findItem(R.id.user).setChecked(true);
                         break;
                 }

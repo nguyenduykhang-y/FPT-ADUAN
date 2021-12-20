@@ -31,12 +31,8 @@
         <activity
             android:name=".ListSPActivity"
             android:exported="false" />
-        <activity android:name=".NotificaitonActivity" />
         <activity
             android:name=".CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ThontinActivity"
             android:exported="false" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FogotActivity" />
