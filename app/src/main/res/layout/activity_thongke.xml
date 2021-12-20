@@ -35,7 +35,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="140dp"
         android:layout_height="60dp"
-        android:text="Loc"
+        android:text="Lọc"
         android:backgroundTint="@color/homeapp"
         android:layout_below="@+id/header"/>
     <Button
@@ -43,7 +43,7 @@
         android:layout_width="120dp"
         android:layout_marginTop="5dp"
         android:layout_height="60dp"
-        android:text="Ngay 1"
+        android:text="Ngay đầu"
         android:backgroundTint="@color/homeapp"
         android:layout_below="@+id/header"/>
     <Button
@@ -52,14 +52,26 @@
         android:layout_marginTop="5dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
-        android:text="Ngay 2"
+        android:text="Ngày cuối"
         android:backgroundTint="@color/homeapp"
         android:layout_below="@+id/header"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_Oder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/item_oderct"
         android:layout_below="@+id/btnNgay1"
         />
+
+    <TextView
+        android:id="@+id/TongtienC"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:text="Tổng tiền: 100,000,000 VNĐ"
+        android:fontFamily="@font/tahoma"
+        android:textColor="@color/homeapp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+       />
 </RelativeLayout>

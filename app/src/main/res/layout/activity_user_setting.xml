@@ -47,20 +47,7 @@
             android:paddingTop="20dp"
             android:text="Thông tin tài khoản"
             android:textSize="20dp"/>
-        <TextView
-            android:id="@+id/tvChangeAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:text="Thay đổi địa chỉ"
-            android:textSize="20dp"/>
-        <TextView
-            android:id="@+id/tvShopInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:text="Thông tin Shop"
-            android:textSize="20dp"/>
+
         <TextView
             android:id="@+id/tvFavProduct"
             android:layout_width="wrap_content"

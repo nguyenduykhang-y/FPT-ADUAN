@@ -86,7 +86,7 @@ public class UserInsertActivity extends AppCompatActivity {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserInsertActivity.this, MainActivity.class));
+                finish();
             }
         });
 

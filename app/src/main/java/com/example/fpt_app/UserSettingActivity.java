@@ -70,8 +70,7 @@ public class UserSettingActivity extends AppCompatActivity {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserSettingActivity.this,MainActivity.class);
-                startActivity(intent);
+               finish();
             }
         });
         tvFavProduct.setOnClickListener(new View.OnClickListener() {

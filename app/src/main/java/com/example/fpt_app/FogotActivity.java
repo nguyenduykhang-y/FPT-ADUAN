@@ -71,8 +71,8 @@ public class FogotActivity extends AppCompatActivity {
 
                 AccessToken token = response.body();
                 tokenManager.getToken();
-//
-                    Toast.makeText(FogotActivity.this, "Send email Suscess", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(FogotActivity.this, "Send email Suscess", Toast.LENGTH_SHORT).show();
                 LayoutInflater layoutInflater = getLayoutInflater();
                 View layout = layoutInflater.inflate(R.layout.custom_toast, (ViewGroup)findViewById(R.id.toast));
                 final Toast toast = new Toast(getApplicationContext());

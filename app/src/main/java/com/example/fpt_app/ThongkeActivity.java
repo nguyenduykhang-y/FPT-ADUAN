@@ -12,14 +12,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fpt_app.Adapter.OderCTAdapter;
 import com.example.fpt_app.Models.AccessTokenManager;
+import com.example.fpt_app.Models.Oder;
 import com.example.fpt_app.Models.OderCT;
 import com.example.fpt_app.MyRetrofit.IRetrofitService;
 import com.example.fpt_app.MyRetrofit.RetrofitBuilder;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,6 +43,7 @@ public class ThongkeActivity extends AppCompatActivity {
     private OderCTAdapter adapter;
     Button btnNgay1,btnNgay2,btnLoc;
     ImageView imgBack;
+    TextView Tongtien;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +54,7 @@ public class ThongkeActivity extends AppCompatActivity {
         btnNgay1= findViewById(R.id.btnNgay1);
         btnNgay2=findViewById(R.id.btnNgay2);
         btnLoc = findViewById(R.id.btnLoc);
-
+        Tongtien = findViewById(R.id.TongtienC);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,1);
         mRecycle.setLayoutManager(gridLayoutManager);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
@@ -131,7 +135,17 @@ public class ThongkeActivity extends AppCompatActivity {
                             }
                             return false;
                         }).collect(Collectors.toList());
+                        List<OderCT> oderCTList =filter;
+                        double count = 0;
                         mRecycle.setAdapter(new OderCTAdapter(getBaseContext(), filter));
+                                if (filter != null){
+                                    for (OderCT s : oderCTList){
+                                    count += s.getPrice() *s.getQuantity();
+                                }
+                                    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+                                    Tongtien.setText("Tổng tiền: "+ decimalFormat.format(count) + " VNĐ");
+                                }
+
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -142,7 +156,7 @@ public class ThongkeActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ThongkeActivity.this,MainActivity.class));
+                finish();
             }
         });
     }
@@ -154,6 +168,15 @@ public class ThongkeActivity extends AppCompatActivity {
                     data = response.body();
                     adapter = new OderCTAdapter(getBaseContext(),data);
                     mRecycle.setAdapter(adapter);
+                    List<OderCT> oderCTList1 =data;
+                    double count = 0;
+                    if (oderCTList1 != null){
+                        for (OderCT s : oderCTList1){
+                            count += s.getPrice() *s.getQuantity();
+                        }
+                        DecimalFormat decimalFormat = new DecimalFormat("###,###,###.#");
+                        Tongtien.setText("Tổng tiền: "+ decimalFormat.format(count) + " VNĐ");
+                    }
 
                 } else {
                     data.clear();

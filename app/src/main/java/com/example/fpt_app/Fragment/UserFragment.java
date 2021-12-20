@@ -137,7 +137,13 @@ public class UserFragment extends Fragment  {
             }
         });
 
-
+            tvFavNum.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getContext(),SPLikeActivity.class);
+                    startActivity(i);
+                }
+            });
 
 
         service.Profile().enqueue(getProfile);
