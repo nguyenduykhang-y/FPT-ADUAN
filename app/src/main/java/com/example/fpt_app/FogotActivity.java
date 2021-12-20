@@ -1,10 +1,15 @@
 package com.example.fpt_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +30,14 @@ public class FogotActivity extends AppCompatActivity {
     private AccessTokenManager tokenManager;
     EditText edtEmail,editTextPassword;
     Button btnForgot;
+       ImageView backlogins;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot);
         tokenManager = AccessTokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
         edtEmail = findViewById(R.id.edtEmail);
+        backlogins = findViewById(R.id.backlogin);
         btnForgot = findViewById(R.id.btnForgot);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         edtEmail.setText("test@gmail.com");
@@ -48,6 +55,14 @@ public class FogotActivity extends AppCompatActivity {
 
             }
         });
+        backlogins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(FogotActivity.this, LoginActivity.class);
+                startActivity(i);
+
+            }
+        });
     }
     Callback<AccessToken> forgotCB = new Callback<AccessToken>() {
         @Override
@@ -58,7 +73,14 @@ public class FogotActivity extends AppCompatActivity {
                 tokenManager.getToken();
 //
                     Toast.makeText(FogotActivity.this, "Send email Suscess", Toast.LENGTH_SHORT).show();
-//
+                LayoutInflater layoutInflater = getLayoutInflater();
+                View layout = layoutInflater.inflate(R.layout.custom_toast, (ViewGroup)findViewById(R.id.toast));
+                final Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                toast.show();
+                finish();
 //
             } else {
                 Log.e(">>>>>", response.message());

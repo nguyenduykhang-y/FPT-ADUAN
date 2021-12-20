@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <ImageView
-        android:id="@+id/ivBackSetting"
+        android:id="@+id/backlogin"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="start"

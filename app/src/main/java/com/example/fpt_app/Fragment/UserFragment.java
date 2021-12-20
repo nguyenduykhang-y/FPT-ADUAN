@@ -91,7 +91,7 @@ public class UserFragment extends Fragment  {
         tvName = v.findViewById(R.id.userName);
         tvEmail = v.findViewById(R.id.userEmail);
         ivUserInsert = v.findViewById(R.id.ivUserInsert);
-        tvShop = v.findViewById(R.id.tvShop);
+
         tvFavNum= v.findViewById(R.id.FavNum);
         imgOderCt=v.findViewById(R.id.imageViewDelivering);
         imgThongke=v.findViewById(R.id.imageThongke);

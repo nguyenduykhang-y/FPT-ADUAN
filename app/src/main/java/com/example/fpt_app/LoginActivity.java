@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private String BASE_URL = "http://10.0.2.2:8081/";
     private AccessTokenManager tokenManager;
     private Context context;
+    TextView forgot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(getBaseContext(), MainActivity.class));
             finish();
         }
+        forgot = findViewById(R.id.forgotPass);
         EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         Button buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
@@ -61,7 +63,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this, FogotActivity.class);
+                startActivity(i);
+            }
+        });
         IRetrofitService service = new RetrofitBuilder()
                 .createService(IRetrofitService.class, BASE_URL);
         buttonSignIn.setOnClickListener(new View.OnClickListener() {

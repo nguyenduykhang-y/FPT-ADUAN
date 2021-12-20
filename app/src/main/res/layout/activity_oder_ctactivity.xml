@@ -29,11 +29,11 @@
             android:textColor="@color/homeapp"
             android:textSize="20dp" />
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_Oder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_oderct"
         android:layout_below="@+id/header"
-        />
+        tools:listitem="@layout/item_oderct" />
 </RelativeLayout>

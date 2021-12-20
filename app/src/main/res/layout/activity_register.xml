@@ -122,34 +122,7 @@
         android:fontFamily="@font/tahomabd"
         android:textAllCaps="false"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-       android:layout_marginLeft="73dp"
-        android:layout_marginTop="30dp"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/facebook"/>
-        <TextView
-            android:id="@+id/TextOR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="40dp"
-            android:text="OR"
-            android:fontFamily="@font/tahomabd"/>
 
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginLeft="40dp"
-            android:src="@drawable/google"/>
-    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"

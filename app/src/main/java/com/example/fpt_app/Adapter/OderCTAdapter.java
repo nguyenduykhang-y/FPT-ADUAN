@@ -70,7 +70,7 @@ public class OderCTAdapter extends RecyclerView.Adapter<OderCTAdapter.CartViewHo
 //            if (id == product.getId()){
 //                holder.tvnameSP.setText(product.getName());
 //            }
-
+        holder.tvnameSP.setText("Mã đơn hàng: " +oderCT.getOderctId());
         holder.tvPrice.setText("Giá: " + decimalFormat.format(oderCT.getPrice())+" VND");
         holder.tvQuantity.setText("Số lượng: " + oderCT.getQuantity());
         holder.tvDate.setText("Ngày: " +oderCT.getDate());
