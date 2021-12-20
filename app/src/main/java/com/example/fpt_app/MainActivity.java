@@ -65,28 +65,24 @@ public class MainActivity extends AppCompatActivity {
                         FragmentManager fragment1 = getSupportFragmentManager();
                                         fragment1.beginTransaction().add(R.id.ViewPager,homeFragment)
                                                   .commit();
-                        Toast.makeText(MainActivity.this, "Ban chon menu home", Toast.LENGTH_SHORT).show();
                         viewPager.setCurrentItem(0);
                         break;
                     case R.id.cart:
                         ProductFragment productFragment = new ProductFragment();
                         FragmentManager fragment2 = getSupportFragmentManager();
                                         fragment2.beginTransaction().add(R.id.ViewPager,productFragment).commit();
-                        Toast.makeText(MainActivity.this, "Ban chon menu cart", Toast.LENGTH_SHORT).show();
                         viewPager.setCurrentItem(1);
                         break;
                     case R.id.shop:
                         ShopFragment shopFragment = new ShopFragment();
                         FragmentManager fragment3 = getSupportFragmentManager();
                                         fragment3.beginTransaction().add(R.id.ViewPager,shopFragment).commit();
-                        Toast.makeText(MainActivity.this, "Ban chon menu shop", Toast.LENGTH_SHORT).show();
                         viewPager.setCurrentItem(2);
                         break;
                     case R.id.user:
                         UserFragment userFragment = new UserFragment();
                         FragmentManager fragment5 = getSupportFragmentManager();
                         fragment5.beginTransaction().add(R.id.ViewPager,userFragment).commit();
-                        Toast.makeText(MainActivity.this, "Ban chon menu user", Toast.LENGTH_SHORT).show();
                         viewPager.setCurrentItem(3);
                         break;
                 }

@@ -3,7 +3,9 @@ package com.example.fpt_app;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,9 +79,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = editTextEmail.getText().toString();
                 String pass = editTextPassword.getText().toString();
-
-                service.login(new Person(email, pass)).enqueue(loginCB);
-
+                if (TextUtils.isEmpty(email)){
+                    editTextEmail.setError("Email không được để trống");
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    editTextEmail.setError("Vui lòng nhập đúng định dạng email");
+                }else if (TextUtils.isEmpty(pass)){
+                    editTextPassword.setError("Mật khẩu không được để trống");
+                }else {
+                    service.login(new Person(email, pass)).enqueue(loginCB);
+                }
             }
         });
     }
@@ -108,12 +116,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
             } else {
                 Log.e(">>>>>", response.message());
+                Toast.makeText(getApplicationContext(), "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onFailure(Call<AccessToken> call, Throwable t) {
             Log.e(">>>>>", t.getMessage());
+
         }
     };
 }

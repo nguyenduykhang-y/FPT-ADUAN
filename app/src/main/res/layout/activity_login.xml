@@ -29,35 +29,57 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="315dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="22dp"
-            android:ems="10"
-            android:text="d@gmail.com"
-            android:hint="Username"
-            android:padding="10dp"
-            android:layout_below="@+id/DN"
-            android:inputType="textPersonName"
-            android:background="@drawable/background"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="16dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp"
+            app:boxStrokeWidth="1sp">
 
-            />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="315dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:text="1"
-            android:layout_below="@+id/edtUser"
-            android:hint="Password"
-            android:padding="10dp"
-            android:background="@drawable/background"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp"
-  />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_login_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="16dp"
+            app:boxStrokeWidth="1sp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="16dp"
+                android:hint="Mật khẩu"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>

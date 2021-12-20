@@ -39,70 +39,123 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
-    <EditText
-        android:id="@+id/fullname"
-        android:layout_width="315dp"
-        android:layout_height="49dp"
-        android:background="@drawable/background"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Username"
-        android:layout_below="@+id/tvNhapthongtin"
-        android:inputType="textPersonName"
-        android:padding="10dp"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:drawablePadding="16dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp"
+            app:boxStrokeWidth="1sp">
 
-        />
-    <EditText
-        android:id="@+id/edtEmail"
-        android:layout_width="315dp"
-        android:layout_height="49dp"
-        android:background="@drawable/background"
-        android:padding="10dp"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="Email"
-        android:layout_below="@+id/edName"
-       />
-    <EditText
-        android:id="@+id/edtPassword"
-        android:layout_width="315dp"
-        android:layout_height="49dp"
-        android:background="@drawable/background"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="Password"
-        android:layout_below="@+id/edEmail"
-        android:inputType="textPassword"
-        android:padding="10dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Họ Tên"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:drawablePadding="16dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp"
+            app:boxStrokeWidth="1sp">
 
-        />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:drawablePadding="16dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp"
+            app:boxStrokeWidth="1sp">
 
-    <EditText
-        android:id="@+id/edtConfirmPassword"
-        android:layout_width="315dp"
-        android:layout_height="49dp"
-        android:background="@drawable/background"
-        android:padding="10dp"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="Enter the password"
-        android:layout_below="@+id/edPassword"
-        android:inputType="textPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Mật khẩu"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:drawablePadding="16dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp"
+            app:boxStrokeWidth="1sp">
 
-        />
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="315dp"
-        android:layout_height="49dp"
-        android:background="@drawable/background"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="Phone"
-        android:layout_below="@+id/edPassword"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Xác nhận mật khẩu"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:drawablePadding="16dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/homeapp"
+            app:boxStrokeWidth="1sp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:hint="Số điện thoại"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
