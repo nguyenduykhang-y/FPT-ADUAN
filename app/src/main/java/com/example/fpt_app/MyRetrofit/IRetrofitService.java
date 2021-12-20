@@ -109,10 +109,11 @@ public interface IRetrofitService {
     @POST("views/gh_delete.php")
     Call<ResponseModel> cart_delete(@Body Cart cart);
 
-
-
     @POST("views/store_insert.php")
     Call<ResponseModel> StoreInsert(@Body Shop shop);
+
+    @POST("views/get_store_id.php")
+    Call<ResponseModel> getStoreByEmail(@Body Shop shop);
 
 
 }
